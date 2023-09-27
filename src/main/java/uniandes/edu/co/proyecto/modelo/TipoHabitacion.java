@@ -2,23 +2,23 @@ package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.*;
 
-
 @Entity
-@Table(name = "hoteles")
-public class Hotel {
+@Table(name = "tiposhabitaciones")
+public class TipoHabitacion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String nombre;
+    private Integer capacidad;
+    
+    public TipoHabitacion(){;}
 
-    private String direccion;
-
-    private String ciudad;
-
-    public Hotel()
-    {;}
+    public TipoHabitacion(String nombre, Integer capacidad) {
+        this.nombre = nombre;
+        this.capacidad = capacidad;
+    }
 
     public Integer getId() {
         return id;
@@ -36,24 +36,13 @@ public class Hotel {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public Integer getCapacidad() {
+        return capacidad;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
     }
 
     
-
-
-
 }
