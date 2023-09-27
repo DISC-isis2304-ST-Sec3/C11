@@ -3,18 +3,18 @@ package uniandes.edu.co.proyecto.modelo;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="elementoshab")
-public class ElementoHab {
+@Table(name="elementoshabitaciones")
+public class ElementoHabitacion {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)  
     private Integer id;
 
     private String nombre;
 
-    public ElementoHab()
+    public ElementoHabitacion()
     {;}
 
-    public ElementoHab(String nombre) {
+    public ElementoHabitacion(String nombre) {
         this.nombre = nombre;
     }
 
