@@ -33,7 +33,7 @@ public interface ElementoHabitacionRepository extends JpaRepository<ElementoHabi
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO elementoshabitaciones (id, nombre) VALUES ( HOTELSECUENCIA.nextval , :nombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO elementoshabitaciones (id, nombre) VALUES ( elementoshabitacionessecuencia.nextval , :nombre)", nativeQuery = true)
     void insertarElementoHabitacion(@Param("nombre") String nombre);
 
     @Query(value = "SELECT COUNT(*) AS TOTAL, \r\n" + //
