@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.edu.co.proyecto.modelo.*;
 import uniandes.edu.co.proyecto.repository.*;
@@ -41,16 +42,25 @@ public class TiposHabitacionesController {
         return "redirect:/tiposhabitaciones"; 
 }
 
-    @GetMapping("/tiposhabitaciones/{id}/edit")
-public String tipoHabitacionEditarForm(@PathVariable("id") long id, Model model) {
-    TipoHabitacion tipoHabitacion = tipoHabitacionRepository.darTipoHabitacion(id);
-    if (tipoHabitacion != null) {
-        model.addAttribute("tipohabitacion", tipoHabitacion);
-        return "tiposhabitaciones"; // Cambia el nombre de la vista si es necesario
-    } else {
-        return "redirect:/tiposhabitaciones";
+    @PostMapping("/tiposhabitaciones/{id}/edit")
+    public String editarTipoHabitacion(@PathVariable Long id, @RequestParam String nombre, @RequestParam int capacidad) {
+        TipoHabitacion tipoHabitacion = tipoHabitacionRepository.darTipoHabitacion(id);
+        
+        if (tipoHabitacion != null) {
+            // Actualiza los valores del tipo de habitación con los datos proporcionados
+            tipoHabitacion.setNombre(nombre);
+            tipoHabitacion.setCapacidad(capacidad);
+
+            // Guarda los cambios en la base de datos
+            tipoHabitacionRepository.actualizarTipoHabitacion(capacidad, nombre, null);
+
+            // Redirige al usuario a la lista de tipos de habitaciones
+            return "redirect:/tiposhabitaciones";
+        } else {
+            return "redirect:/tiposhabitaciones";
+        }
     }
-}
+
 
     @PostMapping("/tiposhabitaciones/{id}/edit/save")
     public String tipoHabitacionEditarGuardar(@PathVariable("id") long id, @ModelAttribute TipoHabitacion tipoHabitacion) {
@@ -60,6 +70,6 @@ public String tipoHabitacionEditarForm(@PathVariable("id") long id, Model model)
     @GetMapping("/tiposhabitaciones/{id}/delete")
     public String tipoHabitacionBorrar(@PathVariable("id") long id) {
         tipoHabitacionRepository.eliminarTipoHabitacion(id);
-        return "redirect:/tipoHabitacion";
+        return "redirect:/tiposhabitaciones";
     }
 }
