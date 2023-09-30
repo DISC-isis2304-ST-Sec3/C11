@@ -34,4 +34,7 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
     @Transactional
     @Query(value = "INSERT INTO reservasservicios (id, numpersonas,fechainicio,fechafin,usuarios_id,servicios_id) VALUES ( reservasserviciossecuencia.nextval , :nombre, :numpersonas, :fechainicio, :fechafin, :usuarios_id, :servicios_id)", nativeQuery = true)
     void insertarReservaServicio(@Param("numpersonas") Integer numpersonas, @Param("fechainicio") Date fechainicio,@Param("fechafin") Date fechafin,@Param("usuarios_id") Integer usuarios_id,@Param("servicios_id") Integer servicios_id);
+
+    @Query(value = "SELECT r.id, r.numPersonas, r.fechaInicio, r.fechaFin, s.nombre, s.descripcion FROM reservasservicios r JOIN servicios s ON r.servicios_id = s.id WHERE r.usuarios_id = :usuarios_id", nativeQuery = true)
+    ReservaServicio darReservaPorUsuario(@Param("usuarios_id") Integer usuarios_id);
 }

@@ -25,7 +25,7 @@ public class TipoUsuarioController {
 
     @PostMapping("/tiposUsuarios/new/save")
     public String tipoUsuarioGuardar(@ModelAttribute TipoUsuario tipoUsuario) {
-        tipoUsuarioRepository.insertarTipoUsuario(tipoUsuario.getTipoUsuario());
+        tipoUsuarioRepository.insertarTipoUsuario(tipoUsuario.getNombre());
         return "redirect:/tiposUsuarios";
     }
 

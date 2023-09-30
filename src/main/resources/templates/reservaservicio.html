@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas del Usuario</title>
+</head>
+<body>
+    <h1>Reservas del Usuario</h1>
+    
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Número de Personas</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Nombre del Servicio</th>
+            <th>Descripción del Servicio</th>
+            <th>Acciones</th>
+        </tr>
+        
+        <!-- Itera sobre las reservas y muestra cada una en una fila de la tabla -->
+        <th:block th:each="reserva : ${reservasservicios}">
+            <tr>
+                <td th:text="${reserva.id}"></td>
+                <td th:text="${reserva.numPersonas}"></td>
+                <td th:text="${reserva.fechainicio}"></td>
+                
+                <td th:text="${reserva.servicio.nombre}"></td>
+                <td th:text="${reserva.servicio.descripcion}"></td>
+                <td>
+                    <!-- Enlaces para editar y borrar la reserva -->
+                    <a th:href="@{'/editar/' + ${reserva.id}}" href="#">Editar</a> |
+                    <a th:href="@{'/borrar/' + ${reserva.id}}" href="#">Borrar</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+    
+    <br>
+    
+    <h2>Crear Nueva Reserva</h2>
+    <form th:action="@{/crear}" method="post">
+        <label for="numPersonas">Número de Personas:</label>
+        <input type="number" id="numPersonas" name="numPersonas" required><br>
+        
+        <label for="fechaInicio">Fecha de Inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" required><br>
+        
+        <label for="fechaFin">Fecha de Fin:</label>
+        <input type="date" id="fechaFin" name="fechaFin" required><br>
+        
+        <label for="descripcionServicio">Descripción del Servicio:</label>
+        <input type="text" id="descripcionServicio" name="descripcionServicio" required><br>
+        
+        <input type="submit" value="Crear Reserva">
+    </form>
+</body>
+</html>

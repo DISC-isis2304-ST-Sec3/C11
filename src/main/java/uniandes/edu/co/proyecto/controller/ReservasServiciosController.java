@@ -54,4 +54,10 @@ public class ReservasServiciosController {
         return "redirect:/reservasservicios";
     }
 
+    @GetMapping("/reservasservicios/1")
+    public String listarReservasServicios(Model model) {
+        model.addAttribute("reservasservicios", reservaServicioRepository.darReservaPorUsuario(1));
+    return "/reservasservicios/1";
+}
+
 }

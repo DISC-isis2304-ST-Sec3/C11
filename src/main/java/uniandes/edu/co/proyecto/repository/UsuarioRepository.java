@@ -25,15 +25,17 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>  {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE usuarios SET usuario = :usuario, contraseña = :contraseña, nombre = :nombre, numDocumento = :numDocumento, email = :email, tipoDocumento = :tipoDocumento, tipoUsuario_id = tipoUsuario_id:  WHERE id = :id", nativeQuery = true)
-    void actualizarUsuario(@Param("id") long id, @Param("usuario") String usuario, @Param("contraseña") String contraseña, @Param("nombre") String nombre, @Param("numDocumento") Integer numDocumento,
-                             @Param("email") String email, @Param("tipoDocumento") String tipoDocumento, @Param("tipoUsuario_id") Integer tipoUsuario_id);
+    @Query(value = "UPDATE usuarios SET usuario = :usuario, contraseña = :contraseña, nombre = :nombre, numDocumento = :numDocumento, email = :email, tipoDocumento = :tipoDocumento, tipoUsuario_id = :tipoUsuario_id WHERE id = :id", nativeQuery = true)
+    void actualizarUsuario(@Param("id") long id, @Param("usuario") String usuario, @Param("contraseña") String contraseña, @Param("nombre") String nombre, @Param("numDocumento") long numDocumento,
+                         @Param("email") String email, @Param("tipoDocumento") String tipoDocumento, @Param("tipoUsuario_id") Integer tipoUsuario_id);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO usuarios (id, usuario, contraseña, nombre, numDocumento, email, tipoDocumento, tipoUsuario_id) VALUES ( usuariossecuencia.nextval , :usuario, :contraseña, :nombre, :numDocumento, :email, :tipoDocumento, :tipoUsuario_id)", nativeQuery = true)
-    void insertarUsuario(@Param("usuario") String usuario, @Param("contraseña") String contraseña, @Param("nombre") String nombre, @Param("numDocumento") Integer numDocumento,
+    void insertarUsuario(@Param("usuario") String usuario, @Param("contraseña") String contraseña, @Param("nombre") String nombre, @Param("numDocumento") long numDocumento,
                              @Param("email") String email, @Param("tipoDocumento") String tipoDocumento, @Param("tipoUsuario_id") Integer tipoUsuario_id);
 
+    @Query(value = "SELECT * FROM Usuarios  WHERE (contraseña = :contraseña AND usuario = :usuario)", nativeQuery = true)
+    Usuario encontrarUsuarioPorUsuarioYContraseña(@Param("usuario") String usuario, @Param("contraseña") String contraseña);
 
 }

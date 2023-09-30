@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.edu.co.proyecto.modelo.Usuario;
 import uniandes.edu.co.proyecto.repository.UsuarioRepository;
@@ -16,6 +17,28 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @PostMapping("/login")
+    public String login(@RequestParam("usuario") String username, @RequestParam("password") String password) {
+        Usuario usuario = usuarioRepository.encontrarUsuarioPorUsuarioYContraseña(username, password);
+        if (usuario != null) {
+            String userType = usuario.getTipoUsuario().getNombre().toLowerCase();
+            switch (userType) {
+                case "gerente":
+                    return "gerente";
+                case "empleado":
+                    return "empleado";
+                case "recepcionista":
+                    return "recepcionista";
+                case "cliente":
+                    return "cliente";
+                default:
+                    return "redirect:/error";
+            }
+        } else {
+            return "index";
+        }
+    }
 
     @GetMapping("/usuarios/new")
     public String usuarioForm(Model model) {

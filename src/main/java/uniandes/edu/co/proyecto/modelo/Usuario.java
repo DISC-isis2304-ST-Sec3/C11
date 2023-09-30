@@ -11,30 +11,34 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+
     private String usuario;  
-    private String contrasena; 
-    private String nombre;    
-    private Integer numDocumento;
+    private String contraseña; 
+    private String nombre; 
+
+    @Column(name = "numdocumento")
+    private long numDocumento;
     private String email;
+    @Column(name = "tipodocumento")
     private String tipoDocumento;
 
     
 
     @ManyToOne
-    @JoinColumn(name = "tipoUsuario_id", referencedColumnName = "id")
-    private TipoUsuario tipoUsuario;
+    @JoinColumn(name = "tiposdeusuario_id", referencedColumnName = "id")
+    private TipoUsuario tiposdeusuario;
 
    
 
     public Usuario(){;}
 
-    public Usuario(String elusuario, String lacontraseña,String elnombre ,Integer elNumDoc, String elemail, String eltipoDoc, TipoUsuario elTipoUsuario) {
+    public Usuario(String elusuario, String contraseña,String elnombre ,long elNumDoc, String elemail, String eltipoDoc, TipoUsuario elTipoUsuario) {
         this.usuario = elusuario;
-        this.contrasena = lacontraseña;
+        this.contraseña = contraseña;
         this.nombre = elnombre;
         this.email = elemail;
         this.tipoDocumento = eltipoDoc;
-        this.tipoUsuario = elTipoUsuario;
+        this.tiposdeusuario = elTipoUsuario;
 
     }
 
@@ -62,19 +66,19 @@ public class Usuario {
     }
 
     public String getContrasena() {
-        return contrasena;
+        return contraseña;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContrasena(String contraseña) {
+        this.contraseña = contraseña;
     }
 
 
-    public Integer getNumDocumento() {
+    public long getNumDocumento() {
         return numDocumento;
     }
 
-    public void setNumDocumento(Integer numDocumento) {
+    public void setNumDocumento(long numDocumento) {
         this.numDocumento = numDocumento;
     }
 
@@ -95,10 +99,10 @@ public class Usuario {
     }
 
     public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
+        return tiposdeusuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setTipoUsuario(TipoUsuario tiposdeusuario) {
+        this.tiposdeusuario = tiposdeusuario;
     }
 }
