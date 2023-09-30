@@ -13,6 +13,10 @@ public class Consumo {
     private Integer sumaTotal;
     private Integer numConsumos;
 
+    private String nombre;
+
+   
+
     @ManyToOne
     @JoinColumn(name = "ReservasHabitaciones_id", referencedColumnName = "id")
     private ReservaHabitacion reservaHabitacion;
@@ -23,11 +27,13 @@ public class Consumo {
 
     public Consumo(){;}
 
-    public Consumo(Integer sumaTotal, Integer numConsumos, ReservaHabitacion reservaHabitacion, ReservaServicio reservaServicio) {
+    public Consumo(Integer sumaTotal, Integer numConsumos, String nombre, ReservaHabitacion reservaHabitacion, ReservaServicio reservaServicio) {
         this.sumaTotal = sumaTotal;
         this.numConsumos = numConsumos;
+        this.nombre = nombre;
         this.reservaHabitacion = reservaHabitacion;
         this.reservaServicio = reservaServicio;
+        
     }
 
     public Integer getId() {
@@ -70,7 +76,13 @@ public class Consumo {
         this.reservaServicio = reservaServicio;
     }
 
-    
+     public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     
 }
