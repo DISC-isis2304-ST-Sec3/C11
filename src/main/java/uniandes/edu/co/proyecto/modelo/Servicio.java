@@ -14,9 +14,11 @@ public class Servicio {
 
     private String nombre;
     private String descripcion;
+    @Column(name = "costoporunidad")
     private Integer costoPorUnidad;
     private String unidad;
     private String horario;
+    @Column(name = "tiposervicio")
     private String tipoServicio;
     private Integer capacidad;
 
