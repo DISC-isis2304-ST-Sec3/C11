@@ -1,8 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
 
-import java.sql.Date;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -12,12 +10,16 @@ public class ReservaHabitacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
+    @Column(name = "numpersonas")
     private Integer numPersonas;
-    private Date fechaInicio;
-    private Date fechaFin;
-    private Date fechaCheckIn;
-    private Date fechaCheckOut;
+    @Column(name = "fechainicio")
+    private String fechaInicio;
+    @Column(name = "fechafin")
+    private String fechaFin;
+    @Column(name = "fechacheckin")
+    private String fechaCheckIn;
+    @Column(name = "fechacheckout")
+    private String fechaCheckOut;
 
     @ManyToOne
     @JoinColumn(name = "Usuarios_Id", referencedColumnName = "id")
@@ -25,13 +27,15 @@ public class ReservaHabitacion {
 
    
     @ManyToOne
-    @JoinColumn(name = "Habitaciones_id", referencedColumnName = "id")
+    @JoinColumn(name = "habitaciones_id", referencedColumnName = "id")
     private Habitacion habitacion;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "planesdeconsumo_id", referencedColumnName = "id")
+    private PlanesConsumo planConsumo;
     public ReservaHabitacion(){;}
 
-    public ReservaHabitacion(Integer numPersonas, Date fechaInicio,Usuario usuario ,Date fechaFin, Habitacion habitacion, Date fechaCheckIn, Date fechaCheckOut) {
+    public ReservaHabitacion(Integer numPersonas, String fechaInicio,Usuario usuario ,String fechaFin, Habitacion habitacion, String fechaCheckIn, String fechaCheckOut, PlanesConsumo planConsumo) {
         this.numPersonas = numPersonas;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -39,6 +43,7 @@ public class ReservaHabitacion {
         this.habitacion = habitacion;
         this.fechaCheckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;
+        this.planConsumo = planConsumo;
     }
 
     public Integer getId() {
@@ -57,35 +62,35 @@ public class ReservaHabitacion {
         this.numPersonas = numPersonas;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaCheckIn() {
+    public String getFechaCheckIn() {
         return fechaCheckIn;
     }
 
-    public void setFechaCheckIn(Date fechaCheckIn) {
+    public void setFechaCheckIn(String fechaCheckIn) {
         this.fechaCheckIn = fechaCheckIn;
     }
 
-    public Date getFechaCheckOut() {
+    public String getFechaCheckOut() {
         return fechaCheckOut;
     }
 
-    public void setFechaCheckOut(Date fechaCheckOut) {
+    public void setFechaCheckOut(String fechaCheckOut) {
         this.fechaCheckOut = fechaCheckOut;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -105,4 +110,13 @@ public class ReservaHabitacion {
         this.habitacion = habitacion;
     }
 
+    public PlanesConsumo getPlanConsumo() {
+        return planConsumo;
+    }
+
+    public void setPlanConsumo(PlanesConsumo planConsumo) {
+        this.planConsumo = planConsumo;
+    }
+
+    
 }

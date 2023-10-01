@@ -1,6 +1,6 @@
 package uniandes.edu.co.proyecto.repository;
 
-import java.sql.Date;
+
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,7 +15,7 @@ import uniandes.edu.co.proyecto.modelo.ReservaHabitacion;
 public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabitacion, Integer>   {
 
     @Query(value = "SELECT * FROM reservashabitaciones", nativeQuery = true)
-    Collection<ReservaHabitacion> darReservasServicios();
+    Collection<ReservaHabitacion> darReservasHabitaciones();
 
     @Query(value = "SELECT * FROM reservashabitaciones WHERE id = :id", nativeQuery = true)
     ReservaHabitacion darReservaHabitacion(@Param("id") long id);
@@ -27,13 +27,17 @@ public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabita
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE reservashabitaciones SET numpersonas = :numpersonas, fechainicio = :fechainicio, fechafin = :fechafin, usuarios_id = :usuarios_id, habitaciones_id = :habitaciones_id WHERE id = :id", nativeQuery = true)
-    void actualizarReservaHabitacion(@Param("id") long id, @Param("numpersonas") Integer numpersonas, @Param("fechainicio") Date fechainicio,@Param("fechafin") Date fechafin,@Param("usuarios_id") Integer usuarios_id,@Param("habitaciones_id") Integer habitaciones_id);
+    @Query(value = "UPDATE reservashabitaciones SET numpersonas = :numpersonas, fechainicio = TO_DATE(:fechainicio, 'YYYY-MM-DD'), fechafin = TO_DATE(:fechafin, 'YYYY-MM-DD'), fechacheckin = TO_DATE(:fechainicio, 'YYYY-MM-DD'), fechacheckout = TO_DATE(:fechafin, 'YYYY-MM-DD') ,usuarios_id = :usuarios_id, habitaciones_id = :habitaciones_id WHERE id = :id", nativeQuery = true)
+    void actualizarReservaHabitacion(@Param("id") long id, @Param("numpersonas") Integer numpersonas, @Param("fechainicio") String fechainicio,@Param("fechafin") String fechafin,@Param("usuarios_id") Integer usuarios_id,@Param("habitaciones_id") Integer habitaciones_id);
     
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO reservashabitaciones (id, numpersonas,fechainicio,fechafin,usuarios_id,habitaciones_id) VALUES ( reservashabitacionessecuencia.nextval , :nombre, :numpersonas, :fechainicio, :fechafin, :usuarios_id, :habitaciones_id)", nativeQuery = true)
-    void insertarReservaHabitacion(@Param("numpersonas") Integer numpersonas, @Param("fechainicio") Date fechainicio,@Param("fechafin") Date fechafin,@Param("usuarios_id") Integer usuarios_id,@Param("habitaciones_id") Integer habitaciones_id);
+    @Query(value = "INSERT INTO reservashabitaciones (id, numpersonas,fechainicio,fechafin,fechacheckin,fechacheckout,usuarios_id,habitaciones_id,planesdeconsumo_id) VALUES ( reservashabitacionessecuencia.nextval, :numpersonas,TO_DATE(:fechainicio, 'YYYY-MM-DD') , TO_DATE(:fechafin, 'YYYY-MM-DD'), TO_DATE(:fechainicio, 'YYYY-MM-DD') , TO_DATE(:fechafin, 'YYYY-MM-DD'), :usuarios_id, :habitaciones_id,:plannesdeconsumo_id)", nativeQuery = true)
+    void insertarReservaHabitacion(@Param("numpersonas") Integer numpersonas, @Param("fechainicio") String fechainicio,@Param("fechafin") String fechafin,@Param("usuarios_id") Integer usuarios_id,@Param("habitaciones_id") Integer habitaciones_id, @Param("plannesdeconsumo_id") Integer plannesdeconsumo_id);
 
-    
+    @Query(value = "Select * from reservashabitaciones where usuarios_id = :id", nativeQuery = true)
+    Collection<ReservaHabitacion> darReservasHabitacionesUsuario(@Param("id") long id);
+
+    @Query(value = "SELECT *FROM reservashabitaciones WHERE HABITACIONES_ID = :idHabitacion AND FECHAFIN >= TO_DATE(:fechainicio, 'YYYY-MM-DD') AND FECHAINICIO <= TO_DATE(:fechaFin, 'YYYY-MM-DD')", nativeQuery = true)
+    Collection<ReservaHabitacion> darReservasHabitacionesHabitacion(@Param("idHabitacion") long idHabitacion, @Param("fechainicio") String fechainicio, @Param("fechaFin") String fechaFin);
 }

@@ -3,7 +3,7 @@ package uniandes.edu.co.proyecto.modelo;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "planesconsumo")  
+@Table(name = "planesdeconsumo")  
 
 public class PlanesConsumo {
 

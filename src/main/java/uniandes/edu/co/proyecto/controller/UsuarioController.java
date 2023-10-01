@@ -27,6 +27,7 @@ public class UsuarioController {
         if (usuario != null) {
             modelo.addAttribute("nombre", usuario.getNombre());
             modelo.addAttribute("permisos", usuario.getTipoUsuario().getPermisos());
+            modelo.addAttribute("id_usuario", usuario.getId());
             return "usuario";
         } else {
             return "index";

@@ -1,6 +1,5 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.sql.Date;
 
 import jakarta.persistence.*;
 
@@ -12,21 +11,24 @@ public class ReservaServicio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "numpersonas")
     private Integer numPersonas;
-    private Date fechaInicio;
-    private Date fechaFin;
+    @Column(name = "fechainicio")
+    private String fechaInicio;
+    @Column(name = "fechafin")
+    private String fechaFin;
 
     @ManyToOne
-    @JoinColumn(name = "Usuarios_Id", referencedColumnName = "id")
+    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "Servicios_id", referencedColumnName = "id")
+    @JoinColumn(name = "servicios_id", referencedColumnName = "id")
     private Servicio servicio;
 
     public ReservaServicio(){;}
 
-    public ReservaServicio(Integer numPersonas, Date fechaInicio,Usuario usuario ,Date fechaFin, Servicio servicio) {
+    public ReservaServicio(Integer numPersonas, String fechaInicio,Usuario usuario ,String fechaFin, Servicio servicio) {
         this.numPersonas = numPersonas;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -50,19 +52,19 @@ public class ReservaServicio {
         this.numPersonas = numPersonas;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 
