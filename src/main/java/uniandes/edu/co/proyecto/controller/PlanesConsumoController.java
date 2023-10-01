@@ -18,10 +18,16 @@ public class PlanesConsumoController {
     @Autowired
     private PlanesConsumoRepository planesConsumoRepository;
 
+    @GetMapping("/planesConsumo")
+    public String planesConsumo(Model model) {
+        model.addAttribute("planesdeconsumo", planesConsumoRepository.darPlanesConsumo());
+        return "planesDeConsumo";
+    }
+
     @GetMapping("/planesConsumo/new")
     public String planesConsumoForm(Model model) {
         model.addAttribute("planesConsumo", new PlanesConsumo());
-        return "planesConsumoNuevo";
+        return "/fragments/planConsumoForm";
     }
 
     @PostMapping("/planesConsumo/new/save")
@@ -32,10 +38,10 @@ public class PlanesConsumoController {
 
     @GetMapping("/planesConsumo/{id}/edit")
     public String planesConsumoEditarForm(@PathVariable("id") int id, Model model) {
-        PlanesConsumo planesConsumo = (PlanesConsumo) planesConsumoRepository.darPlanConsumo(id);
+        PlanesConsumo planesConsumo =  planesConsumoRepository.darPlanConsumo(id);
         if (planesConsumo != null) {
             model.addAttribute("planesConsumo", planesConsumo);
-            return "planesConsumoEditar";
+            return "/fragments/editPlanesConsumo";
         } else {
             return "redirect:/planesConsumo";
         }

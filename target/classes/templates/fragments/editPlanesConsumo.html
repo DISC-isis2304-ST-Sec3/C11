@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tipo de Habitación</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Plan Consumo</h1>
+        <form th:action="@{'/planesConsumo/' + ${planesConsumo.id} + '/edit/save'}" method="post">
+            <!-- Campos para editar el tipo de habitación -->
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" th:value="${planesConsumo.nombre}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">descripcion:</label>
+                <input type="descripcion" id="descripcion" name="descripcion" th:value="${planesConsumo.descripcion}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="descuento">descuento:</label>
+                <input type="descuento" id="descuento" name="descuento" th:value="${planesConsumo.descuento}" class="form-control">
+            </div>
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+
+    </div>
+</body>
+</html>

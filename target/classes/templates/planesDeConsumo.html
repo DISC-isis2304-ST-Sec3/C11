@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de planes de consumo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de planes de consumo</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>nombre</th>
+                    <th>descripcion</th>
+                    <th>descuento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="plan : ${planesdeconsumo}">
+                    <td th:text="${plan.id}"></td>
+                    <td th:text="${plan.nombre}"></td>
+                    <td th:text="${plan.descripcion}"></td>
+                    <td th:text="${plan.descuento}"></td>
+                    <td>
+                        <!-- Botón para editar -->
+                        <a th:href="@{'/planesConsumo/' + ${plan.id} + '/edit'}">Editar</a>
+                        <!-- Botón para eliminar -->
+                        <a th:href="@{'/planesConsumo/' + ${plan.id} + '/delete'}"
+                           onclick="return confirm('¿Estás seguro de borrar?')">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Botón para agregar un nuevo registro -->
+        <a th:href="@{/planesConsumo/new}" class="btn btn-primary">Agregar plan</a>
+
+</body>
+</html>
