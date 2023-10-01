@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface PlanesConsumoRepository extends JpaRepository<PlanesConsumoRepository, Integer> {
+import uniandes.edu.co.proyecto.modelo.PlanesConsumo;
+
+public interface PlanesConsumoRepository extends JpaRepository<PlanesConsumo, Integer> {
 
     @Query(value = "SELECT * FROM planesconsumo", nativeQuery = true)
     Collection<PlanesConsumoRepository> darPlanesConsumo();

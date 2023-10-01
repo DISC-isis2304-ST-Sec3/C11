@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.Habitacion;
 
 public interface HabitacionRepository extends JpaRepository<Habitacion, Integer> {
 
-    @Query(value = "SELECT * FROM habitaciones", nativeQuery = true)
+    @Query(value ="select * from habitaciones", nativeQuery = true)
     Collection<Habitacion> darHabitaciones();
 
     @Query(value = "SELECT * FROM habitaciones WHERE id = :id", nativeQuery = true)
@@ -26,13 +26,13 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE habitaciones SET capacidad = :capacidad, costoalejamiento = :costoalejamiento, numero = :numero, tipohabitaciones_id = :tipohabitaciones_id  WHERE id = :id", nativeQuery = true)
-    void actualizarHabitacion(@Param("id") long id, @Param("capacidad") Integer capacidad, @Param("costoalejamiento") Integer costoalejamiento, @Param("numero") Integer numero, @Param("tipohabitaciones_id") Integer tipohabitaciones_id);
+    @Query(value = "UPDATE habitaciones SET capacidad = :capacidad, costoalojamiento = :costoalojamiento, numero = :numero, tiposhabitaciones_id = :tiposhabitaciones_id  WHERE id = :id", nativeQuery = true)
+    void actualizarHabitacion(@Param("id") long id, @Param("capacidad") Integer capacidad, @Param("costoalojamiento") Integer costoalojamiento, @Param("numero") Integer numero, @Param("tiposhabitaciones_id") Integer tiposhabitaciones_id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO habitaciones (id, capacidad,costoalejamiento,numero,tipohabitaciones_id) VALUES ( habitacionessecuencia.nextval , :capacidad, :costoalejamiento, :numero, :tipohabitaciones_id)", nativeQuery = true)
-    void insertarHabitacion(@Param("capacidad") Integer capacidad, @Param("costoalejamiento") Integer costoalejamiento, @Param("numero") Integer numero, @Param("tipohabitaciones_id") Integer tipohabitaciones_id);
+    @Query(value = "INSERT INTO habitaciones (id, capacidad,costoalojamiento,numero,tiposhabitaciones_id) VALUES ( habitacionessecuencia.nextval , :capacidad, :costoalojamiento, :numero, :tiposhabitaciones_id)", nativeQuery = true)
+    void insertarHabitacion(@Param("capacidad") Integer capacidad, @Param("costoalojamiento") Integer costoalojamiento, @Param("numero") Integer numero, @Param("tiposhabitaciones_id") Integer tiposhabitaciones_id);
 
     
 }

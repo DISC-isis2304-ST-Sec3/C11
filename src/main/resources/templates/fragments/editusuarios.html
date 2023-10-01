@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Usuario</h1>
+        <form th:action="@{'/usuarios/' + ${usuario.id} + '/edit/save'}" method="post">
+
+            <div class="form-group">
+                <label for="nombreUsuario">nombreUsuario:</label>
+                <input type="text" id="nombreUsuario" name="nombreUsuario" th:value="${usuario.nombreUsuario}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="text" id="contrasena" name="contrasena" th:value="${usuario.contrasena}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="nombre">nombre:</label>
+                <input type="text" id="nombre" name="nombre" th:value="${usuario.nombre}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="numDocumento">numDocumento:</label>
+                <input type="text" id="numDocumento" name="numDocumento" th:value="${usuario.numDocumento}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">email:</label>
+                <input type="text" id="email" name="email" th:value="${usuario.email}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="tipoDocumento">tipoDocumento:</label>
+                <input type="text" id="tipoDocumento" name="tipoDocumento" th:value="${usuario.tipoDocumento}" class="form-control">
+            </div>
+            <label class="col-form-label" for="tiposdeusuario_id">Tipo Usuario:</label>
+            <select class="form-control" id="tiposdeusuario_id" name="tipoUsuario" required>
+                <th:block th:each="tipo : ${tiposusuarios}" >
+                    <option th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${usuario!=null || usuario.tipoUsuario.id == tipo.id}"></option>
+                </th:block>
+            </select><br>
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+        <!-- Enlace para volver a la lista de tipos de habitaciones -->
+        <a th:href="@{/usuarios}" class="btn btn-secondary">Volver</a>
+    </div>
+</body>
+</html>

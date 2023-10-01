@@ -11,18 +11,19 @@ public class Habitacion {
     private Integer id;
 
     private Integer capacidad;
-    private Integer costoAlejamiento;
+    @Column(name = "costoalojamiento")
+    private Integer costoAlojamiento;
     private Integer numero;
 
     @ManyToOne
-    @JoinColumn(name = "TipoHabitaciones_id", referencedColumnName = "id")
+    @JoinColumn(name = "tiposhabitaciones_id", referencedColumnName = "id")
     private TipoHabitacion tipoHabitacion;
 
     public Habitacion(){;}
 
-    public Habitacion(Integer capacidad, Integer costoAlejamiento, Integer numero, TipoHabitacion tipoHabitacion) {
+    public Habitacion(Integer capacidad, Integer costoAlojamiento, Integer numero, TipoHabitacion tipoHabitacion) {
         this.capacidad = capacidad;
-        this.costoAlejamiento = costoAlejamiento;
+        this.costoAlojamiento = costoAlojamiento;
         this.numero = numero;
         this.tipoHabitacion = tipoHabitacion;
     }
@@ -47,8 +48,8 @@ public class Habitacion {
         return capacidad;
     }
 
-    public Integer getCostoAlejamiento() {
-        return costoAlejamiento;
+    public Integer getCostoAlojamiento() {
+        return costoAlojamiento;
     }
 
     public Integer getNumero() {
@@ -59,8 +60,8 @@ public class Habitacion {
         this.capacidad = capacidad;
     }
 
-    public void setCostoAlejamiento(Integer costoAlejamiento) {
-        this.costoAlejamiento = costoAlejamiento;
+    public void setCostoAlojamiento(Integer costoAlojamiento) {
+        this.costoAlojamiento = costoAlojamiento;
     }
 
     public void setNumero(Integer numero) {

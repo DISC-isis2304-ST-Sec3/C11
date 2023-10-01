@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Opciones</title>
+    
+</head>
+<body>
+    <div class="menu">
+        <h1>Menú de Opciones </h1>
+        <ul>
+            <li th:if="${permisos.contains('A')}">
+                <a th:href="@{/tiposUsuarios}">Tipos de usuarios</a>
+            </li>
+            <li th:if="${permisos.contains('B')}">
+                <a th:href="@{/usuarios}">Usuarios</a>
+            </li>
+            <li th:if="${permisos.contains('C')}">
+                <a th:href="@{/tiposhabitaciones}">Tipos de habitación</a>
+            </li>
+            <li th:if="${permisos.contains('D')}">
+                <a th:href="@{/habitaciones}">Habitaciones</a>
+            </li>
+            <li th:if="${permisos.contains('E')}">
+                <a th:href="@{/ruta_para_letra_E}">Servicios del Hotel</a>
+            </li>
+            <li th:if="${permisos.contains('F')}">
+                <a th:href="@{/ruta_para_letra_F}">Planes de Consumo</a>
+            </li>
+            <li th:if="${permisos.contains('G')}">
+                <a th:href="@{/ruta_para_letra_G}">Reservas de alojamiento</a>
+            </li>
+            <li th:if="${permisos.contains('H')}">
+                <a th:href="@{/ruta_para_letra_H}">Reservas de servicios</a>
+            </li>
+            <li th:if="${permisos.contains('I')}">
+                <a th:href="@{/ruta_para_letra_I}">Check In</a>
+            </li>
+            <li th:if="${permisos.contains('J')}">
+                <a th:href="@{/ruta_para_letra_J}">Consumos de un cliente</a>
+            </li>
+            <li th:if="${permisos.contains('K')}">
+                <a th:href="@{/ruta_para_letra_K}">Check out</a>
+            </li>
+            <!-- Agrega más elementos <li> según sea necesario -->
+        </ul>
+    </div>
+</body>
+</html>

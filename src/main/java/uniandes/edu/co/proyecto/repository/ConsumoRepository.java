@@ -32,7 +32,7 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE consumos SET sumaTotal = :sumaTotal, numConsumos = :numConsumos,nombre =: nombre, ReservasHabitaciones_id = :reservaHabitacion_id, ReservasServicios_id = :reservaServicio_id WHERE id = :id", nativeQuery = true)
+    @Query(value = "UPDATE consumos SET sumaTotal = :sumaTotal, numConsumos = :numConsumos,nombre = :nombre, ReservasHabitaciones_id = :reservaHabitacion_id, ReservasServicios_id = :reservaServicio_id WHERE id = :id", nativeQuery = true)
     void actualizarConsumo(@Param("id") Integer id, @Param("sumaTotal") Integer sumaTotal, @Param("numConsumos") Integer numConsumos, @Param("nombre") String nombre, @Param("reservaHabitacion") Integer reservaHabitacion, @Param("reservaServicio") Integer reservaServicio);
 
     

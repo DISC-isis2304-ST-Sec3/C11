@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.edu.co.proyecto.modelo.Usuario;
+import uniandes.edu.co.proyecto.repository.TipoUsuarioRepository;
 import uniandes.edu.co.proyecto.repository.UsuarioRepository;
 
 @Controller
@@ -18,37 +19,37 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private TipoUsuarioRepository tipoUsuarioRepository;
     @PostMapping("/login")
-    public String login(@RequestParam("usuario") String username, @RequestParam("password") String password) {
-        Usuario usuario = usuarioRepository.encontrarUsuarioPorUsuarioYContraseña(username, password);
+    public String login(Model modelo,@RequestParam("usuario") String username, @RequestParam("password") String password) {
+        Usuario usuario = usuarioRepository.encontrarUsuarioPorUsuarioYcontrasena(username, password);
         if (usuario != null) {
-            String userType = usuario.getTipoUsuario().getNombre().toLowerCase();
-            switch (userType) {
-                case "gerente":
-                    return "gerente";
-                case "empleado":
-                    return "empleado";
-                case "recepcionista":
-                    return "recepcionista";
-                case "cliente":
-                    return "cliente";
-                default:
-                    return "redirect:/error";
-            }
+            modelo.addAttribute("nombre", usuario.getNombre());
+            modelo.addAttribute("permisos", usuario.getTipoUsuario().getPermisos());
+            return "usuario";
         } else {
             return "index";
         }
     }
 
+    @GetMapping("/usuarios")
+    public String usuarios(Model modelo) {
+        modelo.addAttribute("usuarios", usuarioRepository.darUsuarios());
+        
+        return "usuariosAPP";
+    }
+
     @GetMapping("/usuarios/new")
     public String usuarioForm(Model model) {
         model.addAttribute("usuario", new Usuario());
-        return "usuarioNuevo";
+        model.addAttribute("tiposusuarios", tipoUsuarioRepository.darTiposUsuarios());
+        return "/fragments/usuarioForm";
     }
 
     @PostMapping("/usuarios/new/save")
     public String usuarioGuardar(@ModelAttribute Usuario usuario) {
-        usuarioRepository.insertarUsuario( usuario.getUsuario(), usuario.getContrasena(), usuario.getNombre(), usuario.getNumDocumento(), usuario.getEmail(), usuario.getTipoDocumento(), usuario.getTipoUsuario().getId());
+        usuarioRepository.insertarUsuario( usuario.getNombreUsuario(), usuario.getContrasena(), usuario.getNombre(), usuario.getNumDocumento(), usuario.getEmail(), usuario.getTipoDocumento(), usuario.getTipoUsuario().getId());
         return "redirect:/usuarios";
     }
 
@@ -57,7 +58,8 @@ public class UsuarioController {
         Usuario usuario = usuarioRepository.darUsuario(id);
         if (usuario != null) {
             model.addAttribute("usuario", usuario);
-            return "usuarioEditar";
+            model.addAttribute("tiposusuarios", tipoUsuarioRepository.darTiposUsuarios());
+            return "/fragments/editusuarios";
         } else {
             return "redirect:/usuarios";
         }
@@ -66,7 +68,7 @@ public class UsuarioController {
 
     @PostMapping("/usuarios/{id}/edit/save")
     public String usuarioEditarGuardar(@PathVariable("id") long id, @ModelAttribute Usuario usuario) {
-        usuarioRepository.actualizarUsuario(((long) id), usuario.getUsuario(), usuario.getContrasena(), usuario.getNombre(), usuario.getNumDocumento(), usuario.getEmail(), usuario.getTipoDocumento(), usuario.getTipoUsuario().getId());
+        usuarioRepository.actualizarUsuario(((long) id), usuario.getNombreUsuario(), usuario.getContrasena(), usuario.getNombre(), usuario.getNumDocumento(), usuario.getEmail(), usuario.getTipoDocumento(), usuario.getTipoUsuario().getId());
         return "redirect:/usuarios";
     }
 

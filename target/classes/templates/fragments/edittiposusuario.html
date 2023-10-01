@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tipo de Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Tipo de Usuario</h1>
+        <form th:action="@{'/tiposUsuarios/' + ${tipoUsuario.id} + '/edit/save'}" method="post">
+            <!-- Campos para editar el tipo de habitación -->
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" th:value="${tipoUsuario.nombre}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="permisos">Permisos:</label>
+                <input type="text" id="permisos" name="permisos" th:value="${tipoUsuario.permisos}" class="form-control">
+            </div>
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+        <!-- Enlace para volver a la lista de tipos de habitaciones -->
+        <a th:href="@{/tiposusuarios}" class="btn btn-secondary">Volver</a>
+    </div>
+</body>
+</html>

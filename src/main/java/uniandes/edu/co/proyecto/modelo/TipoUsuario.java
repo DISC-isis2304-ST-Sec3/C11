@@ -11,11 +11,13 @@ public class TipoUsuario {
 
         private Integer id;
         private String nombre;
+        private String permisos;
     
         public TipoUsuario(){;}
     
-        public TipoUsuario(String nombre) {
+        public TipoUsuario(String nombre, String permisos) {
             this.nombre = nombre;
+            this.permisos = permisos;
         }
 
         public Integer getId() {
@@ -33,7 +35,16 @@ public class TipoUsuario {
         public void setNombre(String nombre) {
             this.nombre = nombre;
         }
+
+        public String getPermisos() {
+            return permisos;
+        }
+
+        public void setPermisos(String permisos) {
+            this.permisos = permisos;
+        }
     
+        
         
 
 

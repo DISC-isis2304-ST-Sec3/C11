@@ -11,9 +11,9 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-
-    private String usuario;  
-    private String contraseña; 
+    @Column(name = "nombreusuario")
+    private String nombreUsuario;  
+    private String contrasena; 
     private String nombre; 
 
     @Column(name = "numdocumento")
@@ -32,9 +32,9 @@ public class Usuario {
 
     public Usuario(){;}
 
-    public Usuario(String elusuario, String contraseña,String elnombre ,long elNumDoc, String elemail, String eltipoDoc, TipoUsuario elTipoUsuario) {
-        this.usuario = elusuario;
-        this.contraseña = contraseña;
+    public Usuario(String elusuario, String contrasena,String elnombre ,long elNumDoc, String elemail, String eltipoDoc, TipoUsuario elTipoUsuario) {
+        this.nombreUsuario = elusuario;
+        this.contrasena = contrasena;
         this.nombre = elnombre;
         this.email = elemail;
         this.tipoDocumento = eltipoDoc;
@@ -50,13 +50,7 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -66,11 +60,11 @@ public class Usuario {
     }
 
     public String getContrasena() {
-        return contraseña;
+        return contrasena;
     }
 
-    public void setContrasena(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
 
@@ -104,5 +98,23 @@ public class Usuario {
 
     public void setTipoUsuario(TipoUsuario tiposdeusuario) {
         this.tiposdeusuario = tiposdeusuario;
+    }
+
+    
+
+    public TipoUsuario getTiposdeusuario() {
+        return tiposdeusuario;
+    }
+
+    public void setTiposdeusuario(TipoUsuario tiposdeusuario) {
+        this.tiposdeusuario = tiposdeusuario;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 }
