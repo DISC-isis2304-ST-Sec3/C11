@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.modelo.Consumo;
 import uniandes.edu.co.proyecto.repository.ConsumoRepository;
+import uniandes.edu.co.proyecto.repository.ReservaHabitacionRepository;
+import uniandes.edu.co.proyecto.repository.ServicioRepository;
 
 @Controller
 public class ConsumoController {
@@ -17,15 +19,29 @@ public class ConsumoController {
     @Autowired
     private ConsumoRepository consumoRepository;
 
+    @Autowired
+    private ServicioRepository servicioRepository;
+
+    @Autowired
+    private ReservaHabitacionRepository reservaHabitacionRepository;
+
+    @GetMapping("/consumos")
+    public String consumoList(Model model) {
+        model.addAttribute("consumos", consumoRepository.darConsumos());
+        return "consumos";
+    }
+
     @GetMapping("/consumos/new")
     public String consumoForm(Model model) {
         model.addAttribute("consumo", new Consumo());
-        return "consumoNuevo";
+        model.addAttribute("servicios", servicioRepository.darServicios());
+        model.addAttribute("reservashabitaciones", reservaHabitacionRepository.darReservasHabitaciones());
+        return "/fragments/consumosForm";
     }
 
     @PostMapping("/consumos/new/save")
     public String consumoGuardar(@ModelAttribute Consumo consumo) {
-        consumoRepository.insertarConsumo(consumo.getSumaTotal(), consumo.getNumConsumos(), consumo.getNombre(), consumo.getReservaHabitacion().getId(), consumo.getReservaServicio().getId());
+        consumoRepository.insertarConsumo(consumo.getSumaTotal(), consumo.getNumConsumos(), consumo.getNombre(), consumo.getReservaHabitacion().getId(), consumo.getServicio().getId());
         return "redirect:/consumos";
     }
 
@@ -34,7 +50,9 @@ public class ConsumoController {
         Consumo consumo = consumoRepository.darConsumo(id);
         if (consumo != null) {
             model.addAttribute("consumo", consumo);
-            return "consumoEditar";
+            model.addAttribute("servicios", servicioRepository.darServicios());
+            model.addAttribute("reservashabitaciones", reservaHabitacionRepository.darReservasHabitaciones());
+            return "/fragments/editConsumos";
         } else {
             return "redirect:/consumos";
         }
@@ -42,7 +60,7 @@ public class ConsumoController {
 
     @PostMapping("/consumos/{id}/edit/save")
     public String consumoEditar(@PathVariable("id") int id, @ModelAttribute Consumo consumo) {
-        consumoRepository.actualizarConsumo(id, consumo.getSumaTotal(), consumo.getNumConsumos(), consumo.getNombre(), consumo.getReservaHabitacion().getId(), consumo.getReservaServicio().getId());
+        consumoRepository.actualizarConsumo(id, consumo.getSumaTotal(), consumo.getNumConsumos(), consumo.getNombre(), consumo.getReservaHabitacion().getId(), consumo.getServicio().getId());
         return "redirect:/consumos";
     }
 

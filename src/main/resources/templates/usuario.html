@@ -38,10 +38,10 @@
                 <a th:href="@{/ruta_para_letra_I}">Check In</a>
             </li>
             <li th:if="${permisos.contains('J')}">
-                <a th:href="@{/ruta_para_letra_J}">Consumos de un cliente</a>
+                <a th:href="@{/consumos}">Consumos de un cliente</a>
             </li>
             <li th:if="${permisos.contains('K')}">
-                <a th:href="@{/ruta_para_letra_K}">Check out</a>
+                <a th:href="@{/checkout}">Check out</a>
             </li>
             <!-- Agrega más elementos <li> según sea necesario -->
         </ul>

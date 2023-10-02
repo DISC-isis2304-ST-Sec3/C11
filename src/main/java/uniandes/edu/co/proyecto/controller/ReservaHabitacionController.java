@@ -1,5 +1,8 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import uniandes.edu.co.proyecto.modelo.Consumo;
+import uniandes.edu.co.proyecto.modelo.Habitacion;
 import uniandes.edu.co.proyecto.modelo.ReservaHabitacion;
+import uniandes.edu.co.proyecto.repository.ConsumoRepository;
 import uniandes.edu.co.proyecto.repository.HabitacionRepository;
 import uniandes.edu.co.proyecto.repository.PlanesConsumoRepository;
 import uniandes.edu.co.proyecto.repository.ReservaHabitacionRepository;
@@ -27,6 +33,9 @@ public class ReservaHabitacionController {
     @Autowired
     private PlanesConsumoRepository planesConsumoRepository;
 
+    @Autowired
+    private ConsumoRepository consumoRepository;
+
     @GetMapping("/reservashabitaciones/{id_usuario}")
     public String reservaHabitacionList(Model model, @PathVariable("id_usuario") Long userId) {
         Collection<ReservaHabitacion> reservashabitaciones = reservaHabitacionRepository.darReservasHabitacionesUsuario(userId);
@@ -34,6 +43,12 @@ public class ReservaHabitacionController {
         model.addAttribute("id_usuario", userId);
         
         return "reservasalojamiento";
+    }
+    @GetMapping("/checkout")
+    public String reservaHabitacionCheckout(Model model) {
+        Collection<ReservaHabitacion> reservashabitaciones = reservaHabitacionRepository.darReservasHabitaciones();
+        model.addAttribute("reservashabitaciones", reservashabitaciones);
+        return "checkout";
     }
 
     @GetMapping("/reservashabitaciones/{id_usuario}/new")
@@ -79,6 +94,32 @@ public class ReservaHabitacionController {
         reservaHabitacionRepository.eliminarReservaHabitacion(id);
         return "redirect:/reservashabitaciones/{id_usuario}";
     }
+
+    @GetMapping("/reservashabitaciones/{id}/checkout")
+    public String reservaHabitacionCheckout(@PathVariable("id") long id, Model model) throws ParseException {
+        ReservaHabitacion reservaHabitacion =  reservaHabitacionRepository.darReservaHabitacion(id);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Habitacion habitacion = reservaHabitacion.getHabitacion();
+        Collection<Consumo> consumos = consumoRepository.darConsumosReservaHabitacion(reservaHabitacion.getId());
+        Date dateInicio = sdf.parse(reservaHabitacion.getFechaInicio());
+        Date dateFin = sdf.parse(reservaHabitacion.getFechaFin());
+        
+        long diferenciaMilisegundos = dateFin.getTime() - dateInicio.getTime();
+        long noches = (diferenciaMilisegundos / (24 * 60 * 60 * 1000)) -1;
+        int total = 0;
+
+        for (Consumo consumo : consumos) {
+            total += consumo.getSumaTotal();
+        }
+
+        total += habitacion.getCostoAlojamiento() * noches;
+        total *= (1 - (reservaHabitacion.getPlanConsumo().getDescuento()/100));
+        model.addAttribute("total", total);
+        model.addAttribute("reservahabitacion", reservaHabitacion);
+        return "totalCheckout";
+    }
+
+
 
     
 

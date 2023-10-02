@@ -32,16 +32,18 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE consumos SET sumaTotal = :sumaTotal, numConsumos = :numConsumos,nombre = :nombre, ReservasHabitaciones_id = :reservaHabitacion_id, ReservasServicios_id = :reservaServicio_id WHERE id = :id", nativeQuery = true)
-    void actualizarConsumo(@Param("id") Integer id, @Param("sumaTotal") Integer sumaTotal, @Param("numConsumos") Integer numConsumos, @Param("nombre") String nombre, @Param("reservaHabitacion") Integer reservaHabitacion, @Param("reservaServicio") Integer reservaServicio);
+    @Query(value = "UPDATE consumos SET sumaTotal = :sumaTotal, numConsumos = :numConsumos,nombre = :nombre, ReservasHabitaciones_id = :reservaHabitacion_id, servicios_id = :servicio_id WHERE id = :id", nativeQuery = true)
+    void actualizarConsumo(@Param("id") Integer id, @Param("sumaTotal") Integer sumaTotal, @Param("numConsumos") Integer numConsumos, @Param("nombre") String nombre, @Param("reservaHabitacion_id") Integer reservaHabitacion_id, @Param("servicio_id") Integer servicio_id);
 
     
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO consumos (sumaTotal, numConsumos, nombre, ReservasHabitaciones_id, ReservasServicios_id) VALUES (:sumaTotal, :numConsumos, :nombre, :reservaHabitacion, :reservaServicio)", nativeQuery = true)
-    void insertarConsumo(@Param("sumaTotal") Integer sumaTotal, @Param("numConsumos") Integer numConsumos, @Param("nombre") String nombre, @Param("reservaHabitacion") Integer reservaHabitacion, @Param("reservaServicio") Integer reservaServicio);
+    @Query(value = "INSERT INTO consumos (id, sumaTotal, numConsumos, nombre, reservashabitaciones_id, servicios_id) VALUES (consumossecuencia.nextval , :sumaTotal, :numConsumos, :nombre, :reservaHabitacion, :servicios_id)", nativeQuery = true)
+    void insertarConsumo(@Param("sumaTotal") Integer sumaTotal, @Param("numConsumos") Integer numConsumos, @Param("nombre") String nombre, @Param("reservaHabitacion") Integer reservaHabitacion, @Param("servicios_id") Integer servicios_id);
 
+    @Query(value = "select * from consumos where reservashabitaciones_id = :id", nativeQuery = true)
+    Collection<Consumo> darConsumosReservaHabitacion(@Param("id") Integer id);
    
     
 }

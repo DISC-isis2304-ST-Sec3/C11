@@ -10,7 +10,9 @@ public class Consumo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "sumatotal")
     private Integer sumaTotal;
+    @Column(name = "numconsumos")
     private Integer numConsumos;
 
     private String nombre;
@@ -18,21 +20,21 @@ public class Consumo {
    
 
     @ManyToOne
-    @JoinColumn(name = "ReservasHabitaciones_id", referencedColumnName = "id")
+    @JoinColumn(name = "reservashabitaciones_id", referencedColumnName = "id")
     private ReservaHabitacion reservaHabitacion;
 
     @ManyToOne
-    @JoinColumn(name = "ReservasServicios_id", referencedColumnName = "id")
-    private ReservaServicio reservaServicio;
+    @JoinColumn(name = "servicios_id", referencedColumnName = "id")
+    private Servicio servicio;
 
     public Consumo(){;}
 
-    public Consumo(Integer sumaTotal, Integer numConsumos, String nombre, ReservaHabitacion reservaHabitacion, ReservaServicio reservaServicio) {
+    public Consumo(Integer sumaTotal, Integer numConsumos, String nombre, ReservaHabitacion reservaHabitacion, Servicio servicio) {
         this.sumaTotal = sumaTotal;
         this.numConsumos = numConsumos;
         this.nombre = nombre;
         this.reservaHabitacion = reservaHabitacion;
-        this.reservaServicio = reservaServicio;
+        this.servicio = servicio;
         
     }
 
@@ -52,8 +54,8 @@ public class Consumo {
         return reservaHabitacion;
     }
 
-    public ReservaServicio getReservaServicio() {
-        return reservaServicio;
+    public Servicio getServicio() {
+        return servicio;
     }
 
     public void setId(Integer id) {
@@ -72,8 +74,8 @@ public class Consumo {
         this.reservaHabitacion = reservaHabitacion;
     }
 
-    public void setReservaServicio(ReservaServicio reservaServicio) {
-        this.reservaServicio = reservaServicio;
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
 
      public String getNombre() {
