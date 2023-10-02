@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="72250B0F-D5CB-5AF8-DC01-5DED2B09BD2F" name="ReservasServicios">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:05:26 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>R</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="09B0F1E4-6EA0-F5D6-6D95-9670D9D6AA10">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:05:26 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="numPersonas" id="9A92AA53-65FA-245C-0D33-8E0A9D1FD9B8">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:05:26 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fechaInicio" id="862AF24C-0591-0285-223D-439C7384C4A6">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:05:26 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fechaFin" id="937FACC4-6812-A8F6-4C30-953089DE06D9">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:05:26 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="idUsuario" id="7B30F15D-3BEE-C6F1-CBEC-E6C6A5858CD2">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-24 23:53:37 UTC</createdTime>
+<generatorID>17F98085-CCA1-3F15-1E5D-CE9655A49B71</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<referedAttribute>56C3A7F9-65B5-92F8-06C2-BADA7AF5492B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="servicioId" id="F37F5ECC-EC81-3F4B-E0AB-30202C72D9A7">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:19:50 UTC</createdTime>
+<generatorID>52326C93-BFF2-1337-CC62-6F69CC8AE20A</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<referedAttribute>B3551BBF-BC70-27C8-F75E-B3CBDC13362C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9243A5BD-55CC-7578-ABCF-733B077652EB" name="Reserva PK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:05:26 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>09B0F1E4-6EA0-F5D6-6D95-9670D9D6AA10</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

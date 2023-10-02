@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1BC1FFDF-77CE-5E53-68A3-69AFE6ECC57E" name="Productos">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:20:02 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="nombre" id="2883A538-9B00-41FD-E9FB-6754A04B234E">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:20:13 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="costo" id="682A1AF3-42BF-AC7D-EFB2-99E04266304F">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:20:25 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="servicioId" id="A7DA13BE-DAB3-E513-52DD-C55FA8D36A54">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:19:50 UTC</createdTime>
+<generatorID>DF07BD8C-2CA4-3653-5850-A7D8DE41658F</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<referedAttribute>B3551BBF-BC70-27C8-F75E-B3CBDC13362C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id" id="BB0E4F8B-2697-7C0E-0A39-5027DB2FE243">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-27 20:07:35 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CD02E176-7FA4-CDB6-A39A-91EC31C98AB6" name="Productos PK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-24 23:56:41 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>BB0E4F8B-2697-7C0E-0A39-5027DB2FE243</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

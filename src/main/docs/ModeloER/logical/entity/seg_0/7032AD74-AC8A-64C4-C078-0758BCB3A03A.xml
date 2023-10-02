@@ -1,0 +1,149 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7032AD74-AC8A-64C4-C078-0758BCB3A03A" name="Usuarios">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-22 01:53:21 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<importedID>5E51B6D8-E807-513F-722E-7FFD0E9D7351</importedID>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>U</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="56C3A7F9-65B5-92F8-06C2-BADA7AF5492B">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-22 01:53:21 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<importedID>497931BC-242A-406F-5F8B-8CEB3D8601A2</importedID>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="usuario" id="5478DCD2-C991-5B5F-6320-F0E86A3378BB">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-22 01:53:21 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<importedID>9EC99657-0253-A433-B164-E296D9304BA6</importedID>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>55</dataTypeSize>
+<ownDataTypeParameters>55,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="contraseña" id="6E6E2EE8-9819-D135-E328-D796A7D42494">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-22 01:53:21 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<importedID>0C7A20E1-103D-A0E0-81B2-413726A479DE</importedID>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>55</dataTypeSize>
+<ownDataTypeParameters>55,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre" id="14464217-C60E-0EAC-7661-4A6074894110">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:23:11 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="numDocumento" id="649C978D-BD10-290F-0DBE-6D962073E1CD">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:23:11 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="eMail" id="BCB4C98A-0F25-4D65-76DE-9B4D7584544D">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:23:11 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tipoDocumento" id="25864925-7DA3-F297-1F5C-BB59774D1FA7">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-23 23:24:18 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tipoUid" id="ADB330CE-74FC-B52E-FF96-654931CD3745">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:18:46 UTC</createdTime>
+<generatorID>014C344D-7B22-757B-67FE-CBE42425E07C</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<referedAttribute>F18D6A4A-EE56-DB6B-873B-5A1978CE045B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8A9638A1-1B07-3A82-56F4-190CCC741846" name="Usuario PK">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-22 01:53:21 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<importedID>749801E5-93A1-DB53-FE56-513F43A515CC</importedID>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>56C3A7F9-65B5-92F8-06C2-BADA7AF5492B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

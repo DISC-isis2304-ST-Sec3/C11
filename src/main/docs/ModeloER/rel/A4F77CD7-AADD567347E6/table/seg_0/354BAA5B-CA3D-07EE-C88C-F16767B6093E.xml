@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="354BAA5B-CA3D-07EE-C88C-F16767B6093E" name="Habitaciones">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>EBE21E96-FA84-EE97-E9EC-50407D643B56</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<abbreviation>H</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="58B3D5B6-CB32-16A2-9361-E5516EA6CAB5">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>207A08B7-0498-E40C-52D6-680AF02C0D2B</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="capacidad" id="1BF9166B-5EB2-8698-FF30-E2DECE717147">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>82015A44-C109-12AD-A79E-689F72E7DDBF</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<constraintName>CapacidadPermitida</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>1000</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="costoAlojamiento" id="E5323C22-8E6F-009B-BE92-F2FFA3CC76FD">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>48114B77-E92C-D547-1EFA-49FBA79267E1</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100000000000</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="numero" id="287D9F7F-48D4-948D-3C38-587D9CAF3AB7">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>43774B77-34B9-2220-05E5-D362B9369551</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TiposHabitaciones_id" id="A3FBABE7-B948-ED15-A983-7E8D057CCF41">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>3BC5E8D0-195B-BFCA-A33D-04A2486DD95D</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0A2DA9C2-9CC1-3D04-E19D-87BBC03632FB" referredColumn="EF16F941-2061-D538-90A0-DC0E9F1DB264"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8C3889B8-B9BB-F190-205D-185F05F1D801" name="Habitaciones_PK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>EDEAEFE6-D5E7-E0A9-7054-08143A24096D</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="58B3D5B6-CB32-16A2-9361-E5516EA6CAB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5B530FCA-E971-5F36-CDCE-951CAF878789" name="Habitaciones_TiposHabitaciones_FK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>389BF62D-3CEE-A446-0DD5-0457E6171FB8</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A3FBABE7-B948-ED15-A983-7E8D057CCF41"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

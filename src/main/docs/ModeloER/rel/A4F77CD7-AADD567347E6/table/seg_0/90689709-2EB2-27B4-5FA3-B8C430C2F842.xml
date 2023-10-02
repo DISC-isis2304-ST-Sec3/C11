@@ -1,0 +1,177 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="90689709-2EB2-27B4-5FA3-B8C430C2F842" name="ReservasHabitaciones">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>FAB8B628-7A2B-C43F-9F4D-5AD1642FC9C6</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<abbreviation>R</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F1D32BA9-E047-2A69-4103-E2542C440A18">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>77C4FE19-A215-1F8C-296A-2FE897702BE8</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="numPersonas" id="AB24CE2C-FBEA-8099-109E-E59C66C78DA2">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>CC86204B-E87F-F1DA-4E1B-AB8ADE19E016</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaInicio" id="68624C02-0AB8-5E78-DD5F-7B5A9B8CDE8A">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>3436F5BB-B950-A037-6F9D-6B9431E2116F</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaFin" id="52A9E30A-D060-741C-57F2-16C69746385A">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>F8543907-BE03-AB20-2241-706583BBCBD8</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaCheckIn" id="E021FC7A-8BDB-9DE5-AFB6-21A00FA10CE1">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>BD6DE6B3-DE8D-2461-408E-0E9C3B40EEF1</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaCheckOut" id="9675ADA6-ADE2-1B60-84D2-7A55EF8852BC">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>D7B9035C-E23B-60A3-3B4F-D5FB0C315B71</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Habitaciones_id" id="3EFAF393-4D08-B711-B918-A3406F7B598F">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>8C7753A0-1A14-52F3-B13B-86DD785F5F6A</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D135E2A9-1262-9F79-03E9-E12E22FD671F" referredColumn="58B3D5B6-CB32-16A2-9361-E5516EA6CAB5"/>
+</associations>
+</Column>
+<Column name="Usuarios_id" id="B7C760A2-B25F-E56C-1B6C-FEAFE06F364B">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>C50F9073-DF2F-16F2-B9A7-C2DE7D4E8EBF</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="35516BEB-2E80-D506-F8DE-7E8FB84B9BBB" referredColumn="8FDDFAAE-374B-5F13-F26D-6BEA99D94735"/>
+</associations>
+</Column>
+<Column name="PlanesDeConsumo_nombre" id="DD26A837-272E-3353-11C9-BA99B6FE65A0">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-27 20:09:41 UTC</createdTime>
+<generatorID>11DDC948-7BB5-EC71-0A62-5F6228492C4C</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3695BD60-2358-B0C8-E662-C5E84CCBEE51" referredColumn="0E13A45E-031F-45CA-D96E-4AF032BF7594"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BCEA278C-9D80-B296-9C09-056338693B05" name="ReservasHabitaciones_PK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>B68056FE-2DC3-F44A-8A71-FE14488F801B</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F1D32BA9-E047-2A69-4103-E2542C440A18"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3247C7C2-33BC-187C-261A-3E901EB5A45F" name="ReservasHabitaciones_Habitaciones_FK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>65ED6F85-D761-C063-369A-B85CB64146A6</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3EFAF393-4D08-B711-B918-A3406F7B598F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0B8D7AE7-6B91-A298-706A-04822041F948" name="ReservasHabitaciones_Usuarios_FK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>72D9411B-BF8C-4406-F360-E6FE477664F8</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B7C760A2-B25F-E56C-1B6C-FEAFE06F364B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="090234FD-3CF6-8956-E684-F6D8BCE41ECB" name="ReservasHabitaciones_PlanesDeConsumo_FK">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-27 20:09:41 UTC</createdTime>
+<generatorID>EAC13145-49C5-0AA5-E5FF-EA39BCF674DC</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DD26A837-272E-3353-11C9-BA99B6FE65A0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

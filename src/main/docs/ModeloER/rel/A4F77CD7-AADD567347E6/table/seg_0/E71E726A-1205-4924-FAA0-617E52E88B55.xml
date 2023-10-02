@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E71E726A-1205-4924-FAA0-617E52E88B55" name="Productos">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>1BC1FFDF-77CE-5E53-68A3-69AFE6ECC57E</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="nombre" id="34743C42-30CE-40A9-40BF-4D3DB4FAF745">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>2883A538-9B00-41FD-E9FB-6754A04B234E</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="costo" id="39B6DBEA-EC8C-47ED-E61C-924AFEBD814E">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>682A1AF3-42BF-AC7D-EFB2-99E04266304F</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Servicios_id" id="7DA62A9A-4E36-9577-7706-18184E3BAF9A">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>A7DA13BE-DAB3-E513-52DD-C55FA8D36A54</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9020D17A-96F0-29BF-8A44-8704687BD1BA" referredColumn="C6227770-F54C-2DCF-0C7C-2C2FC8654BDE"/>
+</associations>
+</Column>
+<Column name="id" id="FE9B9F9B-B2D3-405F-579A-B1B48836B810">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-09-27 20:08:36 UTC</createdTime>
+<generatorID>BB0E4F8B-2697-7C0E-0A39-5027DB2FE243</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3B03A0D9-365F-9BAA-4611-6B0A5A703620" name="Productos_PK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>CD02E176-7FA4-CDB6-A39A-91EC31C98AB6</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FE9B9F9B-B2D3-405F-579A-B1B48836B810"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F14FA1EC-29BF-F729-3F5B-264FB5388D0D" name="Productos_Servicios_FK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>DF07BD8C-2CA4-3653-5850-A7D8DE41658F</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7DA62A9A-4E36-9577-7706-18184E3BAF9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

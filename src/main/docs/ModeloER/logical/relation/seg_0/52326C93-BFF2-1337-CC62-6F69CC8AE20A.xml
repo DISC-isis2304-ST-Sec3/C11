@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="servicioReservas" directorySegmentName="seg_0" id="52326C93-BFF2-1337-CC62-6F69CC8AE20A">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-24 21:18:43 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<sourcePk>7C4ECFEB-AB88-87F2-58D2-A691713754F8</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E06C0185-040A-F045-FE94-C808FF9B229E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>72250B0F-D5CB-5AF8-DC01-5DED2B09BD2F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

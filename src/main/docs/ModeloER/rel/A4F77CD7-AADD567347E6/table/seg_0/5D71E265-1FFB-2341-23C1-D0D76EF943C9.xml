@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5D71E265-1FFB-2341-23C1-D0D76EF943C9" name="ReservasServicios">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>72250B0F-D5CB-5AF8-DC01-5DED2B09BD2F</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<abbreviation>R</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="DCEF262D-9190-7096-31BE-FDD2EE0F4337">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>09B0F1E4-6EA0-F5D6-6D95-9670D9D6AA10</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="numPersonas" id="F9BE0F8E-4329-B0B3-98C0-F74822518B7C">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>9A92AA53-65FA-245C-0D33-8E0A9D1FD9B8</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaInicio" id="10F735D4-BD03-E864-2C49-FE52E9868226">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>862AF24C-0591-0285-223D-439C7384C4A6</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaFin" id="DA866859-4F79-267B-7365-32C3A3496570">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>937FACC4-6812-A8F6-4C30-953089DE06D9</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Usuarios_id" id="E722C98A-96FB-3DBC-2C27-12D09115E106">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>7B30F15D-3BEE-C6F1-CBEC-E6C6A5858CD2</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2773D39E-C2F1-CEE2-C240-B73C837D14B2" referredColumn="8FDDFAAE-374B-5F13-F26D-6BEA99D94735"/>
+</associations>
+</Column>
+<Column name="Servicios_id" id="D6CBFB0E-3B06-0B8D-B077-CBDB6292EE46">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>F37F5ECC-EC81-3F4B-E0AB-30202C72D9A7</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="69815714-ACE5-1CB2-8931-E260B6E671CD" referredColumn="C6227770-F54C-2DCF-0C7C-2C2FC8654BDE"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EAD17029-B884-9FBA-FC5B-0D3AA45C13FC" name="ReservasServicios_PK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>9243A5BD-55CC-7578-ABCF-733B077652EB</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DCEF262D-9190-7096-31BE-FDD2EE0F4337"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CE9B1F6E-E41E-ED17-855E-C58C032E0971" name="ReservasServicios_Servicios_FK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>52326C93-BFF2-1337-CC62-6F69CC8AE20A</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D6CBFB0E-3B06-0B8D-B077-CBDB6292EE46"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="87EFEE50-8638-CA0A-4A7F-005E04F8210F" name="ReservasServicios_Usuarios_FK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>17F98085-CCA1-3F15-1E5D-CE9655A49B71</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E722C98A-96FB-3DBC-2C27-12D09115E106"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="46F82803-0727-050D-E699-93DCF980BF90" name="ElementosATipos">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ElementosHab_id" id="49CA5A78-A4E0-CD99-D92B-48D327085D78">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DE62A916-16B1-1964-FAB6-EAA150299E65" referredColumn="92BA57BD-DFA6-36D1-9A84-4A98E43AB330"/>
+</associations>
+</Column>
+<Column name="TiposHabitaciones_id" id="C7479260-DE58-801D-704F-74732B15D001">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7A722418-F0E6-CC97-FF16-FE1A5D247807" referredColumn="EF16F941-2061-D538-90A0-DC0E9F1DB264"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BA515AB4-CA8F-E65D-4FB2-BDB689E5C3D4" name="elemATip_PK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="49CA5A78-A4E0-CD99-D92B-48D327085D78"/>
+<colUsage columnID="C7479260-DE58-801D-704F-74732B15D001"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5E438B4F-2836-2F41-D54C-DFE23CC0E5F7" name="elemATip_ElemHab_FK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>DFCBFC5A-5919-7BC6-6553-2268241DB669</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="49CA5A78-A4E0-CD99-D92B-48D327085D78"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A658DF6C-CE35-BBE7-3A9D-74E29BEB3E30" name="elemATip_TipHab_FK">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-25 00:31:32 UTC</createdTime>
+<generatorID>DFCBFC5A-5919-7BC6-6553-2268241DB669</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C7479260-DE58-801D-704F-74732B15D001"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

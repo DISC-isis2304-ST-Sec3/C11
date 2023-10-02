@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="servicioProductos" directorySegmentName="seg_0" id="DF07BD8C-2CA4-3653-5850-A7D8DE41658F">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-24 21:19:12 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<sourcePk>7C4ECFEB-AB88-87F2-58D2-A691713754F8</sourcePk>
+<identifying>false</identifying>
+<nameOnTarget>productos</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E06C0185-040A-F045-FE94-C808FF9B229E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>1BC1FFDF-77CE-5E53-68A3-69AFE6ECC57E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

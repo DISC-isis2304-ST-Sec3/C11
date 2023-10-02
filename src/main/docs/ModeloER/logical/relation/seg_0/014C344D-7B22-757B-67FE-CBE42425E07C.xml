@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="TipoUsuario" directorySegmentName="seg_0" id="014C344D-7B22-757B-67FE-CBE42425E07C">
+<createdBy>felip</createdBy>
+<createdTime>2023-09-24 21:11:24 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+</engineerTo>
+<targetPk>0071F2A8-4163-C5B6-9348-911C2446D31A</targetPk>
+<identifying>false</identifying>
+<nameOnSource>tipo</nameOnSource>
+<nameOnTarget>usuarios</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>7032AD74-AC8A-64C4-C078-0758BCB3A03A</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>8AE52838-D156-94DA-8358-642913A681FB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
