@@ -34,16 +34,13 @@
             <li th:if="${permisos.contains('H')}">
                 <a th:href="@{'/reservasservicios/' + ${id_usuario}}">Reservas de servicios</a>
             </li>
-            <li th:if="${permisos.contains('I')}">
-                <a th:href="@{/ruta_para_letra_I}">Check In</a>
-            </li>
             <li th:if="${permisos.contains('J')}">
                 <a th:href="@{/consumos}">Consumos de un cliente</a>
             </li>
             <li th:if="${permisos.contains('K')}">
                 <a th:href="@{/checkout}">Check out</a>
             </li>
-            <!-- Agrega más elementos <li> según sea necesario -->
+   
         </ul>
     </div>
 </body>
