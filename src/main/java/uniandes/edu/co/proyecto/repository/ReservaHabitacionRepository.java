@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.RFC3;
+import uniandes.edu.co.proyecto.modelo.RFC5;
 import uniandes.edu.co.proyecto.modelo.ReservaHabitacion;
 
 public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabitacion, Integer>   {
@@ -47,4 +48,13 @@ public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabita
                     "and reservashabitaciones.fechafin < TO_DATE('2022/12/31','yyyy/mm/dd') "+
                     "group by reservashabitaciones.habitaciones_id",nativeQuery = true)
     Collection<RFC3> RFC3();
+
+    @Query(value = "Select  reservashabitaciones.usuarios_id, usuarios.nombre, sum (consumos.sumatotal) "+
+                    "from reservashabitaciones "+
+                    "inner join consumos on consumos.reservashabitaciones_id=reservashabitaciones.id "+
+                    "inner join usuarios on reservashabitaciones.usuarios_id=usuarios.id "+
+                    "where reservashabitaciones.fechainicio > TO_DATE('2023/01/01','yyyy/mm/dd' ) "+
+                    "and reservashabitaciones.fechafin < current_date "+
+                    "group by reservashabitaciones.usuarios_id,usuarios.nombre", nativeQuery =  true)
+    Collection<RFC5> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
 }
