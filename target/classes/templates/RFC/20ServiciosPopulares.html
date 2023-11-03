@@ -14,12 +14,14 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Numero de consumos</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="dato : ${datos}">
+                    <td th:text="${dato.id}"></td>
                     <td th:text="${dato.nombre}"></td>
                     <td th:text="${dato.numero}"></td>
                 </tr>
