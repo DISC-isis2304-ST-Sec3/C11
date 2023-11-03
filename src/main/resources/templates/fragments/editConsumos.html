@@ -30,7 +30,7 @@
                 </th:block>
             </select><br>
             </div>
-            <label class="col-form-label" for="servicios_id">Reserva habitacion:</label>
+            <label class="col-form-label" for="servicios_id">Servicio:</label>
             <select class="form-control" id="servicios_id" name="servicio.id" required>
                 <th:block th:each="tipo : ${servicios}" >
                     <option th:value="${tipo.id}" th:text="${tipo.nombre}"></option>

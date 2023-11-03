@@ -51,6 +51,14 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
     +"group by reservashabitaciones.habitaciones_id",
     nativeQuery = true)
     Collection<RFC1> RFC1();
+
+    @Query(value = "select servicios.id,servicios.nombre, count  (*) as num_reservas " +
+    "from  reservasservicios inner join servicios on servicios.id=reservasservicios.servicios_id "  + 
+    "where reservasservicios.fechainicio > TO_DATE('2023/01/01','yyyy/mm/dd') " +
+    "and reservasservicios.fechafin < current_date " + 
+    "group by servicios.id,servicios.nombre " + 
+    "order by num_reservas desc", nativeQuery = true)
+    Collection<RFC2> RFC2(@Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
    
     
 }

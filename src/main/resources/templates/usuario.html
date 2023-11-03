@@ -5,10 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú de Opciones</title>
     
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        .menu {
+            background-color: #ffffff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .menu h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color:black;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 50;
+        }
+
+        .menu li {
+            margin-bottom: 30px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="menu">
-        <h1>Menú de Opciones </h1>
+        <h1>Menú de Opciones</h1>
         <ul>
             <li th:if="${permisos.contains('A')}">
                 <a th:href="@{/tiposUsuarios}">Tipos de usuarios</a>
@@ -41,8 +84,12 @@
                 <a th:href="@{/checkout}">Check out</a>
             </li>
             <li>
-                <a th:href="@{/RFC1}">RFC1</a>
+                <a th:href="@{/RFC1}">Ver dinero recolectado por servicios en cada habitacion</a>
             </li>
+            <li>
+                <a th:href="@{/RFC2}">Ver 20 servicios más populares en un rango de fechas</a>
+            </li>
+            
    
         </ul>
     </div>
