@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Consumo;
+import uniandes.edu.co.proyecto.modelo.*;
 
 
 public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
@@ -44,6 +44,13 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     @Query(value = "select * from consumos where reservashabitaciones_id = :id", nativeQuery = true)
     Collection<Consumo> darConsumosReservaHabitacion(@Param("id") Integer id);
+
+    @Query(value = "Select  reservashabitaciones.habitaciones_id, sum (consumos.sumatotal) as sum " + 
+    "from reservashabitaciones inner join consumos on consumos.reservashabitaciones_id=reservashabitaciones.id " +
+    "where reservashabitaciones.fechainicio > TO_DATE('2023/01/01','yyyy/mm/dd') and reservashabitaciones.fechafin < current_date "
+    +"group by reservashabitaciones.habitaciones_id",
+    nativeQuery = true)
+    Collection<RFC1> RFC1();
    
     
 }

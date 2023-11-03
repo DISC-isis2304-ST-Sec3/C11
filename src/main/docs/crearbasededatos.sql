@@ -116,8 +116,8 @@ ALTER TABLE tiposhabitaciones ADD CONSTRAINT tiposhabitaciones_pk PRIMARY KEY ( 
 
 CREATE TABLE usuarios (
     id                INTEGER NOT NULL,
-    usuario           VARCHAR2(55),
-    contraseña        VARCHAR2(55),
+    nombreUsuario     VARCHAR2(55),
+    contrasena        VARCHAR2(55),
     nombre            VARCHAR2(255 CHAR),
     numdocumento      INTEGER,
     email             VARCHAR2(255 CHAR),

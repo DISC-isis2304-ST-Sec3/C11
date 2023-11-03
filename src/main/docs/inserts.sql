@@ -1,43 +1,46 @@
-Insert into TIPOSDEUSUARIO (ID,NOMBRE) values (tiposusuariossecuencia.nextval,'Cliente');
-Insert into TIPOSDEUSUARIO (ID,NOMBRE) values (tiposusuariossecuencia.nextval ,'Recepcionista');
-Insert into TIPOSDEUSUARIO (ID,NOMBRE) values (tiposusuariossecuencia.nextval,'Empleado');
-Insert into TIPOSDEUSUARIO (ID,NOMBRE) values (tiposusuariossecuencia.nextval,'Administrador');
-Insert into TIPOSDEUSUARIO (ID,NOMBRE) values (tiposusuariossecuencia.nextval,'Gerente');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval,'Cliente','ABCDEFGHIJK');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval ,'Recepcionista','ABCDEFGHIJK');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval,'Empleado','ABCDEFGHIJK');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE, PERMISOS) values (tiposusuariossecuencia.nextval,'Administrador','ABCDEFGHIJK');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE, PERMISOS) values (tiposusuariossecuencia.nextval,'Gerente','ABCDEFGHIJK');
 
-Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'carvafel','261107','Felipe Carvajal','1000795803','carvafel@outlook.es','Cedula','1');
                      
-Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'elfelo','45687','Manuel Parra','4592156782','mparra@gmail.com','Cedula','1');
                      
-Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'m.pacheco','lun4568','Manuela Pacheco','798524682','m.pacheco@outlook.com','Cedula','1');
                      
-Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'casanchez','gudMn7896','Camilo Sanchez','1000556248','camilo1999@gmail.com','Cedula','1');
                                        
-Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'wvargas','sistrans99','Wilfredy Vargas','435938','w.vargas9@sonesta.com','Cedula','5');     
                                         
-Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'nruiz','mkU456','Nicolas Ruiz','100098752','n.ruiz@sonesta.com','Cedula','4');     
                                            
- Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+ Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'nportilla','ale8963','Natalia Portilla','1025698716','n.portila@sonesta.com','Cedula','2');                     
                      
- Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+ Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'jlopz','tef591712','Juanita Lopez','10005687892','j.lopz@sonesta.com','Cedula','2');             
                      
- Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+ Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'gabisadick','lau7826','Gabriel Yepes','100889966','gxbx@sonesta.com','Cedula', '3');
                      
- Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+ Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'sebachos','almoj78962','Sebastian Avellaneda','45893213','sebachos@sonesta.com','Cedula', '3');
                      
- Insert into USUARIOS (ID,USUARIO,CONTRASEÑA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+ Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'hmalt','seth1408','Cristian Torres','123896489','cristiahm@sonesta.com','Cedula', '3');
                      
-INSERT INTO USUARIOS (ID, USUARIO, CONTRASEÑA, NOMBRE, NUMDOCUMENTO, EMAIL, TIPODOCUMENTO, TIPOSDEUSUARIO_ID)
+Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
+                     values (usuariossecuencia.nextval,'llanitos','llanitos','Alejandro Llanos','666666666','llanitos@gmail.com','Cedula', '5');
+                     
+INSERT INTO USUARIOS (ID, nombreUsuario, CONTRASENA, NOMBRE, NUMDOCUMENTO, EMAIL, TIPODOCUMENTO, TIPOSDEUSUARIO_ID)
     VALUES (usuariossecuencia.nextval, 'leleor', 'malemur7895', 'Alejandra Orozco', '789523382', 'orozoclele@sonesta.com', 'Cedula', '3');
                   
                      
