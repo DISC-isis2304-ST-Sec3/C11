@@ -1,5 +1,5 @@
 ##
-Lex Marcus Betancourt Estupiñan
+Juan Pablo Hernández Troncoso - 202122707 - jp.hernandezt1@uniandes.edu.co
 
 Manuel Felipe Carvajal Parra - 202014203- m.carvajalp@uniandes.edu.co
 
