@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import uniandes.edu.co.proyecto.modelo.RFC3;
 import uniandes.edu.co.proyecto.modelo.ReservaHabitacion;
 
 public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabitacion, Integer>   {
@@ -40,4 +40,11 @@ public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabita
 
     @Query(value = "SELECT *FROM reservashabitaciones WHERE HABITACIONES_ID = :idHabitacion AND FECHAFIN >= TO_DATE(:fechainicio, 'YYYY-MM-DD') AND FECHAINICIO <= TO_DATE(:fechaFin, 'YYYY-MM-DD')", nativeQuery = true)
     Collection<ReservaHabitacion> darReservasHabitacionesHabitacion(@Param("idHabitacion") long idHabitacion, @Param("fechainicio") String fechainicio, @Param("fechaFin") String fechaFin);
+
+    @Query(value = "select reservashabitaciones.habitaciones_id, sum (fechafin-fechainicio)/365 as ocupacion " + 
+                    "from  reservashabitaciones " +
+                    "where reservashabitaciones.fechainicio > TO_DATE('2022/01/01','yyyy/mm/dd') "+
+                    "and reservashabitaciones.fechafin < TO_DATE('2022/12/31','yyyy/mm/dd') "+
+                    "group by reservashabitaciones.habitaciones_id",nativeQuery = true)
+    Collection<RFC3> RFC3();
 }
