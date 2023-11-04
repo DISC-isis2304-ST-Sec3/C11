@@ -1,6 +1,7 @@
 package uniandes.edu.co.proyecto.repository;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -38,4 +39,15 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>  {
     @Query(value = "SELECT * FROM Usuarios  WHERE (contrasena = :contrasena AND nombreUsuario = :nombreUsuario)", nativeQuery = true)
     Usuario encontrarUsuarioPorUsuarioYcontrasena(@Param("nombreUsuario") String nombreUsuario, @Param("contrasena") String contrasena);
 
+    @Query(value = "WITH DIAS AS( " + 
+            "SELECT usuarios.nombre as id, SUM(reservashabitaciones.fechafin - reservashabitaciones.fechainicio) as diashotel "+
+            "FROM usuarios, reservashabitaciones "+
+            "WHERE reservashabitaciones.usuarios_id = usuarios.id "+
+            "GROUP BY usuarios.nombre), gastos as( "+
+            "select usuarios.nombre as id, sum(consumos.sumatotal) as gasto from consumos, usuarios,reservashabitaciones "+
+            "where usuarios.id = reservashabitaciones.usuarios_id and consumos.reservashabitaciones_id  = reservashabitaciones.id "+
+            "group by usuarios.nombre) "+
+            "Select gastos.id,gastos.gasto,dias.diashotel from gastos,dias  "+
+            "where dias.id = gastos.id and (gastos.gasto >= 15000000 or dias.diashotel >= 14)", nativeQuery = true)
+    List<Object[]> RFC7();
 }
