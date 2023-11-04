@@ -15,13 +15,15 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Suma dinero recolectado</th>
+                    <th>Numero de Habiacion</th>
+                    <th>Cantidad Recolectada</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="dato : ${datos}">
-                    <td th:text="${dato.id}"></td>
-                    <td th:text="${dato.sum}"></td>
+                    <td th:text="${dato[0]}"></td>
+                    <td th:text="${dato[1]}"></td>
+                    <td th:text="${dato[2]}"></td>
                 </tr>
             </tbody>
         </table>

@@ -46,11 +46,14 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
     @Query(value = "select * from consumos where reservashabitaciones_id = :id", nativeQuery = true)
     Collection<Consumo> darConsumosReservaHabitacion(@Param("id") Integer id);
 
-    @Query(value = "Select  reservashabitaciones.habitaciones_id, sum (consumos.sumatotal) as sum " + 
-    "from reservashabitaciones inner join consumos on consumos.reservashabitaciones_id=reservashabitaciones.id " +
-    "where reservashabitaciones.fechainicio > TO_DATE('2023/01/01','yyyy/mm/dd') and reservashabitaciones.fechafin < current_date "
-    +"group by reservashabitaciones.habitaciones_id",
-    nativeQuery = true)
+    @Query(value = "SELECT h.id ,h.numero, COALESCE(SUM(c.sumatotal),0) "+
+                    "FROM habitaciones h "+
+                    "LEFT JOIN reservashabitaciones r ON h.id = r.habitaciones_id "+
+                    "AND r.fechainicio BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE "+
+                    "LEFT JOIN consumos c ON r.id = c.reservashabitaciones_id "+
+                    "GROUP BY h.id, h.numero "+
+                    "ORDER BY h.id",
+                    nativeQuery = true)
     List<Object[]> RFC1();
 
     @Query(value = "select servicios.id,servicios.nombre, count  (*) as num_reservas " +
