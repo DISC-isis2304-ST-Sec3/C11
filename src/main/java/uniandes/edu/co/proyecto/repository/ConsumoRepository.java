@@ -56,12 +56,13 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
                     nativeQuery = true)
     List<Object[]> RFC1();
 
-    @Query(value = "select servicios.id,servicios.nombre, count  (*) as num_reservas " +
-    "from  reservasservicios inner join servicios on servicios.id=reservasservicios.servicios_id "  + 
-    "where reservasservicios.fechainicio > TO_DATE('2023/01/01','yyyy/mm/dd') " +
-    "and reservasservicios.fechafin < current_date " + 
-    "group by servicios.id,servicios.nombre " + 
-    "order by num_reservas desc", nativeQuery = true)
+    @Query(value =  "SELECT s.id,s.nombre,COUNT(c.id)" +
+                    "FROM servicios s "+
+                    "JOIN consumos c ON s.id = c.servicios_id "+
+                    "WHERE EXISTS (SELECT 1 FROM reservashabitaciones r WHERE c.reservashabitaciones_id = r.id AND r.fechainicio BETWEEN TO_DATE(:fecha1, 'YYYY-MM-DD') AND TO_DATE(:fecha2, 'YYYY-MM-DD')) "+ 
+                    "GROUP BY s.id, s.nombre "+
+                    "ORDER BY count(c.id) DESC "+
+                    "FETCH FIRST 20 ROWS ONLY", nativeQuery = true)
     List<Object[]> RFC2(@Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
 
     @Query(value = "SELECT  u.id AS usuarios_id, u.nombre AS nombre, s.nombre AS producto, c.sumatotal AS precio FROM consumos c "+
