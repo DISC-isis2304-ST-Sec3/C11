@@ -10,18 +10,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>ocupacion por habitacion en los ultimos 365 dias:</h1>
+        <h1>Ocupacion por Habitacion en los ultimos 365 dias:</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Ocupacion</th>
+                    <th>Numero de Habitacion</th>
+                    <th>% de Ocupacion</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="dato : ${datos}">
                     <td th:text="${dato[0]}"></td>
                     <td th:text="${dato[1]}"></td>
+                    <td th:text="${dato[2]}"></td>
                 </tr>
             </tbody>
         </table>
