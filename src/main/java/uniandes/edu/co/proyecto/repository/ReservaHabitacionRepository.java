@@ -49,4 +49,25 @@ public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabita
             "ORDER BY h.id",nativeQuery = true)
     List<Object[]> RFC3();
 
+
+    @Query(value = "SELECT fechainicio, COUNT(*) AS ocupacion "+
+                    "FROM reservashabitaciones "+
+                    "GROUP BY fechainicio "+
+                    "ORDER BY ocupacion DESC "+
+                    "FETCH FIRST 10 ROWS ONLY", nativeQuery =  true)
+    List<Object[]> RFC6A();
+    @Query(value = "SELECT rh.fechainicio, SUM(c.sumatotal) AS ingresos "+
+                    "FROM reservashabitaciones rh "+
+                    "JOIN consumos c ON rh.id = c.reservashabitaciones_id "+
+                    "GROUP BY rh.fechainicio "+
+                    "ORDER BY ingresos DESC "+
+                    "FETCH FIRST 10 ROWS ONLY", nativeQuery =  true)
+    List<Object[]> RFC6B();
+    @Query(value = "SELECT fechainicio, COUNT(*) AS ocupacion "+
+                    "FROM reservashabitaciones "+
+                    "GROUP BY fechainicio "+
+                    "ORDER BY ocupacion ASC "+
+                    "FETCH FIRST 10 ROWS ONLY", nativeQuery =  true)
+    List<Object[]> RFC6C();
+
 }
