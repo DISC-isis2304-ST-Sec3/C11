@@ -20,6 +20,8 @@
                     <th>suma total</th>
                     <th>Reserva de habitacion</th>
                     <th>Servicio</th>
+                    <th>Fecha Consumo</th>
+                    <th>Empleado registro</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +33,8 @@
                     <td th:text="${consumo.sumaTotal}"></td>
                     <td th:text="${consumo.reservaHabitacion.id}"></td>
                     <td th:text="${consumo.servicio.nombre}"></td>
+                    <td th:text="${consumo.fechaconsumo}"></td>
+                    <td th:text="${consumo.usuario.id}"></td>
                     <td>
                         <!-- Botón para editar -->
                         <a th:href="@{'/consumos/' + ${consumo.id} + '/edit/' + ${id}}">Editar</a>
