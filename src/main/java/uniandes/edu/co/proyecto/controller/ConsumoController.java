@@ -25,49 +25,52 @@ public class ConsumoController {
     @Autowired
     private ReservaHabitacionRepository reservaHabitacionRepository;
 
-    @GetMapping("/consumos")
-    public String consumoList(Model model) {
+    @GetMapping("/consumos/{id}")
+    public String consumoList(Model model, @PathVariable("id") long id) {
+        model.addAttribute("id", id);
         model.addAttribute("consumos", consumoRepository.darConsumos());
         return "consumos";
     }
 
-    @GetMapping("/consumos/new")
-    public String consumoForm(Model model) {
+    @GetMapping("/consumos/new/{id}")
+    public String consumoForm(Model model,@PathVariable("id") long id) {
+        model.addAttribute("id", id);
         model.addAttribute("consumo", new Consumo());
         model.addAttribute("servicios", servicioRepository.darServicios());
         model.addAttribute("reservashabitaciones", reservaHabitacionRepository.darReservasHabitaciones());
         return "/fragments/consumosForm";
     }
 
-    @PostMapping("/consumos/new/save")
-    public String consumoGuardar(@ModelAttribute Consumo consumo) {
-        consumoRepository.insertarConsumo(consumo.getSumaTotal(), consumo.getNumConsumos(), consumo.getNombre(), consumo.getReservaHabitacion().getId(), consumo.getServicio().getId());
-        return "redirect:/consumos";
+    @PostMapping("/consumos/new/save/{id}")
+    public String consumoGuardar(@ModelAttribute Consumo consumo,@PathVariable("id") long id) {
+        consumoRepository.insertarConsumo(consumo.getSumaTotal(), consumo.getNumConsumos(), consumo.getNombre(), consumo.getReservaHabitacion().getId(), consumo.getServicio().getId(), consumo.getFechaconsumo(), id);
+        return "redirect:/consumos/" + id;
     }
 
-    @GetMapping("/consumos/{id}/edit")
-    public String consumoEditarForm(@PathVariable("id") int id, Model model) {
+    @GetMapping("/consumos/{id}/edit/{id_user}")
+    public String consumoEditarForm(@PathVariable("id") int id, Model model,@PathVariable("id_user") int id_user) {
         Consumo consumo = consumoRepository.darConsumo(id);
         if (consumo != null) {
+            model.addAttribute("id",id_user);
             model.addAttribute("consumo", consumo);
             model.addAttribute("servicios", servicioRepository.darServicios());
             model.addAttribute("reservashabitaciones", reservaHabitacionRepository.darReservasHabitaciones());
             return "/fragments/editConsumos";
         } else {
-            return "redirect:/consumos";
+             return "redirect:/consumos/" + id_user;
         }
     }
 
-    @PostMapping("/consumos/{id}/edit/save")
-    public String consumoEditar(@PathVariable("id") int id, @ModelAttribute Consumo consumo) {
+    @PostMapping("/consumos/{id}/edit/save/{id_user}")
+    public String consumoEditar(@PathVariable("id") int id, @ModelAttribute Consumo consumo,@PathVariable("id_user") int id_user) {
         consumoRepository.actualizarConsumo(id, consumo.getSumaTotal(), consumo.getNumConsumos(), consumo.getNombre(), consumo.getReservaHabitacion().getId(), consumo.getServicio().getId());
-        return "redirect:/consumos";
+        return "redirect:/consumos/" + id_user;
     }
 
-    @GetMapping("/consumos/{id}/delete")
-    public String consumoBorrar(@PathVariable("id") int id) {
+    @GetMapping("/consumos/{id}/delete/{id_user}")
+    public String consumoBorrar(@PathVariable("id") int id,@PathVariable("id_user") int id_user) {
         consumoRepository.eliminarConsumo(id);
-        return "redirect:/consumos";
+        return "redirect:/consumos/" + id_user;
     }
 
    

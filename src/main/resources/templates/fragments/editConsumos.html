@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Habitación</h1>
-        <form th:action="@{'/consumos/' + ${consumo.id} + '/edit/save'}" method="post">
+        <form th:action="@{'/consumos/' + ${consumo.id} + '/edit/save/' + ${id}}" method="post">
             <!-- Campos para editar el tipo de habitación -->
             <div class="form-group">
                 <label for="nombre">nombre:</label>

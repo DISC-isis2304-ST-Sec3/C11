@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8E4CC262-32A0-1D30-BE7A-2ADEBA5BC35F" name="ReservasServicios">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>72250B0F-D5CB-5AF8-DC01-5DED2B09BD2F</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<abbreviation>R</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="31C22FB3-204B-1D83-5B5D-3DFF2E3B6E1A">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>09B0F1E4-6EA0-F5D6-6D95-9670D9D6AA10</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="numPersonas" id="FA18D675-264E-B8A3-60FE-A621138A45AA">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>9A92AA53-65FA-245C-0D33-8E0A9D1FD9B8</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaInicio" id="FDD88F8B-BF5C-014A-588B-E9FA19A8E51F">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>862AF24C-0591-0285-223D-439C7384C4A6</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaFin" id="D509F03F-8952-A782-DFB9-0EF315C8F90B">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>937FACC4-6812-A8F6-4C30-953089DE06D9</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Usuarios_id" id="E666F717-85CE-B5EF-A52B-D98FED68E814">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>7B30F15D-3BEE-C6F1-CBEC-E6C6A5858CD2</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0416C113-F8B2-3DA0-E8F5-40E5C98D6981" referredColumn="85DFAC35-C198-3F1D-F769-664191349B99"/>
+</associations>
+</Column>
+<Column name="Servicios_id" id="EB6B5A64-0567-B12B-9292-1EBB560EFE29">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>F37F5ECC-EC81-3F4B-E0AB-30202C72D9A7</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C4D1E0DB-F0CE-F814-5923-85DD8E042958" referredColumn="47A1DAD2-2FE8-F2CD-2B32-11B4E5CDCBD8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="68A726EF-2F3F-E4C8-DD9C-34D4B87E5663" name="ReservasServicios_PK">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>9243A5BD-55CC-7578-ABCF-733B077652EB</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="31C22FB3-204B-1D83-5B5D-3DFF2E3B6E1A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4EDE58E4-1452-6CF8-9824-5865D6DEF0AD" name="ReservasServicios_Servicios_FK">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>52326C93-BFF2-1337-CC62-6F69CC8AE20A</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB6B5A64-0567-B12B-9292-1EBB560EFE29"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F9AD3616-6BF3-27BF-D09B-0CBDEF6D3DE8" name="ReservasServicios_Usuarios_FK">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>17F98085-CCA1-3F15-1E5D-CE9655A49B71</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E666F717-85CE-B5EF-A52B-D98FED68E814"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

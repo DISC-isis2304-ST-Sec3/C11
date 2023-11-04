@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E4D3F511-C396-A698-A65A-CE286DD1FC8F" name="PlanesDeConsumo">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>257FFDBC-7B6C-E60F-553E-F5FE383D07D6</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="descripcion" id="94D6F5F5-F5ED-2736-9841-AD14A8D1C9F9">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>550D712D-B3AB-6F4B-A411-789A8E3C2E20</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descuento" id="16BB517F-A80B-F496-A6F2-AAA28443CF06">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>1AA585ED-FFD4-2175-0EA9-C2F1CBE1A129</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="67247955-4A1E-8D6A-00F4-BFF98768969D">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>F2FAA9A1-6A6D-30E2-8E6D-504CE7B866B8</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id" id="0CACF61A-BCE9-8AB0-41B2-1DAE497C6AE3">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>D16C5950-4204-2E3E-F968-2D62AD2AA527</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8693B3F8-26CE-9C9C-A828-14A136DAF364" name="PlanesDeConsumo_PK">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>EDA6AAFB-859A-F26C-9680-B1316E0AFC5E</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0CACF61A-BCE9-8AB0-41B2-1DAE497C6AE3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="EDE11646-E3C5-AD39-19EA-B5F4093F1AF9" containerWithKeyObject="6193A236-1136-C388-8189-1CFAA22461FF" localFKIndex="726C763B-8253-1A05-13A3-E4BEFA50C5CA" name="ReservasHabitaciones_Habitaciones_FK">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:52 UTC</createdTime>
+<generatorID>65ED6F85-D761-C063-369A-B85CB64146A6</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<referredTableLongName>Habitaciones</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>2887F001-75B2-E9DC-F1A7-9F0B4A3589EC</referredTableID>
+<keyObject>8024B016-90EB-537D-2636-F9D1E85CE3AD</keyObject>
+<referredKeyID>8024B016-90EB-537D-2636-F9D1E85CE3AD</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -65,7 +65,5 @@ INSERT INTO USUARIOS (ID, nombreUsuario, CONTRASENA, NOMBRE, NUMDOCUMENTO, EMAIL
                                 values ('tiene también un porcentaje de descuento en los consumos de bar y restaurante y en algunos servicios ',
                                         '20','Tiempo compartido',planesdeconsumosecuencia.nextval); 
       
-      
-                
 
                            

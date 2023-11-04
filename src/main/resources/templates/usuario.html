@@ -78,7 +78,7 @@
                 <a th:href="@{'/reservasservicios/' + ${id_usuario}}">Reservas de servicios</a>
             </li>
             <li th:if="${permisos.contains('J')}">
-                <a th:href="@{/consumos}">Consumos de un cliente</a>
+                <a th:href="@{'/consumos/' + ${id_usuario}}">Consumos de un cliente</a>
             </li>
             <li th:if="${permisos.contains('K')}">
                 <a th:href="@{/checkout}">Check out</a>

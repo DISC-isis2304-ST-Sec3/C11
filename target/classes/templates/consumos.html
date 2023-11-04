@@ -33,16 +33,16 @@
                     <td th:text="${consumo.servicio.nombre}"></td>
                     <td>
                         <!-- Botón para editar -->
-                        <a th:href="@{'/consumos/' + ${consumo.id} + '/edit'}">Editar</a>
+                        <a th:href="@{'/consumos/' + ${consumo.id} + '/edit/' + ${id}}">Editar</a>
                         <!-- Botón para eliminar -->
-                        <a th:href="@{'/consumos/' + ${consumo.id} + '/delete'}"
+                        <a th:href="@{'/consumos/' + ${consumo.id} + '/delete/' + ${id}}"
                            onclick="return confirm('¿Estás seguro de borrar?')">Eliminar</a>
                     </td>
                 </tr>
             </tbody>
         </table>
         <!-- Botón para agregar un nuevo registro -->
-        <a th:href="@{/consumos/new}" class="btn btn-primary">Agregar</a>
+        <a th:href="@{'/consumos/new/' + ${id}}" class="btn btn-primary">Agregar</a>
 
     </div>
 </body>

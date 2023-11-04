@@ -16,7 +16,8 @@ public class Consumo {
     private Integer numConsumos;
 
     private String nombre;
-
+    @Column(name = "fechaconsumo")
+    private String fechaconsumo;
    
 
     @ManyToOne
@@ -27,14 +28,20 @@ public class Consumo {
     @JoinColumn(name = "servicios_id", referencedColumnName = "id")
     private Servicio servicio;
 
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
+    private Usuario usuario;
+
     public Consumo(){;}
 
-    public Consumo(Integer sumaTotal, Integer numConsumos, String nombre, ReservaHabitacion reservaHabitacion, Servicio servicio) {
+    public Consumo(Integer sumaTotal, Integer numConsumos, String nombre, ReservaHabitacion reservaHabitacion, Servicio servicio, String fechaconsumo, Usuario usuario) {
         this.sumaTotal = sumaTotal;
         this.numConsumos = numConsumos;
         this.nombre = nombre;
         this.reservaHabitacion = reservaHabitacion;
         this.servicio = servicio;
+        this.fechaconsumo = fechaconsumo;
+        this.usuario = usuario;
         
     }
 
@@ -85,6 +92,25 @@ public class Consumo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getFechaconsumo() {
+        return fechaconsumo;
+    }
+
+    public void setFechaconsumo(String fechaconsumo) {
+        this.fechaconsumo = fechaconsumo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    
+    
 
     
 }

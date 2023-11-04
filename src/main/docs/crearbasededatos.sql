@@ -5,7 +5,9 @@ CREATE TABLE consumos (
     numconsumos             INTEGER NOT NULL,
     servicios_id    INTEGER NOT NULL,
     id                      INTEGER NOT NULL,
-    nombre                  VARCHAR2(255) NOT NULL 
+    nombre                  VARCHAR2(255) NOT NULL,
+    fechaconsumo            Date,
+    usuarios_id             Integer NOT NUll
 );
 
 ALTER TABLE consumos ADD CONSTRAINT consumos_pk PRIMARY KEY ( id );
@@ -134,6 +136,10 @@ ALTER TABLE consumos
 ALTER TABLE consumos
     ADD CONSTRAINT servicios_fk FOREIGN KEY ( servicios_id )
         REFERENCES servicios ( id );
+
+ALTER TABLE consumos
+    ADD CONSTRAINT usuarios_fk FOREIGN KEY (usuarios_id )
+        REFERENCES usuarios ( id );
 
 ALTER TABLE elementosatipos
     ADD CONSTRAINT elematip_elemhab_fk FOREIGN KEY ( elementoshab_id )

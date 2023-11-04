@@ -40,8 +40,8 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO consumos (id, sumaTotal, numConsumos, nombre, reservashabitaciones_id, servicios_id) VALUES (consumossecuencia.nextval , :sumaTotal, :numConsumos, :nombre, :reservaHabitacion, :servicios_id)", nativeQuery = true)
-    void insertarConsumo(@Param("sumaTotal") Integer sumaTotal, @Param("numConsumos") Integer numConsumos, @Param("nombre") String nombre, @Param("reservaHabitacion") Integer reservaHabitacion, @Param("servicios_id") Integer servicios_id);
+    @Query(value = "INSERT INTO consumos (id, sumaTotal, numConsumos, nombre, reservashabitaciones_id, servicios_id, fechaconsumo, usuarios_id) VALUES (consumossecuencia.nextval , :sumaTotal, :numConsumos, :nombre, :reservaHabitacion, :servicios_id, TO_DATE(:fechaconsumo, 'YYYY-MM-DD'), :usuarios_id)", nativeQuery = true)
+    void insertarConsumo(@Param("sumaTotal") Integer sumaTotal, @Param("numConsumos") Integer numConsumos, @Param("nombre") String nombre, @Param("reservaHabitacion") Integer reservaHabitacion, @Param("servicios_id") Integer servicios_id, @Param("fechaconsumo") String fechaconsumo, @Param("usuarios_id") long usuarios_id);
 
     @Query(value = "select * from consumos where reservashabitaciones_id = :id", nativeQuery = true)
     Collection<Consumo> darConsumosReservaHabitacion(@Param("id") Integer id);

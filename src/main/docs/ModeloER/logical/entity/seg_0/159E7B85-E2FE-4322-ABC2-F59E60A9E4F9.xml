@@ -4,7 +4,7 @@
 <createdTime>2023-09-23 23:11:12 UTC</createdTime>
 <ownerDesignName>ModeloER</ownerDesignName>
 <engineerTo>
-<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,7 +20,7 @@
 <createdTime>2023-09-23 23:13:48 UTC</createdTime>
 <ownerDesignName>ModeloER</ownerDesignName>
 <engineerTo>
-<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -34,7 +34,7 @@
 <generatorID>98311B77-4A06-4F21-0A41-29BB9E5981EA</generatorID>
 <ownerDesignName>ModeloER</ownerDesignName>
 <engineerTo>
-<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
 </engineerTo>
 <referedAttribute>77C4FE19-A215-1F8C-296A-2FE897702BE8</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -47,7 +47,7 @@
 <createdTime>2023-09-24 23:59:09 UTC</createdTime>
 <ownerDesignName>ModeloER</ownerDesignName>
 <engineerTo>
-<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -59,7 +59,7 @@
 <createdTime>2023-09-27 20:08:18 UTC</createdTime>
 <ownerDesignName>ModeloER</ownerDesignName>
 <engineerTo>
-<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -72,9 +72,36 @@
 <generatorID>98311B77-4A06-4F21-0A41-29BB9E5981EA</generatorID>
 <ownerDesignName>ModeloER</ownerDesignName>
 <engineerTo>
-<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="true"/>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
 </engineerTo>
 <referedAttribute>609AC270-4193-F4C2-E346-A8703A6350B4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fechaConsumo" id="6357D5F0-C258-A5DA-42FF-3FFD2DF70C61">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 19:59:57 UTC</createdTime>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="8F89B54E-0134-AAC4-F763-12EFA791F702">
+<createdBy>ASUS</createdBy>
+<createdTime>2023-11-04 20:00:34 UTC</createdTime>
+<generatorID>485312F5-EAEE-B00E-346E-9ADFB86BAF47</generatorID>
+<ownerDesignName>ModeloER</ownerDesignName>
+<engineerTo>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
+</engineerTo>
+<referedAttribute>56C3A7F9-65B5-92F8-06C2-BADA7AF5492B</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
@@ -86,9 +113,8 @@
 <createdBy>felip</createdBy>
 <createdTime>2023-09-24 23:59:22 UTC</createdTime>
 <ownerDesignName>ModeloER</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="A4F77CD7-8BFF-ADDF-1FFF-AADD567347E6" value="false"/>
+<item key="406B60F7-D011-2731-D12A-0332E27D59D6" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

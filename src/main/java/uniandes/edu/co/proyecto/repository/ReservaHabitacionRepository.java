@@ -56,10 +56,9 @@ public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabita
                     "ORDER BY ocupacion DESC "+
                     "FETCH FIRST 10 ROWS ONLY", nativeQuery =  true)
     List<Object[]> RFC6A();
-    @Query(value = "SELECT rh.fechainicio, SUM(c.sumatotal) AS ingresos "+
-                    "FROM reservashabitaciones rh "+
-                    "JOIN consumos c ON rh.id = c.reservashabitaciones_id "+
-                    "GROUP BY rh.fechainicio "+
+    @Query(value = "SELECT c.fechaconsumo, SUM(c.sumatotal) AS ingresos "+
+                    "FROM consumos c "+
+                    "GROUP BY c.fechaconsumo "+
                     "ORDER BY ingresos DESC "+
                     "FETCH FIRST 10 ROWS ONLY", nativeQuery =  true)
     List<Object[]> RFC6B();
