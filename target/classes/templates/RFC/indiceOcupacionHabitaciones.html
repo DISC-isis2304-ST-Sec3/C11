@@ -20,8 +20,8 @@
             </thead>
             <tbody>
                 <tr th:each="dato : ${datos}">
-                    <td th:text="${dato.id}"></td>
-                    <td th:text="${dato.ocupacion}"></td>
+                    <td th:text="${dato[0]}"></td>
+                    <td th:text="${dato[1]}"></td>
                 </tr>
             </tbody>
         </table>

@@ -21,9 +21,9 @@
             </thead>
             <tbody>
                 <tr th:each="dato : ${datos}">
-                    <td th:text="${dato.id}"></td>
-                    <td th:text="${dato.nombre}"></td>
-                    <td th:text="${dato.numero}"></td>
+                    <td th:text="${dato[0]}"></td>
+                    <td th:text="${dato[1]}"></td>
+                    <td th:text="${dato[2]}"></td>
                 </tr>
             </tbody>
         </table>

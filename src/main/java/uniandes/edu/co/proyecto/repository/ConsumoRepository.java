@@ -1,6 +1,7 @@
 package uniandes.edu.co.proyecto.repository;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -50,7 +51,7 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
     "where reservashabitaciones.fechainicio > TO_DATE('2023/01/01','yyyy/mm/dd') and reservashabitaciones.fechafin < current_date "
     +"group by reservashabitaciones.habitaciones_id",
     nativeQuery = true)
-    Collection<RFC1> RFC1();
+    List<Object[]> RFC1();
 
     @Query(value = "select servicios.id,servicios.nombre, count  (*) as num_reservas " +
     "from  reservasservicios inner join servicios on servicios.id=reservasservicios.servicios_id "  + 
@@ -58,7 +59,13 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
     "and reservasservicios.fechafin < current_date " + 
     "group by servicios.id,servicios.nombre " + 
     "order by num_reservas desc", nativeQuery = true)
-    Collection<RFC2> RFC2(@Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
+    List<Object[]> RFC2(@Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
+
+    @Query(value = "SELECT  u.id AS usuarios_id, u.nombre AS nombre, s.nombre AS producto, c.sumatotal AS precio FROM consumos c "+
+            "JOIN reservashabitaciones rh ON c.reservashabitaciones_id = rh.id "+
+            "JOIN servicios s ON c.servicios_id = s.id JOIN usuarios u ON rh.usuarios_id = u.id "+
+            "WHERE  u.id = :usuario_id AND rh.fechainicio BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD')", nativeQuery =  true)
+List<Object[]> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
    
     
 }
