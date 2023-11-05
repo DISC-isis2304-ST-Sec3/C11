@@ -33,7 +33,7 @@ public interface ServicioRepository extends JpaRepository<Servicio, Integer>{
     @Query(value = "INSERT INTO servicios (id, nombre,descripcion,costoporunidad,unidad,horario,tiposervicio,capacidad) VALUES ( serviciossecuencia.nextval , :nombre, :descripcion, :costoporunidad, :unidad, :horario, :tiposervicio, :capacidad)", nativeQuery = true)
     void insertarServicio(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("costoporunidad") Integer costoporunidad, @Param("unidad") String unidad ,@Param("horario") String horario, @Param("tiposervicio") String tiposervicio, @Param("capacidad") Integer capacidad);
 
-    @Query(value = "SELECT s.nombre, s.descripcion, s.costoporunidad, s.unidad, s.horario, s.tiposervicio, s.capacidad FROM servicios s LEFT JOIN consumos c ON s.id = c.servicios_id " +
+    @Query(value = "SELECT distinct s.nombre, s.descripcion, s.costoporunidad, s.unidad, s.horario, s.tiposervicio, s.capacidad FROM servicios s LEFT JOIN consumos c ON s.id = c.servicios_id " +
     "WHERE (:costo1 IS NULL OR (s.costoporunidad BETWEEN :costo1 AND :costo2)) " +
     "AND (:fecha1 IS NULL OR (c.fechaconsumo BETWEEN to_date(:fecha1,'YYYY-MM-DD') AND to_date(:fecha2,'YYYY-MM-DD'))) " +
     "AND (:usuario_id IS NULL OR c.usuarios_id = :usuario_id) " +
