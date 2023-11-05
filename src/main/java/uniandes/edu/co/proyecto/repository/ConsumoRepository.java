@@ -71,5 +71,14 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
             "WHERE  u.id = :usuario_id AND rh.fechainicio BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD')", nativeQuery =  true)
 List<Object[]> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
    
+    @Query(value = "SELECT s.nombre,  COUNT(*) "+
+            "FROM Consumos c, servicios s "+
+            "WHERE (c.fechaconsumo >= ADD_MONTHS(SYSDATE, -12) and c.servicios_id = s.id)  "+
+            "GROUP BY s.nombre, TO_CHAR(c.FECHACONSUMO, 'IYYY-IW') " +
+            "HAVING COUNT(*) < 3", nativeQuery = true)
+    List<Object[]> RFC8();
+
+    @Query(value = "select nombre from servicios where id not in (select servicios_id from consumos)", nativeQuery = true)
+    List<Object[]> RFC8AUX();
     
 }

@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RFC8</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Servicios con menos de 3 consumos en una semana en el ultimo año:</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Consumos peor semana</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dato : ${datos}">
+                    <td th:text="${dato[0]}"></td>
+                    <td th:text="${dato[1]}"></td>
+                </tr>
+                <tr th:each="dato : ${datosaux}">
+                    <td th:text="${dato[0]}"></td>
+                    <td th:text="0"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
