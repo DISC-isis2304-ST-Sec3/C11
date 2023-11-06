@@ -77,47 +77,47 @@
             <li th:if="${permisos.contains('H')}">
                 <a th:href="@{'/reservasservicios/' + ${id_usuario}}">Reservas de servicios</a>
             </li>
-            <li th:if="${permisos.contains('J')}">
+            <li th:if="${permisos.contains('I')}">
                 <a th:href="@{'/consumos/' + ${id_usuario}}">Consumos de un cliente</a>
             </li>
-            <li th:if="${permisos.contains('K')}">
+            <li th:if="${permisos.contains('J')}">
                 <a th:href="@{/checkout}">Check out</a>
             </li>
+            <li th:if="${permisos.contains('K')}">
+                <a th:href="@{/RFC1}">RFC1:Ver dinero recolectado por servicios en cada habitacion</a>
+            </li>
             <li th:if="${permisos.contains('L')}">
-                <a th:href="@{/RFC1}">Ver dinero recolectado por servicios en cada habitacion</a>
+                <a th:href="@{/RFC2}">RFC2:Ver 20 servicios más populares en un rango de fechas</a>
             </li>
             <li th:if="${permisos.contains('M')}">
-                <a th:href="@{/RFC2}">Ver 20 servicios más populares en un rango de fechas</a>
+                <a th:href="@{/RFC3}">RFC3:Ver ocupacion de habitaciones en el ultimo año</a>
             </li>
             <li th:if="${permisos.contains('N')}">
-                <a th:href="@{/RFC3}">Ver ocupacion de habitaciones en el ultimo año</a>
+                <a th:href="@{/RFC4}">RFC4:Buscar servicio por caracteristicas</a>
             </li>
             <li th:if="${permisos.contains('O')}">
-                <a th:href="@{/RFC4}">Buscar servicio por caracteristicas</a>
+                <a th:href="@{/RFC5}">RFC5:Mostrar consumo de un usuario en tiempo dado</a>
             </li>
             <li th:if="${permisos.contains('P')}">
-                <a th:href="@{/RFC5}">Mostrar consumo de un usuario en tiempo dado</a>
+                <a th:href="@{/RFC6}">RFC6:Analizar Operacion Hotel de los Andes</a>
             </li>
-            <li th:if="${permisos.contains('Q')}">
-                <a th:href="@{/RFC6}">Analizar Operacion Hotel de los Andes</a>
+            <li th:if="${permisos.contains('Q')}"> 
+                <a th:href="@{/RFC7}">RFC7:Mostrar buenos clientes</a>
             </li>
-            <li th:if="${permisos.contains('R')}"> 
-                <a th:href="@{/RFC7}">Mostrar buenos clientes</a>
+            <li th:if="${permisos.contains('R')}">
+                <a th:href="@{/RFC8}">RFC8:Mostrar servicios con poca demanda</a>
             </li>
             <li th:if="${permisos.contains('S')}">
-                <a th:href="@{/RFC8}">Mostrar servicios con poca demanda</a>
+                <a th:href="@{/RFC9}">RFC9:Consumo de usuarios</a>
             </li>
             <li th:if="${permisos.contains('T')}">
-                <a th:href="@{/RFC9}">RFC9</a>
+                <a th:href="@{/RFC10}">RFC10:Usuarios que no consumen servicios</a>
             </li>
             <li th:if="${permisos.contains('U')}">
-                <a th:href="@{/RFC10}">RFC10</a>
+                <a th:href="@{/RFC11}">RFC11: Consultar Funcionamiento</a>
             </li>
             <li th:if="${permisos.contains('V')}">
-                <a th:href="@{/RFC11}">RFC11</a>
-            </li>
-            <li th:if="${permisos.contains('W')}">
-                <a th:href="@{/RFC12}">RFC12</a>
+                <a th:href="@{/RFC12}">RFC12: Consultar Clientes Excelentes</a>
             </li>
    
         </ul>

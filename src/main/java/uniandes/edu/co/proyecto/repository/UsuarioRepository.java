@@ -50,4 +50,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>  {
             "Select gastos.id,gastos.gasto,dias.diashotel from gastos,dias  "+
             "where dias.id = gastos.id and (gastos.gasto >= 15000000 or dias.diashotel >= 14)", nativeQuery = true)
     List<Object[]> RFC7();
+
+    @Query(value = "SELECT DISTINCT u.id, u.nombre, u.numdocumento, u.email FROM usuarios u "+
+                    "WHERE u.id IN (SELECT r.usuarios_id FROM reservashabitaciones r GROUP BY r.usuarios_id HAVING COUNT(DISTINCT TRUNC(r.fechainicio, 'Q')) = 4) "+
+                    "OR u.id IN (SELECT c.usuarios_id FROM consumos c JOIN servicios s ON c.servicios_id = s.id WHERE s.costoporunidad > 300000 GROUP BY c.usuarios_id HAVING COUNT(DISTINCT c.id) = COUNT(DISTINCT c.reservashabitaciones_id)) "+
+                    "OR u.id IN (SELECT r.usuarios_id FROM reservasservicios r JOIN servicios s ON r.servicios_id = s.id WHERE (s.nombre = 'SPA' OR s.tiposervicio = 'Salon de reuniones') AND (r.fechafin - r.fechainicio) * 24 > 4 GROUP BY r.usuarios_id HAVING COUNT(DISTINCT r.id) = COUNT(DISTINCT r.servicios_id))", nativeQuery = true )
+    List<Object[]> RFC12();
 }

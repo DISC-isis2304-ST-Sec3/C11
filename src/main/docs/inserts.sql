@@ -1,8 +1,8 @@
-Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval,'Cliente','ABCDEFGHIJK');
-Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval ,'Recepcionista','ABCDEFGHIJK');
-Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval,'Empleado','ABCDEFGHIJK');
-Insert into TIPOSDEUSUARIO (ID,NOMBRE, PERMISOS) values (tiposusuariossecuencia.nextval,'Administrador','ABCDEFGHIJK');
-Insert into TIPOSDEUSUARIO (ID,NOMBRE, PERMISOS) values (tiposusuariossecuencia.nextval,'Gerente','ABCDEFGHIJK');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval,'Cliente','GH');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval ,'Recepcionista','JST');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE,PERMISOS) values (tiposusuariossecuencia.nextval,'Empleado','I');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE, PERMISOS) values (tiposusuariossecuencia.nextval,'Administrador','ABCDEFKLMNOPQR');
+Insert into TIPOSDEUSUARIO (ID,NOMBRE, PERMISOS) values (tiposusuariossecuencia.nextval,'Gerente','ABCDEFGHIJKLMNOPQRSTUVW');
 
 Insert into USUARIOS (ID,nombreUsuario,CONTRASENA,NOMBRE,NUMDOCUMENTO,EMAIL,TIPODOCUMENTO,TIPOSDEUSUARIO_ID)
                      values (usuariossecuencia.nextval,'carvafel','261107','Felipe Carvajal','1000795803','carvafel@outlook.es','Cedula','1');
