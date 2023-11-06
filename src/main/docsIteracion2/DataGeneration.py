@@ -113,7 +113,7 @@ def username(name, lastname):
 def password(length):
     characters = string.ascii_letters + string.digits + string.punctuation
     password = ''.join(random.choice(characters) for _ in range(length))
-    return password.replace("'", "").replace("`", "").replace(",", "")
+    return password.replace("'", "").replace("`", "").replace(",", "").replace(":", "")
 
 def document():
     document = ''.join(str(random.randint(0, 9)) for _ in range(10))
@@ -196,7 +196,7 @@ def generateSQLUsuarios(num):
     with open("Usuarios.sql", "w") as file:
         sys.stdout = file
         for i in range(num):
-            data = "INSERT INTO USUARIOS (ID, NOMBREUSUARIO, CONTRASENA, NOMBRE, NUMDOCUMENTO, EMAIL, TIPODOCUMENTO, TIPODEUSUARIO_ID) VALUES (" + "usuariossecuencia.nextval" + ","
+            data = "INSERT INTO USUARIOS (ID, NOMBREUSUARIO, CONTRASENA, NOMBRE, NUMDOCUMENTO, EMAIL, TIPODOCUMENTO, TIPOSDEUSUARIO_ID) VALUES (" + "usuariossecuencia.nextval" + ","
             name = random.choice(names)
             lastname = random.choice(lastnames)
             data = data + "'" + username(name, lastname) + "'"
