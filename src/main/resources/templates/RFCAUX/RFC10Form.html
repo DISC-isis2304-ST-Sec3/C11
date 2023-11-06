@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>RFC9</title>
+    <title>RFC10</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-    <form action="/RFC9/mostrar" method="get">
+    <form action="/RFC10/mostrar" method="get">
         <div>
             <label for="fecha1">Fecha 1 (YYYY-MM-DD):</label>
             <input type="text" id="fecha1" name="fecha1" required>
@@ -69,13 +69,14 @@
             <option th:value="null" th:text="Cualquiera"></option>
             <option th:value="usuario" th:text="NombreDeUsuario"></option>
             <option th:value="documento" th:text="DocumentoIdentidad"></option>
+            <option th:value="id" th:text="Identificador"></option>
         </select><br>
         <label class="col-form-label" for="ordenamiento">Ordenamiento:</label>
         <select class="form-control" id="ordenamiento" name="ordenamiento" >
             <option th:value="null" th:text="Cualquiera"></option>
             <option th:value="usuario" th:text="NombreDeUsuario"></option>
             <option th:value="documento" th:text="DocumentoIdentidad"></option>
-            <option th:value="count" th:text="CantidadConsumos"></option>
+            <option th:value="id" th:text="Identificador"></option>
         </select><br>
         <div>
             <input type="submit" value="Guardar">

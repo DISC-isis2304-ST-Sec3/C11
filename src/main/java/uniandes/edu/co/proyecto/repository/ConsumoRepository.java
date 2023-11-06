@@ -89,4 +89,10 @@ List<Object[]> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") Strin
                     "ORDER BY DECODE(:ordenamiento, 'usuario', u.nombre,'documento', u.numdocumento, 'count', cuenta) ", nativeQuery = true)
     List<Object[]> RFC9(@Param("fecha1") String fecha1,@Param("fecha2") String fecha2, @Param("agrupamiento") String agrupamiento, @Param("ordenamiento") String ordenamiento, @Param("servicio_id") String servicio_id);
     
+    @Query(value = "SELECT  u.id ,u.nombre,u.numdocumento from usuarios u "+
+                    "where u.id not in (select u.id  from consumos c JOIN usuarios u ON c.usuarios_id = u.id JOIN servicios s ON c.servicios_id = s.id "+
+                    "WHERE c.fechaconsumo BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD') AND s.id = :servicio_id) "+
+                    "GROUP BY DECODE(:agrupamiento, 'usuario', u.nombre, 'documento', u.numdocumento, 'id', u.id),u.nombre,u.numdocumento,u.id "+
+                    "ORDER BY DECODE(:ordenamiento, 'usuario', u.nombre,'documento', u.numdocumento, 'id', u.id)", nativeQuery =  true)
+    List<Object[]> RFC10(@Param("fecha1") String fecha1,@Param("fecha2") String fecha2, @Param("agrupamiento") String agrupamiento, @Param("ordenamiento") String ordenamiento, @Param("servicio_id") String servicio_id);
 }

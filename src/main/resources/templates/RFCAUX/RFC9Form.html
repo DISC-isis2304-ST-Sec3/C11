@@ -65,12 +65,14 @@
             </select><br>
 
         <label class="col-form-label" for="agrupamiento">Agrupamiento:</label>
-        <select class="form-control" id="agrupamiento" name="agrupamiento" required>
+        <select class="form-control" id="agrupamiento" name="agrupamiento" >
+            <option th:value="null" th:text="Cualquiera"></option>
             <option th:value="usuario" th:text="NombreDeUsuario"></option>
             <option th:value="documento" th:text="DocumentoIdentidad"></option>
         </select><br>
         <label class="col-form-label" for="ordenamiento">Ordenamiento:</label>
-        <select class="form-control" id="ordenamiento" name="ordenamiento" required>
+        <select class="form-control" id="ordenamiento" name="ordenamiento" >
+            <option th:value="null" th:text="Cualquiera"></option>
             <option th:value="usuario" th:text="NombreDeUsuario"></option>
             <option th:value="documento" th:text="DocumentoIdentidad"></option>
             <option th:value="count" th:text="CantidadConsumos"></option>
