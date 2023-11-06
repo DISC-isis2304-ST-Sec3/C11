@@ -243,7 +243,7 @@ def generateSQLHabitaciones(pisos, habitacionesxpiso):
         sys.stdout = file
         for i in range(1, pisos + 1):
             for j in range(1, habitacionesxpiso + 1):
-                data = "INSERT INTO HABITACIONES (ID, CAPACIDAD, COSTOALOJAMIENTO, NUMERO, TIPOSHABITACION_ID) VALUES (" + "habitacionessecuencia.nextval" + ","
+                data = "INSERT INTO HABITACIONES (ID, CAPACIDAD, COSTOALOJAMIENTO, NUMERO, TIPOSHABITACIONES_ID) VALUES (" + "habitacionessecuencia.nextval" + ","
                 data = data + str(random.randint(1, 6))
                 data = data + ","
                 data = data + str(random.randint(120000, 980000))
