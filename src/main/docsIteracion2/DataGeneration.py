@@ -137,7 +137,7 @@ def generateDataServicios():
             data = data + ","
             data = data + str(random.randint(3, 15))
             data = data + ","
-            data = data + str(i)
+            data = data + str(i + 1)
             print(data)
 
     with open("Servicios.csv", "rb+") as file:
@@ -170,7 +170,7 @@ def generateDataUsuarios(num):
     with open("Usuarios.csv", "w") as file:
         sys.stdout = file
         for i in range(num):
-            data = str(i) + ","
+            data = str(i + 1) + ","
             name = random.choice(names)
             lastname = random.choice(lastnames) 
             data = data + username(name, lastname)
@@ -185,7 +185,7 @@ def generateDataUsuarios(num):
             data = data + ","
             data = data + random.choice(["Cedula", "Tarjeta Identidad"])
             data = data + ","
-            data = data + str(random.randint(0, 4)) # TIPODEUSUARIO_ID
+            data = data + str(random.randint(1, 5)) # TIPODEUSUARIO_ID
             print(data)
 
     with open("Usuarios.csv", "rb+") as file:
@@ -211,7 +211,7 @@ def generateSQLUsuarios(num):
             data = data + ","
             data = data + "'" + random.choice(["Cedula", "Tarjeta Identidad"]) + "'"
             data = data + ","
-            data = data + str(random.randint(0, 4)) # TIPODEUSUARIO_ID
+            data = data + str(random.randint(1, 5)) # TIPODEUSUARIO_ID
             data = data + ");"
             print(data)
 
@@ -231,7 +231,7 @@ def generateDataHabitaciones(pisos, habitacionesxpiso):
                 data = data + ","
                 data = data + str(i) + (str(0) if j < 10 else "") + str(j)
                 data = data + ","
-                data = data + str(random.randint(0, 2)) # TIPOSHABITACION_ID
+                data = data + str(random.randint(1, 3)) # TIPOSHABITACION_ID
                 print(data)
     
     with open("Habitaciones.csv", "rb+") as file:
@@ -250,7 +250,7 @@ def generateSQLHabitaciones(pisos, habitacionesxpiso):
                 data = data + ","
                 data = data + str(i) + (str(0) if j < 10 else "") + str(j)
                 data = data + ","
-                data = data + str(random.randint(0, 2)) # TIPOSHABITACION_ID
+                data = data + str(random.randint(1, 3)) # TIPOSHABITACION_ID
                 data = data + ");"
                 print(data)
     
@@ -262,7 +262,7 @@ def generateDataReservasHabitaciones(num, rooms, users):
     with open("ReservasHabitaciones.csv", "w") as file:
         sys.stdout = file
         for i in range(num):
-            data = str(i) + ","
+            data = str(i + 1) + ","
             data = data + str(random.randint(1, 6))
             data = data + ","
             data = data + str(random.randint(1, 28)) + "/" + str(random.randint(1, 6)) + "/" + str(random.randint(2020, 2021))
@@ -273,9 +273,9 @@ def generateDataReservasHabitaciones(num, rooms, users):
             data = data + ","
             data = data + str(random.randint(1, 28)) + "/" + str(random.randint(6, 12)) + "/" + str(random.randint(2021, 2022))
             data = data + ","
-            data = data + str(random.randint(1, rooms - 1))
+            data = data + str(random.randint(1, rooms))
             data = data + ","
-            data = data + str(random.randint(1, users - 1))
+            data = data + str(random.randint(1, users))
             data = data + ","
             data = data + str(random.randint(1, 2)) # PLANESDECONSUMO_ID
             print(data)
@@ -299,9 +299,9 @@ def generateSQLReservasHabitaciones(num, rooms, users):
             data = data + ","
             data = data + "TO_DATE('" + str(random.randint(1, 28)) + "/" + str(random.randint(6, 12)) + "/" + str(random.randint(2021, 2022)) + "', 'DD/MM/YYYY')"
             data = data + ","
-            data = data + str(random.randint(1, rooms - 1))
+            data = data + str(random.randint(1, rooms))
             data = data + ","
-            data = data + str(random.randint(1, users - 1))
+            data = data + str(random.randint(1, users))
             data = data + ","
             data = data + str(random.randint(1, 2)) # PLANESDECONSUMO_ID
             data = data + ");"
@@ -315,16 +315,16 @@ def generateDataReservasServicios(num, users):
     with open("ReservasServicios.csv", "w") as file:
         sys.stdout = file
         for i in range(num):
-            data = str(i) + ","
+            data = str(i + 1) + ","
             data = data + str(random.randint(1, 6))
             data = data + ","
             data = data + str(random.randint(1, 28)) + "/" + str(random.randint(1, 6)) + "/" + str(random.randint(2020, 2021))
             data = data + ","
             data = data + str(random.randint(1, 28)) + "/" + str(random.randint(6, 12)) + "/" + str(random.randint(2021, 2022))
             data = data + ","
-            data = data + str(random.randint(1, users - 1))
+            data = data + str(random.randint(1, users))
             data = data + ","
-            data = data + str(random.randint(0, 49)) # SERVICIOS_ID
+            data = data + str(random.randint(1, 50)) # SERVICIOS_ID
             print(data)
 
     with open("ReservasServicios.csv", "rb+") as file:
@@ -342,9 +342,9 @@ def generateSQLReservasServicios(num, users):
             data = data + ","
             data = data + "TO_DATE('" + str(random.randint(1, 28)) + "/" + str(random.randint(6, 12)) + "/" + str(random.randint(2021, 2022)) + "', 'DD/MM/YYYY')"
             data = data + ","
-            data = data + str(random.randint(1, users - 1))
+            data = data + str(random.randint(1, users))
             data = data + ","
-            data = data + str(random.randint(0, 49)) # SERVICIOS_ID
+            data = data + str(random.randint(1, 50)) # SERVICIOS_ID
             data = data + ");"
             print(data)
 
@@ -357,20 +357,20 @@ def generateDataConsumos(num, roomReservations, users):
         sys.stdout = file
         for i in range(num):
             data = str(random.randint(100000, 1000000)) + ","
-            data = data + str(random.randint(1, roomReservations - 1))
+            data = data + str(random.randint(1, roomReservations))
             data = data + ","
             data = data + str(random.randint(1, 50))
             data = data + ","
-            servicio = str(random.randint(0, 49))
+            servicio = str(random.randint(1, 50))
             data = data + servicio
             data = data + ","
-            data = data + str(i)
+            data = data + str(i + 1)
             data = data + ","
-            data = data + list(services.keys())[int(servicio)]
+            data = data + list(services.keys())[int(servicio) - 1]
             data = data + ","
             data = data + str(random.randint(1, 28)) + "/" + str(random.randint(1, 12)) + "/" + str(random.randint(2020, 2021))
             data = data + ","
-            data = data + str(random.randint(1, users - 1))
+            data = data + str(random.randint(1, users))
             print(data)
 
     with open("Consumos.csv", "rb+") as file:
@@ -382,20 +382,20 @@ def generateSQLConsumos(num, roomReservations, users):
         sys.stdout = file
         for i in range(num):
             data = "INSERT INTO CONSUMOS (SUMATOTAL, RESERVASHABITACIONES_ID, NUMCONSUMOS, SERVICIOS_ID, ID, NOMBRE, FECHACONSUMO, USUARIOS_ID) VALUES (" + str(random.randint(100000, 1000000)) + ","
-            data = data + str(random.randint(1, roomReservations - 1))
+            data = data + str(random.randint(1, roomReservations))
             data = data + ","
             data = data + str(random.randint(1, 50))
             data = data + ","
-            servicio = str(random.randint(0, 49))
+            servicio = str(random.randint(1, 50))
             data = data + servicio
             data = data + ","
             data = data + "consumossecuencia.nextval"
             data = data + ","
-            data = data + "'" + list(services.keys())[int(servicio)] + "'"
+            data = data + "'" + list(services.keys())[int(servicio) - 1] + "'"
             data = data + ","
             data = data + "TO_DATE('" + str(random.randint(1, 28)) + "/" + str(random.randint(1, 12)) + "/" + str(random.randint(2020, 2021)) + "', 'DD/MM/YYYY')"
             data = data + ","
-            data = data + str(random.randint(1, users - 1))
+            data = data + str(random.randint(1, users))
             data = data + ");"
             print(data)
 
