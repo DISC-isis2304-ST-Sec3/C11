@@ -95,4 +95,36 @@ List<Object[]> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") Strin
                     "GROUP BY DECODE(:agrupamiento, 'usuario', u.nombre, 'documento', u.numdocumento, 'id', u.id),u.nombre,u.numdocumento,u.id "+
                     "ORDER BY DECODE(:ordenamiento, 'usuario', u.nombre,'documento', u.numdocumento, 'id', u.id)", nativeQuery =  true)
     List<Object[]> RFC10(@Param("fecha1") String fecha1,@Param("fecha2") String fecha2, @Param("agrupamiento") String agrupamiento, @Param("ordenamiento") String ordenamiento, @Param("servicio_id") String servicio_id);
+
+
+    @Query(value = "WITH SemanaConsumo AS ( "+
+                    "SELECT TO_NUMBER(TO_CHAR(fechaconsumo, 'IYYY')) AS year, TO_NUMBER(TO_CHAR(fechaconsumo, 'IW')) AS week,TRUNC(fechaconsumo, 'IW') - 1 AS start_date,TRUNC(fechaconsumo, 'IW') + 5 AS end_date,  servicios_id, decode(:razon, 'dinero', sum(sumatotal) , 'cant', count(*), 'num', sum(numconsumos)  ) AS total_consumo "+
+                    "FROM consumos "+
+                    "GROUP BY TO_NUMBER(TO_CHAR(fechaconsumo, 'IYYY')),TO_NUMBER(TO_CHAR(fechaconsumo, 'IW')),TRUNC(fechaconsumo, 'IW'),servicios_id), "+
+                    "MaxMinConsumo AS ( "+
+                    "SELECT year,week,start_date,end_date, MAX(total_consumo) AS max_consumo,MIN(total_consumo) AS min_consumo "+
+                    "FROM SemanaConsumo "+
+                    "GROUP BY year, week, start_date, end_date) "+
+                    "SELECT s.year,s.week,s.start_date,s.end_date,sv.nombre AS servicio_mas_consumido_nombre,m.max_consumo AS max_consumo_servicio, sv1.nombre AS servicio_menos_consumido_nombre,m.min_consumo AS min_consumo_servicio "+
+                    "FROM SemanaConsumo s "+
+                    "JOIN servicios sv ON s.servicios_id = sv.id "+
+                    "JOIN MaxMinConsumo m ON s.year = m.year AND s.week = m.week AND s.total_consumo = m.max_consumo "+
+                    "JOIN SemanaConsumo s1 ON s1.year = m.year AND s1.week = m.week AND s1.total_consumo = m.min_consumo "+
+                    "JOIN servicios sv1 ON s1.servicios_id = sv1.id", nativeQuery = true)
+    List<Object[]> RFC11A(@Param("razon") String razon);
+
+    @Query(value = "WITH SemanaHabitacion AS ( "+
+                    "SELECT TO_NUMBER(TO_CHAR(fechainicio, 'IYYY')) AS year,TO_NUMBER(TO_CHAR(fechainicio, 'IW')) AS week,TRUNC(fechainicio, 'IW') - 1 AS start_date,TRUNC(fechainicio, 'IW') + 5 AS end_date, habitaciones_id,COUNT(id) AS total_reservas "+
+                    "FROM reservashabitaciones "+
+                    "GROUP BY  TO_NUMBER(TO_CHAR(fechainicio, 'IYYY')),TO_NUMBER(TO_CHAR(fechainicio, 'IW')),TRUNC(fechainicio, 'IW'), habitaciones_id), "+
+                    "MaxMinHabitacion AS (SELECT year,week,start_date,end_date,MAX(total_reservas) AS max_reservas,MIN(total_reservas) AS min_reservas "+
+                    "FROM SemanaHabitacion "+
+                    "GROUP BY year, week, start_date, end_date) "+
+                    "SELECT h.year,h.week,h.start_date,h.end_date,hab.numero,m.max_reservas,hab1.numero,m.min_reservas "+
+                    "FROM SemanaHabitacion h "+
+                    "JOIN habitaciones hab ON h.habitaciones_id = hab.id "+
+                    "JOIN MaxMinHabitacion m ON h.year = m.year AND h.week = m.week AND h.total_reservas = m.max_reservas "+
+                    "JOIN SemanaHabitacion h1 ON h1.year = m.year AND h1.week = m.week AND h1.total_reservas = m.min_reservas "+
+                    "JOIN habitaciones hab1 ON h1.habitaciones_id = hab1.id",nativeQuery = true)
+    List<Object> RFC11B(); 
 }
