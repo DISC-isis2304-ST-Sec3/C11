@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.Habitacion;
 
 public interface HabitacionRepository extends JpaRepository<Habitacion, Integer> {
 
-    @Query(value ="select * from habitaciones", nativeQuery = true)
+    @Query(value ="select * from habitaciones FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     Collection<Habitacion> darHabitaciones();
 
     @Query(value = "SELECT * FROM habitaciones WHERE id = :id", nativeQuery = true)

@@ -15,7 +15,7 @@ import uniandes.edu.co.proyecto.modelo.ReservaServicio;
 
 public interface ReservaServicioRepository extends JpaRepository<ReservaServicio, Integer>{
     
-    @Query(value = "SELECT * FROM reservasservicios", nativeQuery = true)
+    @Query(value = "SELECT * FROM reservasservicios FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     Collection<ReservaServicio> darReservasServicios();
 
     @Query(value = "SELECT * FROM reservasservicios WHERE id = :id", nativeQuery = true)
@@ -37,8 +37,8 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
     void insertarReservaServicio(@Param("numpersonas") Integer numpersonas, @Param("fechainicio") String fechainicio,@Param("fechafin") String fechafin,@Param("usuarios_id") Integer usuarios_id,@Param("servicios_id") Integer servicios_id);
 
     @Query(value = "select * from reservasservicios where usuarios_id = :usuarios_id", nativeQuery = true)
-    ReservaServicio darReservaPorUsuario(@Param("usuarios_id") Integer usuarios_id);
+    Collection<ReservaServicio> darReservaPorUsuario(@Param("usuarios_id") Integer usuarios_id);
 
-    @Query(value = "SELECT *FROM reservasservicios WHERE servicios_id = :idServicio AND FECHAFIN >= TO_DATE(:fechainicio, 'DD/MM/YYYY HH24:MI:SS') AND FECHAINICIO <= TO_DATE(:fechaFin, 'DD/MM/YYYY HH24:MI:SS')", nativeQuery = true)
+    @Query(value = "SELECT *FROM reservasservicios WHERE servicios_id = :idServicio AND FECHAFIN >= TO_DATE(:fechainicio, 'DD/MM/YYYY HH24:MI:SS') AND FECHAINICIO <= TO_DATE(:fechaFin, 'DD/MM/YYYY HH24:MI:SS') FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     Collection<ReservaServicio> darReservasServiciosPorId(@Param("idServicio") long idServicio, @Param("fechainicio") String fechainicio, @Param("fechaFin") String fechaFin);
 }

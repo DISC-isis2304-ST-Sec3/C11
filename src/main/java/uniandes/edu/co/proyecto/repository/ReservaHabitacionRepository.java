@@ -15,7 +15,7 @@ import uniandes.edu.co.proyecto.modelo.ReservaHabitacion;
 
 public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabitacion, Integer>   {
 
-    @Query(value = "SELECT * FROM reservashabitaciones", nativeQuery = true)
+    @Query(value = "SELECT * FROM reservashabitaciones FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     Collection<ReservaHabitacion> darReservasHabitaciones();
 
     @Query(value = "SELECT * FROM reservashabitaciones WHERE id = :id", nativeQuery = true)
@@ -39,14 +39,14 @@ public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabita
     @Query(value = "Select * from reservashabitaciones where usuarios_id = :id", nativeQuery = true)
     Collection<ReservaHabitacion> darReservasHabitacionesUsuario(@Param("id") long id);
 
-    @Query(value = "SELECT *FROM reservashabitaciones WHERE HABITACIONES_ID = :idHabitacion AND FECHAFIN >= TO_DATE(:fechainicio, 'YYYY-MM-DD') AND FECHAINICIO <= TO_DATE(:fechaFin, 'YYYY-MM-DD')", nativeQuery = true)
+    @Query(value = "SELECT *FROM reservashabitaciones WHERE HABITACIONES_ID = :idHabitacion AND FECHAFIN >= TO_DATE(:fechainicio, 'YYYY-MM-DD') AND FECHAINICIO <= TO_DATE(:fechaFin, 'YYYY-MM-DD') FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     Collection<ReservaHabitacion> darReservasHabitacionesHabitacion(@Param("idHabitacion") long idHabitacion, @Param("fechainicio") String fechainicio, @Param("fechaFin") String fechaFin);
 
-    @Query(value = "SELECT h.id,h.numero AS,COALESCE(ROUND(100 * SUM(NVL(r.fechafin, SYSDATE) - r.fechainicio) / 365, 2), 0) "+
+    @Query(value = "SELECT h.id,h.numero AS,COALESCE(ROUND(100 * SUM(NVL(r.fechafin, SYSDATE) - r.fechainicio) / 365, 2), 0) as sum "+
             "FROM habitaciones h "+
             "LEFT JOIN reservashabitaciones r ON h.id = r.habitaciones_id AND r.fechainicio BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE "+
-            "GROUP BY  h.id, h.numero "+
-            "ORDER BY h.id",nativeQuery = true)
+            "GROUP BY  h.id, h.numero having COALESCE(ROUND(100 * SUM(NVL(r.fechafin, SYSDATE) - r.fechainicio) / 365, 2), 0) between 1 and 100 "+
+            "ORDER BY h.id FETCH FIRST 30 ROWS ONLY ",nativeQuery = true)
     List<Object[]> RFC3();
 
 

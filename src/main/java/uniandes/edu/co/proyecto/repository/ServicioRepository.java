@@ -37,6 +37,6 @@ public interface ServicioRepository extends JpaRepository<Servicio, Integer>{
     "WHERE (:costo1 IS NULL OR (s.costoporunidad BETWEEN :costo1 AND :costo2)) " +
     "AND (:fecha1 IS NULL OR (c.fechaconsumo BETWEEN to_date(:fecha1,'YYYY-MM-DD') AND to_date(:fecha2,'YYYY-MM-DD'))) " +
     "AND (:usuario_id IS NULL OR c.usuarios_id = :usuario_id) " +
-    "AND (:tiposervicio IS NULL OR s.tiposervicio = :tiposervicio)", nativeQuery = true)
+    "AND (:tiposervicio IS NULL OR s.tiposervicio = :tiposervicio) FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     List<Object[]> RFC4(@Param("costo1") String costo1,@Param("costo2") String costo2, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2,@Param("tiposervicio") String tiposervicio, @Param("usuario_id") String usuario_id);
 }

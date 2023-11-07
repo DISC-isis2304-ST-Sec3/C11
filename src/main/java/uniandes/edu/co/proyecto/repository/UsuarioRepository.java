@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>  {
-    @Query(value = "SELECT * FROM usuarios", nativeQuery = true)
+    @Query(value = "SELECT * FROM usuarios FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     Collection<Usuario> darUsuarios();
 
     @Query(value = "SELECT * FROM usuarios WHERE id = :id", nativeQuery = true)
@@ -48,7 +48,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>  {
             "where usuarios.id = reservashabitaciones.usuarios_id and consumos.reservashabitaciones_id  = reservashabitaciones.id "+
             "group by usuarios.nombre) "+
             "Select gastos.id,gastos.gasto,dias.diashotel from gastos,dias  "+
-            "where dias.id = gastos.id and (gastos.gasto >= 15000000 or dias.diashotel >= 14)", nativeQuery = true)
+            "where dias.id = gastos.id and (gastos.gasto >= 15000000 or dias.diashotel >= 14) FETCH FIRST 30 ROWS ONLY ", nativeQuery = true)
     List<Object[]> RFC7();
 
     @Query(value = "WITH ClientesExcelentes AS ( "+
@@ -74,6 +74,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>  {
         "SELECT u.id, u.nombre, ce.Razon "+
         "FROM usuarios u "+
         "JOIN ClientesExcelentes ce ON u.id = ce.usuarios_id "+
-        "ORDER BY u.id, u.nombre", nativeQuery = true )
+        "ORDER BY u.id, u.nombre FETCH FIRST 30 ROWS ONLY ", nativeQuery = true )
         List<Object[]> RFC12();
 }

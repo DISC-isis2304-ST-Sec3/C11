@@ -24,7 +24,6 @@ public class RFC11Controller {
         model.addAttribute("datos1", consumoRepository.RFC11A(razon));
         model.addAttribute("datos2", consumoRepository.RFC11B());
 
-
         return "/RFC/RFC11.html";
     }
 }

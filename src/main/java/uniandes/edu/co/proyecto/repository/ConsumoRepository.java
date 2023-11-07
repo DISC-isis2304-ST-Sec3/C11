@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.*;
 
 
 public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
-    @Query(value = "SELECT * FROM consumos", nativeQuery = true)
+    @Query(value = "SELECT * FROM consumos FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     Collection<Consumo> darConsumos();
 
     @Query(value = "SELECT * FROM consumos WHERE id = :id", nativeQuery = true)
@@ -43,16 +43,10 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
     @Query(value = "INSERT INTO consumos (id, sumaTotal, numConsumos, nombre, reservashabitaciones_id, servicios_id, fechaconsumo, usuarios_id) VALUES (consumossecuencia.nextval , :sumaTotal, :numConsumos, :nombre, :reservaHabitacion, :servicios_id, TO_DATE(:fechaconsumo, 'YYYY-MM-DD'), :usuarios_id)", nativeQuery = true)
     void insertarConsumo(@Param("sumaTotal") Integer sumaTotal, @Param("numConsumos") Integer numConsumos, @Param("nombre") String nombre, @Param("reservaHabitacion") Integer reservaHabitacion, @Param("servicios_id") Integer servicios_id, @Param("fechaconsumo") String fechaconsumo, @Param("usuarios_id") long usuarios_id);
 
-    @Query(value = "select * from consumos where reservashabitaciones_id = :id", nativeQuery = true)
+    @Query(value = "select * from consumos where reservashabitaciones_id = :id FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     Collection<Consumo> darConsumosReservaHabitacion(@Param("id") Integer id);
 
-    @Query(value = "SELECT h.id ,h.numero, COALESCE(SUM(c.sumatotal),0) "+
-                    "FROM habitaciones h "+
-                    "LEFT JOIN reservashabitaciones r ON h.id = r.habitaciones_id "+
-                    "AND r.fechainicio BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE "+
-                    "LEFT JOIN consumos c ON r.id = c.reservashabitaciones_id "+
-                    "GROUP BY h.id, h.numero "+
-                    "ORDER BY h.id",
+    @Query(value = "SELECT h.id ,h.numero, COALESCE(SUM(c.sumatotal),0) as sum FROM habitaciones h LEFT JOIN reservashabitaciones r ON h.id = r.habitaciones_id LEFT JOIN consumos c ON r.id = c.reservashabitaciones_id AND c.fechaconsumo BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE GROUP BY h.id, h.numero ORDER BY sum desc FETCH FIRST 30 ROWS ONLY",
                     nativeQuery = true)
     List<Object[]> RFC1();
 
@@ -68,17 +62,17 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
     @Query(value = "SELECT  u.id AS usuarios_id, u.nombre AS nombre, s.nombre AS producto, c.sumatotal AS precio FROM consumos c "+
             "JOIN reservashabitaciones rh ON c.reservashabitaciones_id = rh.id "+
             "JOIN servicios s ON c.servicios_id = s.id JOIN usuarios u ON rh.usuarios_id = u.id "+
-            "WHERE  u.id = :usuario_id AND rh.fechainicio BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD')", nativeQuery =  true)
+            "WHERE  u.id = :usuario_id AND rh.fechainicio BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD') FETCH FIRST 30 ROWS ONLY ", nativeQuery =  true)
 List<Object[]> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
    
     @Query(value = "SELECT s.nombre,  COUNT(*) "+
             "FROM Consumos c, servicios s "+
             "WHERE (c.fechaconsumo >= ADD_MONTHS(SYSDATE, -12) and c.servicios_id = s.id)  "+
             "GROUP BY s.nombre, TO_CHAR(c.FECHACONSUMO, 'IYYY-IW') " +
-            "HAVING COUNT(*) < 3", nativeQuery = true)
+            "HAVING COUNT(*) < 3 FETCH FIRST 30 ROWS ONLY ", nativeQuery = true)
     List<Object[]> RFC8();
 
-    @Query(value = "select nombre from servicios where id not in (select servicios_id from consumos)", nativeQuery = true)
+    @Query(value = "select nombre from servicios where id not in (select servicios_id from consumos) FETCH FIRST 30 ROWS ONLY ", nativeQuery = true)
     List<Object[]> RFC8AUX();
 
     @Query(value = "SELECT  u.nombre,u.numdocumento,s.nombre,COUNT(c.numconsumos) AS cuenta "+
@@ -86,14 +80,14 @@ List<Object[]> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") Strin
                     "JOIN usuarios u ON c.usuarios_id = u.id JOIN servicios s ON c.servicios_id = s.id "+
                     "WHERE c.fechaconsumo BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD') AND s.id = :servicio_id "+
                     "GROUP BY DECODE(:agrupamiento, 'usuario', u.nombre, 'documento', u.numdocumento),u.nombre,s.nombre, u.numdocumento "+
-                    "ORDER BY DECODE(:ordenamiento, 'usuario', u.nombre,'documento', u.numdocumento, 'count', cuenta) ", nativeQuery = true)
+                    "ORDER BY DECODE(:ordenamiento, 'usuario', u.nombre,'documento', u.numdocumento, 'count', cuenta ) FETCH FIRST 30 ROWS ONLY", nativeQuery = true)
     List<Object[]> RFC9(@Param("fecha1") String fecha1,@Param("fecha2") String fecha2, @Param("agrupamiento") String agrupamiento, @Param("ordenamiento") String ordenamiento, @Param("servicio_id") String servicio_id);
     
     @Query(value = "SELECT  u.id ,u.nombre,u.numdocumento from usuarios u "+
                     "where u.id not in (select u.id  from consumos c JOIN usuarios u ON c.usuarios_id = u.id JOIN servicios s ON c.servicios_id = s.id "+
                     "WHERE c.fechaconsumo BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD') AND s.id = :servicio_id) "+
                     "GROUP BY DECODE(:agrupamiento, 'usuario', u.nombre, 'documento', u.numdocumento, 'id', u.id),u.nombre,u.numdocumento,u.id "+
-                    "ORDER BY DECODE(:ordenamiento, 'usuario', u.nombre,'documento', u.numdocumento, 'id', u.id)", nativeQuery =  true)
+                    "ORDER BY DECODE(:ordenamiento, 'usuario', u.nombre,'documento', u.numdocumento, 'id', u.id  ) FETCH FIRST 30 ROWS ONLY", nativeQuery =  true)
     List<Object[]> RFC10(@Param("fecha1") String fecha1,@Param("fecha2") String fecha2, @Param("agrupamiento") String agrupamiento, @Param("ordenamiento") String ordenamiento, @Param("servicio_id") String servicio_id);
 
 
@@ -110,7 +104,7 @@ List<Object[]> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") Strin
                     "JOIN servicios sv ON s.servicios_id = sv.id "+
                     "JOIN MaxMinConsumo m ON s.year = m.year AND s.week = m.week AND s.total_consumo = m.max_consumo "+
                     "JOIN SemanaConsumo s1 ON s1.year = m.year AND s1.week = m.week AND s1.total_consumo = m.min_consumo "+
-                    "JOIN servicios sv1 ON s1.servicios_id = sv1.id", nativeQuery = true)
+                    "JOIN servicios sv1 ON s1.servicios_id = sv1.id FETCH FIRST 30 ROWS ONLY ", nativeQuery = true)
     List<Object[]> RFC11A(@Param("razon") String razon);
 
     @Query(value = "WITH SemanaHabitacion AS ( "+
@@ -125,6 +119,6 @@ List<Object[]> RFC5(@Param("usuario_id") Long usuario_id, @Param("fecha1") Strin
                     "JOIN habitaciones hab ON h.habitaciones_id = hab.id "+
                     "JOIN MaxMinHabitacion m ON h.year = m.year AND h.week = m.week AND h.total_reservas = m.max_reservas "+
                     "JOIN SemanaHabitacion h1 ON h1.year = m.year AND h1.week = m.week AND h1.total_reservas = m.min_reservas "+
-                    "JOIN habitaciones hab1 ON h1.habitaciones_id = hab1.id",nativeQuery = true)
+                    "JOIN habitaciones hab1 ON h1.habitaciones_id = hab1.id FETCH FIRST 30 ROWS ONLY ",nativeQuery = true)
     List<Object> RFC11B(); 
 }
