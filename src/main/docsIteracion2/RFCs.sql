@@ -1,17 +1,3 @@
-SELECT u.id,u.nombre,s.nombre ,c.sumatotal
-FROM consumos c
-JOIN reservashabitaciones rh ON c.reservashabitaciones_id = rh.id
-JOIN servicios s ON c.servicios_id = s.id
-JOIN usuarios u ON rh.usuarios_id = u.id
-WHERE  u.id = :usuarios_id
-AND rh.fechainicio BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD'); --req  5   
-    
-SELECT h.id,h.numero AS,COALESCE(ROUND(100 * SUM(NVL(r.fechafin, SYSDATE) - r.fechainicio) / 365, 2), 0)
-FROM habitaciones h
-LEFT JOIN reservashabitaciones r ON h.id = r.habitaciones_id AND r.fechainicio BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE
-GROUP BY  h.id, h.numero
-ORDER BY h.id; --req 3
-
 SELECT h.id ,h.numero, COALESCE(SUM(c.sumatotal),0)
 FROM habitaciones h
 LEFT JOIN reservashabitaciones r ON h.id = r.habitaciones_id
@@ -28,17 +14,24 @@ GROUP BY s.id, s.nombre
 ORDER BY count(c.id) DESC
 FETCH FIRST 20 ROWS ONLY; --req 2
 
+SELECT h.id,h.numero AS,COALESCE(ROUND(100 * SUM(NVL(r.fechafin, SYSDATE) - r.fechainicio) / 365, 2), 0)
+FROM habitaciones h
+LEFT JOIN reservashabitaciones r ON h.id = r.habitaciones_id AND r.fechainicio BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE
+GROUP BY  h.id, h.numero
+ORDER BY h.id; --req 3
 
-WITH DIAS AS(
-SELECT usuarios.nombre as id, SUM(reservashabitaciones.fechafin - reservashabitaciones.fechainicio) as diashotel
-FROM usuarios, reservashabitaciones
-WHERE reservashabitaciones.usuarios_id = usuarios.id 
-GROUP BY usuarios.nombre), gastos as(
-select usuarios.nombre as id, sum(consumos.sumatotal) as gasto from consumos, usuarios,reservashabitaciones
-where usuarios.id = reservashabitaciones.usuarios_id and consumos.reservashabitaciones_id  = reservashabitaciones.id
-group by usuarios.nombre)
-Select gastos.id,gastos.gasto,dias.diashotel from gastos,dias 
-where dias.id = gastos.id and (gastos.gasto >= 15000000 or dias.diashotel >= 14); --req 7
+select s.nombre, s.descripcion, s.costoporunidad, s.unidad, s.horario, s.tiposervicio, s.capacidad from servicios s,consumos c
+where costoporunidad Between 0 and 1 and
+s.id = c.servicios_id and c.fechaconsumo between to_date('2020-01-01','YYYY-MM-DD') and to_date('2025-01-01','YYYY-MM-DD') and
+c.usuarios_id = 12 and s.tiposervicio = 'joyas'; --req 4
+
+SELECT u.id,u.nombre,s.nombre ,c.sumatotal
+FROM consumos c
+JOIN reservashabitaciones rh ON c.reservashabitaciones_id = rh.id
+JOIN servicios s ON c.servicios_id = s.id
+JOIN usuarios u ON rh.usuarios_id = u.id
+WHERE  u.id = :usuarios_id
+AND rh.fechainicio BETWEEN TO_DATE(:fecha1,'YYYY-MM-DD') AND TO_DATE(:fecha2,'YYYY-MM-DD'); --req  5   
 
 --req 6
 SELECT fechainicio, COUNT(*) AS ocupacion
@@ -58,11 +51,16 @@ ORDER BY ocupacion ASC
 FETCH FIRST 10 ROWS ONLY;
 --fin req 6
 
-select s.nombre, s.descripcion, s.costoporunidad, s.unidad, s.horario, s.tiposervicio, s.capacidad from servicios s,consumos c
-where costoporunidad Between 0 and 1 and
-s.id = c.servicios_id and c.fechaconsumo between to_date('2020-01-01','YYYY-MM-DD') and to_date('2025-01-01','YYYY-MM-DD') and
-c.usuarios_id = 12 and s.tiposervicio = 'joyas'; --req 4
-
+WITH DIAS AS(
+SELECT usuarios.nombre as id, SUM(reservashabitaciones.fechafin - reservashabitaciones.fechainicio) as diashotel
+FROM usuarios, reservashabitaciones
+WHERE reservashabitaciones.usuarios_id = usuarios.id 
+GROUP BY usuarios.nombre), gastos as(
+select usuarios.nombre as id, sum(consumos.sumatotal) as gasto from consumos, usuarios,reservashabitaciones
+where usuarios.id = reservashabitaciones.usuarios_id and consumos.reservashabitaciones_id  = reservashabitaciones.id
+group by usuarios.nombre)
+Select gastos.id,gastos.gasto,dias.diashotel from gastos,dias 
+where dias.id = gastos.id and (gastos.gasto >= 15000000 or dias.diashotel >= 14); --req 7
 
 SELECT s.nombre,  COUNT(*) 
 FROM Consumos c, servicios s 
@@ -127,7 +125,7 @@ OR u.id IN (SELECT r.usuarios_id FROM reservasservicios r JOIN servicios s ON r.
 
 
 
--- req 12 con toda la información
+-- req 12 con toda la informaciï¿½n
 WITH ClientesExcelentes AS (
     (SELECT r.usuarios_id, 'Estancias por trimestre' AS Razon 
     FROM reservashabitaciones r 
@@ -141,7 +139,7 @@ WITH ClientesExcelentes AS (
     GROUP BY c.usuarios_id 
     HAVING COUNT(DISTINCT c.id) = COUNT(DISTINCT c.reservashabitaciones_id))
     UNION
-    (SELECT r.usuarios_id, 'Servicio SPA o Salón > 4 horas' AS Razon 
+    (SELECT r.usuarios_id, 'Servicio SPA o Salï¿½n > 4 horas' AS Razon 
     FROM reservasservicios r 
     JOIN servicios s ON r.servicios_id = s.id 
     WHERE (s.nombre = 'SPA' OR s.tiposervicio = 'Salon de reuniones') 
