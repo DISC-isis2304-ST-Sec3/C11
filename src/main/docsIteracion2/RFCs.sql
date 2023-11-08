@@ -7,11 +7,11 @@ GROUP BY h.id, h.numero
 ORDER BY h.id; --req1
 
 SELECT s.id,s.nombre,COUNT(c.id)
-FROM servicios s
-JOIN consumos c ON s.id = c.servicios_id
-WHERE EXISTS (SELECT 1 FROM reservashabitaciones r WHERE c.reservashabitaciones_id = r.id AND r.fechainicio BETWEEN TO_DATE('2021-01-01', 'YYYY-MM-DD') AND TO_DATE('2025-01-01', 'YYYY-MM-DD'))
-GROUP BY s.id, s.nombre
-ORDER BY count(c.id) DESC
+FROM servicios s 
+JOIN consumos c ON s.id = c.servicios_id 
+WHERE EXISTS (SELECT 1 FROM reservashabitaciones r WHERE c.reservashabitaciones_id = r.id AND r.fechainicio BETWEEN TO_DATE(:fecha1, 'YYYY-MM-DD') AND TO_DATE(:fecha2, 'YYYY-MM-DD'))
+GROUP BY s.id, s.nombre 
+ORDER BY count(c.id) DESC 
 FETCH FIRST 20 ROWS ONLY; --req 2
 
 SELECT h.id,h.numero AS,COALESCE(ROUND(100 * SUM(NVL(r.fechafin, SYSDATE) - r.fechainicio) / 365, 2), 0)
@@ -20,10 +20,11 @@ LEFT JOIN reservashabitaciones r ON h.id = r.habitaciones_id AND r.fechainicio B
 GROUP BY  h.id, h.numero
 ORDER BY h.id; --req 3
 
-select s.nombre, s.descripcion, s.costoporunidad, s.unidad, s.horario, s.tiposervicio, s.capacidad from servicios s,consumos c
-where costoporunidad Between 0 and 1 and
-s.id = c.servicios_id and c.fechaconsumo between to_date('2020-01-01','YYYY-MM-DD') and to_date('2025-01-01','YYYY-MM-DD') and
-c.usuarios_id = 12 and s.tiposervicio = 'joyas'; --req 4
+SELECT distinct s.nombre, s.descripcion, s.costoporunidad, s.unidad, s.horario, s.tiposervicio, s.capacidad FROM servicios s LEFT JOIN consumos c ON s.id = c.servicios_id 
+WHERE (:costo1 IS NULL OR (s.costoporunidad BETWEEN :costo1 AND :costo2)) 
+AND (:fecha1 IS NULL OR (c.fechaconsumo BETWEEN to_date(:fecha1,'YYYY-MM-DD') AND to_date(:fecha2,'YYYY-MM-DD'))) 
+AND (:usuario_id IS NULL OR c.usuarios_id = :usuario_id)
+AND (:tiposervicio IS NULL OR s.tiposervicio = :tiposervicio); --req 4
 
 SELECT u.id,u.nombre,s.nombre ,c.sumatotal
 FROM consumos c
