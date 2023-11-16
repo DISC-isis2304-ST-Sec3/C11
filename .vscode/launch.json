@@ -2,10 +2,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-ProyectoApplication<proyecto>",
+            "name": "Spring Boot-MdbSpringBootApplication<proyecto>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "uniandes.edu.co.proyecto.ProyectoApplication",
+            "mainClass": "com.example.mdbspringboot.MdbSpringBootApplication",
             "projectName": "proyecto",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
