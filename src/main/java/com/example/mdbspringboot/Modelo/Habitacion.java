@@ -11,13 +11,13 @@ public class Habitacion {
     @Id
     private String id;
 
-    String numero;
-    String costoAlojamiento;
+    int numero;
+    int costoAlojamiento;
 
     String tipoHabitacion;
     List<ReservaHabitacion> reservasHabitaciones;
 
-    public Habitacion(String id, String numero, String tipoHabitacion, String costoAlojamiento,
+    public Habitacion(String id, int numero, String tipoHabitacion, int costoAlojamiento,
             List<ReservaHabitacion> reservasHabitaciones) {
         this.id = id;
         this.numero = numero;
@@ -34,11 +34,11 @@ public class Habitacion {
         this.id = id;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -50,11 +50,11 @@ public class Habitacion {
         this.tipoHabitacion = tipoHabitacion;
     }
 
-    public String getCostoAlojamiento() {
+    public int getCostoAlojamiento() {
         return costoAlojamiento;
     }
 
-    public void setCostoAlojamiento(String costoAlojamiento) {
+    public void setCostoAlojamiento(int costoAlojamiento) {
         this.costoAlojamiento = costoAlojamiento;
     }
 
