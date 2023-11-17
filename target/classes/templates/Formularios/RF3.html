@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>RFC10</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form action="/RF3/new/save" method="post">
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" required>
+        </div>
+        <div>
+            <label for="capacidad">Descripcion:</label>
+            <input type="text" id="capacidad" name="descripcion" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="elementos">Costo por Unidad:</label>
+            <input type="text" id="elementos" name="costoPorUnidad" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="elementos">Unidad:</label>
+            <input type="text" id="elementos" name="unidad" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="elementos">Horario:</label>
+            <input type="text" id="elementos" name="horario" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="elementos">Tipo de Servicio:</label>
+            <input type="text" id="elementos" name="tipoServicio" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="elementos">Capacidad:</label>
+            <input type="text" id="elementos" name="capacidad" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="elementos">Productos (Prod:cost,prod:cost):</label>
+            <input type="text" id="elementos" name="listaProductos" class="form-control" placeholder="Ingrese elementos separados por comas y dos puntos">
+        </div>
+        <div>
+            <input type="submit" value="Guardar">
+        </div>
+    </form>
+</body>
+</html>
