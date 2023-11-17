@@ -14,8 +14,8 @@ public class TipoHabitacion {
     List<ElementoHabitacion> elementosHabitaciones;
 
     String nombre;
-    String capacidad;
-    public TipoHabitacion(String id, List<ElementoHabitacion> elementosHabitaciones, String nombre, String capacidad) {
+    int capacidad;
+    public TipoHabitacion(String id, List<ElementoHabitacion> elementosHabitaciones, String nombre, int capacidad) {
         this.id = id;
         this.elementosHabitaciones = elementosHabitaciones;
         this.nombre = nombre;
@@ -39,10 +39,10 @@ public class TipoHabitacion {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getCapacidad() {
+    public int getCapacidad() {
         return capacidad;
     }
-    public void setCapacidad(String capacidad) {
+    public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
 

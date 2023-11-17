@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tipos de Habitaciones</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Tipos de Habitaciones</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Capacidad</th>
+                    <th>Elementos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Itera a través de la lista de tipos de habitaciones -->
+                <tr th:each="dato : ${datos}">
+                    <td th:text="${dato.nombre}"></td>
+                    <td th:text="${dato.capacidad}"></td>
+                    <!-- Muestra elementos de la habitación -->
+                    <td>
+                        <ul>
+                            <!-- Itera sobre la lista elementosHabitaciones de cada dato -->
+                            <li th:each="elemento : ${dato.elementosHabitaciones}" th:text="${elemento.nombre}"></li>
+                        </ul>
+                    </td>
+                    <!-- Columna de acciones con botones de editar y eliminar -->
+                    <td>
+                        <!-- Botón para editar -->
+                        <a th:href="@{'/RF1/' + ${dato.id} + '/edit'}">Editar</a>
+                        <!-- Botón para eliminar -->
+                        <a th:href="@{'/RF1/' + ${dato.id} + '/delete'}">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Botón para agregar un nuevo registro -->
+        <a th:href="@{/RF1/new}" class="btn btn-primary">Agregar</a>
+
+        <a th:href="@{/}" class="btn btn-primary">Volver</a>
+    </div>
+</body>
+</html>
