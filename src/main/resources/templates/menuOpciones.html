@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Opciones</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        .menu {
+            background-color: #ffffff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .menu h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color:black;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 50;
+        }
+
+        .menu li {
+            margin-bottom: 30px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h1>Menú de Opciones</h1>
+        <ul>
+            <li th:if="${permisos.contains('A')}">
+                <a th:href="@{/RF1}">CRUD Tipos de Habitaciones</a>
+            </li>
+            <li th:if="${permisos.contains('B')}">
+                <a th:href="@{/RF2}">CRUD Habitaciones</a>
+            </li>
+            <li th:if="${permisos.contains('C')}">
+                <a th:href="@{/RF3}">CRUD Servicios</a>
+            </li>
+            <li th:if="${permisos.contains('D')}">
+                <a th:href="@{/RF4}">CRUD Reservas de Alojamiento</a>
+            </li>
+            <li th:if="${permisos.contains('E')}">
+                <a th:href="@{/RF5}">CRUD Check-In</a>
+            </li>
+            <li th:if="${permisos.contains('F')}">
+                <a th:href="@{/RF6}">CRUD Consumo</a>
+            </li>
+            <li th:if="${permisos.contains('G')}">
+                <a th:href="@{/RF7}">CRUD Check-Out</a>
+            </li>
+            <li th:if="${permisos.contains('H')}">
+                <a th:href="@{/RFC1}">RFC1 - Dinero Recolectado</a>
+            </li>
+            <li th:if="${permisos.contains('I')}">
+                <a th:href="@{/RFC2}">RFC2 - Índice de Ocupación</a>
+            </li>
+            <li th:if="${permisos.contains('J')}">
+                <a th:href="@{/RFC3}">RFC3 - Consumo de un Cliente</a>
+            </li>
+            <li th:if="${permisos.contains('K')}">
+                <a th:href="@{/RFC4}">RFC4 - Consultar Consumo</a>
+            </li>
+            
+
+   
+        </ul>
+    </div>
+</body>
+</html>

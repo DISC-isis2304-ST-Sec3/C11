@@ -8,4 +8,8 @@ public class PlanConsumo {
     
     @Id
     private String id;
+
+    String descripcion;
+    String descuento;
+    String nombre;
 }

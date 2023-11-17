@@ -13,5 +13,8 @@ public interface UsuarioRepository extends MongoRepository<Usuario,String> {
 
     @Query("{}")
     List<Usuario> findAll();
+
+    @Query("{nombreUsuario: '?0', contrasena: '?0'}")
+    Usuario findCredentials(String nombreUsuario, String constrasena);
     
 }
