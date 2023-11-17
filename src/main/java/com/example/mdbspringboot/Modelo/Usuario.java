@@ -8,4 +8,21 @@ public class Usuario {
     
     @Id
     private String id;
+
+    private String nombre;
+
+    private String tiposUsuario;
+
+    private String tipoDocumento;
+
+    private String numeroDocumento;
+
+    private String correoElectronico;
+
+    private String nombreUsuario;
+
+    private String contrasena;
+
+
+    
 }
