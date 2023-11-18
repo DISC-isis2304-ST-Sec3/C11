@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>RF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{'/RF5/' + ${id} + '/usuarios/' + ${n}+'?max=' + ${max}}" method="post">
+        <div class="form-group">
+            <label>Seleccione un usuario:</label>
+            <select class="form-control" id="tipoHabitacion" name="usuario" required>
+                <th:block th:each="tipo : ${usuarios}" >
+                    <option th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+                </th:block>
+                <option th:value="--" th:text = "NoRegistrado"></option>
+            </select><br>
+        </div>
+
+        <h1>En caso de que no esté registrado: </h1>
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control">
+        </div>
+        <div class="form-group">
+            <label >Tipo de Documento:</label>
+            <select class="form-control"  name="tipoDocumento">
+                <option th:value="Cedula" th:text = "Cedula"></option>
+                <option th:value="T.I" th:text = "T.I"></option>
+                <option th:value="Pasaporte" th:text = "Pasaporte"></option>
+            </select><br>
+        </div>
+        <div>
+            <label for="nombre">Numero de documento:</label>
+            <input type="text" id="nombre" name="numeroDocumento" class="form-control">
+        </div>
+        <div>
+            <label for="nombre">Correo Electronico:</label>
+            <input type="text" id="nombre" name="correoElectronico" class="form-control">
+        </div>
+        <div>
+            <label for="nombre">Usuario:</label>
+            <input type="text" id="nombre" name="nombreUsuario" class="form-control">
+        </div>
+        <div>
+            <label for="nombre">Contraseña:</label>
+            <input type="text" id="nombre" name="contrasena" class="form-control">
+        </div>
+
+
+        <div>
+            <input type="submit" value="Guardar">
+        </div>
+    </form>
+</body>
+</html>

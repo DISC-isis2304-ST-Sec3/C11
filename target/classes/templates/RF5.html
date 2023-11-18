@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Lista</h1>
+        <h1>Lista de Servicios</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -20,7 +20,6 @@
                     <th>Fecha de Inicio</th>
                     <th>Fecha Fin</th>
                     <th>Usuarios</th>
-                    <th>Habitacion</th>
                     <th>Operaciones</th>
                 </tr>
             </thead>
@@ -39,18 +38,15 @@
                             <li th:each="elemento : ${dato.usuarios}" th:text="${elemento.nombre} + ':' + ${elemento.numeroDocumento}"></li>
                         </ul>
                     </td>
-                    <td th:text="${dato.planConsumo}"></td>
                     <td>
                         <!-- Botón para editar -->
-                        <a th:href="@{'/RF4/' + ${dato.id} + '/' + ${dato.planConsumo} + '/edit?idUsuario=' + ${id}}">Editar</a>
+                        <a th:href="@{'/RF5/' + ${dato.id} + '/edit'}">Realizar CheckIn</a>
                         <!-- Botón para eliminar -->
-                        <a th:href="@{'/RF4/' + ${dato.id} +  '/' + ${dato.planConsumo} + '/delete?idUsuario=' + ${id}}">Borrar</a>
+                        <a th:href="@{'/RF5/' + ${dato.id} + '/delete'}">Cancelar Check In</a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <!-- Botón para agregar un nuevo registro -->
-        <a th:href="@{/RF4/new(id=${id})}" class="btn btn-primary">Agregar</a>
 
         <a th:href="@{/}" class="btn btn-primary">Volver</a>
     </div>

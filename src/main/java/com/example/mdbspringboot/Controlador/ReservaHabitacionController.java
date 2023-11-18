@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mdbspringboot.Modelo.Habitacion;
 import com.example.mdbspringboot.Modelo.ReservaHabitacion;
+import com.example.mdbspringboot.Modelo.TipoUsuario;
 import com.example.mdbspringboot.Modelo.Usuario;
 import com.example.mdbspringboot.Repositorio.HabitacionRepository;
 import com.example.mdbspringboot.Repositorio.PlanConsumoRepository;
 import com.example.mdbspringboot.Repositorio.ReservaHabitacionRepository;
+import com.example.mdbspringboot.Repositorio.TipoHabitacionRepository;
 import com.example.mdbspringboot.Repositorio.UsuarioRepository;
 
 @Controller
@@ -36,6 +38,10 @@ public class ReservaHabitacionController {
 
     @Autowired
     HabitacionRepository habitacionRepository;
+
+    @Autowired
+    TipoHabitacionRepository tipoHabitacionRepository;
+
 
     @GetMapping("/RF4")
     String mostrar(Model model, @RequestParam("id") String id){
@@ -74,6 +80,9 @@ public class ReservaHabitacionController {
                 sePuede = false;
                 break;
             }
+        }
+        if(numPersonas > tipoHabitacionRepository.findById(habitacionRepository.findById(habitacion).get().getTipoHabitacion()).get().getCapacidad()){
+            sePuede = false;
         }
 
         if(sePuede){
@@ -165,4 +174,112 @@ public class ReservaHabitacionController {
 
         return "redirect:/RF4?id=" + idUsuario;
     }
+
+    @GetMapping("/RF5")
+    String mostrar(Model model){
+        model.addAttribute("datos", reservaHabitacionRepository.findAll());
+        return "RF5.html";
+    }
+
+    @GetMapping("/RF5/{id}/edit")
+    String edit(Model model, @PathVariable("id") String id){
+        model.addAttribute("id", id);
+
+        return "/Formularios/RF5A.html";
+
+    }
+
+    @GetMapping("/RF5/{id}/fecha")
+    String fecha(Model model, @PathVariable("id") String id, @RequestParam("fechaCheckIn") String fechaCheckIn){
+
+        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(id).get();
+        Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(id);
+
+        for(ReservaHabitacion res: habitacion.getReservasHabitaciones()){
+            if(res.getId().equals(id)){
+                res.setFechaCheckIn(fechaCheckIn);
+                break;
+            }
+        }
+        reservaHabitacion.setFechaCheckIn(fechaCheckIn);
+
+        habitacionRepository.save(habitacion);
+        reservaHabitacionRepository.save(reservaHabitacion);
+
+
+        if(reservaHabitacion.getNumPersonas() <= 1){
+            return "redirect:/RF5";
+        }
+
+        model.addAttribute("n", 0);
+        model.addAttribute("id", id);
+        model.addAttribute("max", reservaHabitacion.getNumPersonas());
+        model.addAttribute("usuarios", usuarioRepository.findAll());
+
+        return "/Formularios/RF5B.html";
+    }
+
+    @PostMapping("/RF5/{id}/usuarios/{n}")
+    String putUsuario(Model model, @PathVariable("id") String id, @PathVariable("n") int n, @RequestParam("max") int max,
+    @RequestParam("nombre") String nombre,@RequestParam("tipoDocumento") String tipoDocumento, @RequestParam("numeroDocumento") String numeroDocumento,
+    @RequestParam("correoElectronico") String correoElectronico, @RequestParam("nombreUsuario") String nombreUsuario, @RequestParam("contrasena") String contrasena,
+    @RequestParam("usuario") String usuario){
+
+        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(id).get();
+
+        if(!usuario.equals("--")){
+            Usuario usuario_ = usuarioRepository.findById(usuario).get();
+            reservaHabitacion.getUsuarios().add(usuario_);
+            reservaHabitacionRepository.save(reservaHabitacion);
+        }
+        else{
+            Usuario usuario_ = new Usuario(null, nombre, new TipoUsuario("Cliente", "D"), tipoDocumento, numeroDocumento, correoElectronico, nombreUsuario, contrasena);
+            usuarioRepository.insert(usuario_);
+            reservaHabitacion.getUsuarios().add(usuario_);
+            reservaHabitacionRepository.save(reservaHabitacion);
+        }
+
+        n++;
+
+        if(n == max-1){
+            Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(id);
+            for(int i = 0; i< habitacion.getReservasHabitaciones().size();i++){
+                if(habitacion.getReservasHabitaciones().get(i).getId().equals(id)){
+                    habitacion.getReservasHabitaciones().set(i, reservaHabitacion);
+                    break;
+                }
+            }
+            habitacionRepository.save(habitacion);
+            return "redirect:/RF5";
+        }
+
+        model.addAttribute("n", n);
+        model.addAttribute("id", id);
+        model.addAttribute("max", reservaHabitacion.getNumPersonas());
+        model.addAttribute("usuarios", usuarioRepository.findAll());
+
+
+        return "Formularios/RF5B.html";
+
+    }
+
+    @GetMapping("RF5/{id}/delete")
+    String borrar(@PathVariable("id") String id){
+        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(id).get();
+        Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(id);
+        reservaHabitacion.setFechaCheckIn(null);
+        reservaHabitacion.setUsuarios(reservaHabitacion.getUsuarios().subList(0, 1));
+
+        for(int i = 0; i < habitacion.getReservasHabitaciones().size();i++){
+            if(habitacion.getReservasHabitaciones().get(i).getId().equals(id)){
+                habitacion.getReservasHabitaciones().set(i, reservaHabitacion);
+                break;
+            }
+        }
+        habitacionRepository.save(habitacion);
+        reservaHabitacionRepository.save(reservaHabitacion);
+
+        return "redirect:/RF5";
+    }
 }
+
