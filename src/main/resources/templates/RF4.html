@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Servicios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Servicios</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha de CheckIn</th>
+                    <th>Fecha Check Out</th>
+                    <th>Numero de Personas</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Usuarios</th>
+                    <th>Habitacion</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Itera a través de la lista de tipos de habitaciones -->
+                <tr th:each="dato : ${datos}">
+                    <td th:text="${dato.fechaCheckIn}"></td>
+                    <td th:text="${dato.fechaCheckOut}"></td>
+                    <td th:text="${dato.numPersonas}"></td>
+                    <td th:text="${dato.fechaInicio}"></td>
+                    <td th:text="${dato.fechaFin}"></td>
+                    <!-- Muestra elementos de la habitación -->
+                    <td>
+                        <ul>
+                            <!-- Itera sobre la lista elementosHabitaciones de cada dato -->
+                            <li th:each="elemento : ${dato.usuarios}" th:text="${elemento.nombre} + ':' + ${elemento.numeroDocumento}"></li>
+                        </ul>
+                    </td>
+                    <td th:text="${dato.planConsumo}"></td>
+                    <td>
+                        <!-- Botón para editar -->
+                        <a th:href="@{'/RF4/' + ${dato.id} + '/' + ${dato.planConsumo} + '/edit?idUsuario=' + ${id}}">Editar</a>
+                        <!-- Botón para eliminar -->
+                        <a th:href="@{'/RF4/' + ${dato.id} +  '/' + ${dato.planConsumo} + '/delete?idUsuario=' + ${id}}">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Botón para agregar un nuevo registro -->
+        <a th:href="@{/RF4/new(id=${id})}" class="btn btn-primary">Agregar</a>
+
+        <a th:href="@{/}" class="btn btn-primary">Volver</a>
+    </div>
+</body>
+</html>

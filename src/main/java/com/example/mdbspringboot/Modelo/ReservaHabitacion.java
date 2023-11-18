@@ -12,19 +12,19 @@ public class ReservaHabitacion {
     private String id;
 
     String planConsumo;
-    List<Usuario> usuario;
+    List<Usuario> usuarios;
 
     String fechaCheckIn;
     String fechaCheckOut;
-    String numPersonas;
+    int numPersonas;
     String fechaInicio;
     String fechaFin;
 
-    public ReservaHabitacion(String id, String planConsumo, List<Usuario> usuario, String fechaCheckIn,
-            String fechaCheckOut, String numPersonas, String fechaInicio, String fechaFin) {
+    public ReservaHabitacion(String id, String planConsumo, List<Usuario> usuarios, String fechaCheckIn,
+            String fechaCheckOut, int numPersonas, String fechaInicio, String fechaFin) {
         this.id = id;
         this.planConsumo = planConsumo;
-        this.usuario = usuario;
+        this.usuarios = usuarios;
         this.fechaCheckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;
         this.numPersonas = numPersonas;
@@ -48,12 +48,12 @@ public class ReservaHabitacion {
         this.planConsumo = planConsumo;
     }
 
-    public List<Usuario> getUsuario() {
-        return usuario;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    public void setUsuario(List<Usuario> usuario) {
-        this.usuario = usuario;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     public String getFechaCheckIn() {
@@ -72,11 +72,11 @@ public class ReservaHabitacion {
         this.fechaCheckOut = fechaCheckOut;
     }
 
-    public String getNumPersonas() {
+    public int getNumPersonas() {
         return numPersonas;
     }
 
-    public void setNumPersonas(String numPersonas) {
+    public void setNumPersonas(int numPersonas) {
         this.numPersonas = numPersonas;
     }
 

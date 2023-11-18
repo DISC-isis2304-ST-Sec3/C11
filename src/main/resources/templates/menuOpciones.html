@@ -63,7 +63,7 @@
                 <a th:href="@{/RF3}">CRUD Servicios</a>
             </li>
             <li th:if="${permisos.contains('D')}">
-                <a th:href="@{/RF4}">CRUD Reservas de Alojamiento</a>
+                <a th:href="@{/RF4(id=${usuario.id})}">CRUD Reservas de Alojamiento</a>
             </li>
             <li th:if="${permisos.contains('E')}">
                 <a th:href="@{/RF5}">CRUD Check-In</a>
