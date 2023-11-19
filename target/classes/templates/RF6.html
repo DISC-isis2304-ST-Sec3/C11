@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RF</title>
+    <title>Lista de Servicios</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -14,40 +14,33 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Fecha de CheckIn</th>
-                    <th>Fecha Check Out</th>
-                    <th>Numero de Personas</th>
-                    <th>Fecha de Inicio</th>
-                    <th>Fecha Fin</th>
-                    <th>Usuarios</th>
+                    <th>Suma Total</th>
+                    <th>Fecha de Consumo</th>
+                    <th>Número de objetos consumidos</th>
+                    <th>Servicio</th>
+                    <th>Usuario</th>
                     <th>Operaciones</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Itera a través de la lista de tipos de habitaciones -->
                 <tr th:each="dato : ${datos}">
-                    <td th:text="${dato.fechaCheckIn}"></td>
-                    <td th:text="${dato.fechaCheckOut}"></td>
-                    <td th:text="${dato.numPersonas}"></td>
-                    <td th:text="${dato.fechaInicio}"></td>
-                    <td th:text="${dato.fechaFin}"></td>
+                    <td th:text="${dato.sumaTotal}"></td>
+                    <td th:text="${dato.fechaConsumo}"></td>
+                    <td th:text="${dato.numConsumos}"></td>
+                    <td th:text="${dato.servicio}"></td>
+                    <td th:text="${dato.usuario.nombre}"></td>
                     <!-- Muestra elementos de la habitación -->
                     <td>
-                        <ul>
-                            <!-- Itera sobre la lista elementosHabitaciones de cada dato -->
-                            <li th:each="elemento : ${dato.usuarios}" th:text="${elemento.nombre} + ':' + ${elemento.numeroDocumento}"></li>
-                        </ul>
-                    </td>
-                    <td>
                         <!-- Botón para editar -->
-                        <a th:href="@{'/RF5/' + ${dato.id} + '/edit'}">Realizar CheckIn</a>
+                        <a th:href="@{'/RF6/' + ${dato.id} + '/edit'}">Editar</a>
                         <!-- Botón para eliminar -->
-                        <a th:href="@{'/RF5/' + ${dato.id} + '/delete'}">Cancelar Check In</a>
+                        <a th:href="@{'/RF6/' + ${dato.id} + '/delete'}">Eliminar</a>
                     </td>
                 </tr>
             </tbody>
         </table>
-
+        <a th:href="@{/RF6/new}" class="btn btn-primary">Agregar</a>
         <a th:href="@{/}" class="btn btn-primary">Volver</a>
     </div>
 </body>

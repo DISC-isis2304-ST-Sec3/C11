@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>RF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{'/RF6/'+${id}+ '/edit/save?sumaTotal=' + ${sumaTotal} + '&fechaConsumo='+${fechaConsumo} + 
+                        '&numConsumos='+${numConsumos} + '&servicio=' + ${servicio} + '&idUsuario=' + ${idUsuario} + '&descripcion=' + ${descripcion}}" method="post">
+        <div class="form-group">
+            <label >Reserva de Habitacion:</label>
+            <select class="form-control" name="reservaHabitacion" required>
+                <th:block th:each="tipo : ${reservas}" >
+                    <option th:value="${tipo.id}" th:text="${tipo.planConsumo}"></option>
+                </th:block>
+            </select><br>
+        </div>
+        <div>
+            <input type="submit" value="Guardar">
+        </div>
+    </form>
+</body>
+</html>
