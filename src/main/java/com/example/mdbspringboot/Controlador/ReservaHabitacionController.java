@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.mdbspringboot.Modelo.Consumo;
 import com.example.mdbspringboot.Modelo.Habitacion;
 import com.example.mdbspringboot.Modelo.ReservaHabitacion;
 import com.example.mdbspringboot.Modelo.TipoUsuario;
 import com.example.mdbspringboot.Modelo.Usuario;
+import com.example.mdbspringboot.Repositorio.ConsumoRepository;
 import com.example.mdbspringboot.Repositorio.HabitacionRepository;
 import com.example.mdbspringboot.Repositorio.PlanConsumoRepository;
 import com.example.mdbspringboot.Repositorio.ReservaHabitacionRepository;
@@ -41,6 +43,9 @@ public class ReservaHabitacionController {
 
     @Autowired
     TipoHabitacionRepository tipoHabitacionRepository;
+
+    @Autowired
+    ConsumoRepository consumoRepository;
 
 
     @GetMapping("/RF4")
@@ -281,5 +286,92 @@ public class ReservaHabitacionController {
 
         return "redirect:/RF5";
     }
+
+    @GetMapping("/RF7")
+    String out(Model model){
+
+        model.addAttribute("datos", reservaHabitacionRepository.findAll());
+        return "RF7.html";
+    }
+
+    @GetMapping("/RF7/{id}/edit")
+    String outEdit(Model model, @PathVariable("id") String id){
+        model.addAttribute("id", id);
+        return "Formularios/RF7A.html";
+    }
+
+    @PostMapping("RF7/{id}/checkOut")
+    String checkout(Model model, @PathVariable("id") String id, @RequestParam("fechaCheckOut") String fechaCheckOut) throws ParseException{
+        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(id).get();
+        Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(id);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date inicio = sdf.parse(reservaHabitacion.getFechaInicio());
+        Date fin = sdf.parse(reservaHabitacion.getFechaFin());
+
+        long dias = (fin.getTime()-inicio.getTime()) /(24 * 60 * 60 * 1000);
+
+        long dinero = dias * habitacion.getCostoAlojamiento();
+        List<String> usuarios = new ArrayList<>();
+        for(Usuario usuario: reservaHabitacion.getUsuarios()){
+            usuarios.add(usuario.getId());
+        }
+        List<Consumo> consumos = consumoRepository.findByUsuarios(usuarios);
+
+        for(Consumo consumo: consumos){
+            dinero += Long.parseLong(consumo.getSumaTotal());
+        }
+
+        model.addAttribute("dinero", dinero);
+        model.addAttribute("fechaCheckOut", fechaCheckOut);
+        model.addAttribute("id", id);
+        model.addAttribute("consumos", consumos);
+        model.addAttribute("reservaHabitacion", reservaHabitacion);
+        model.addAttribute("habitacion", habitacion);
+        model.addAttribute("dias", dias);        
+
+        return "Formularios/RF7B.html";
+    }
+
+    @GetMapping("RF7/{id}/confirmado")
+    String con(Model model, @PathVariable("id") String id, @RequestParam("fechaCheckOut") String fechaCheckOut){
+
+        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(id).get();
+        reservaHabitacion.setFechaCheckOut(fechaCheckOut);
+
+        Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(id);
+        for(int i  = 0; i < habitacion.getReservasHabitaciones().size();i++){
+            if(habitacion.getReservasHabitaciones().get(i).getId().equals(id)){
+                habitacion.getReservasHabitaciones().set(i, reservaHabitacion);
+                break;
+            }
+        }
+
+        reservaHabitacionRepository.save(reservaHabitacion);
+        habitacionRepository.save(habitacion);
+
+        return "redirect:/RF7";
+    }
+
+    @GetMapping("RF7/{id}/delete")
+    String delete(@PathVariable("id") String id){
+        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(id).get();
+        Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(id);
+
+        reservaHabitacion.setFechaCheckOut(null);
+
+        for(int i  = 0; i < habitacion.getReservasHabitaciones().size();i++){
+            if(habitacion.getReservasHabitaciones().get(i).getId().equals(id)){
+                habitacion.getReservasHabitaciones().set(i, reservaHabitacion);
+                break;
+            }
+        }
+
+        reservaHabitacionRepository.save(reservaHabitacion);
+        habitacionRepository.save(habitacion);
+
+        return "redirect:/RF7";
+    }
+
 }
 

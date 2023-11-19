@@ -38,11 +38,11 @@
                             <li th:each="elemento : ${dato.usuarios}" th:text="${elemento.nombre} + ':' + ${elemento.numeroDocumento}"></li>
                         </ul>
                     </td>
-                    <td>
-                        <!-- Botón para editar -->
-                        <a th:href="@{'/RF5/' + ${dato.id} + '/edit'}">Realizar CheckIn</a>
-                        <!-- Botón para eliminar -->
-                        <a th:href="@{'/RF5/' + ${dato.id} + '/delete'}">Cancelar Check In</a>
+                    <td th:if = "${dato.fechaCheckIn == null}">
+                        <a th:href="@{'/RF5/' + ${dato.id} + '/edit'}">Realizar CheckIn</a>  
+                    </td>
+                    <td th:if = "${dato.fechaCheckIn != null}">
+                        <a th:href="@{'/RF5/' + ${dato.id} + '/delete'}">Cancelar CheckIn</a>
                     </td>
                 </tr>
             </tbody>

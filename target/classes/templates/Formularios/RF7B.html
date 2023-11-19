@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .attribute {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resumen de Pago</h1>
+        <p>Aquí están los detalles de tu reserva:</p>
+        <p class="attribute">Total a Pagar: $<span th:text="${dinero}"></span></p>
+        <p class="attribute">Número de Reserva: <span th:text="${reservaHabitacion.id}"></span></p>
+        <ul>
+            <li th:each="elemento : ${consumos}" th:text="${elemento.usuario.nombre} + ' - ' + ${elemento.sumaTotal} + ' - ' + ${elemento.descripcion}"></li>
+        </ul>
+        <p class="attribute">Datos de la habitación:  <span th:text="${dias} + ' noches en habitación ' + ${habitacion.numero} "></span></p>
+        
+        <!-- Botón mejorado -->
+        <div class="btn-container">
+            <a th:href="@{'/RF7/' + ${id} + '/confirmado?fechaCheckOut=' + ${fechaCheckOut}}" class="btn btn-primary">Confirmar Pago</a>
+        </div>
+    </div>
+</body>
+</html>
