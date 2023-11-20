@@ -13,4 +13,7 @@ public interface HabitacionRepository extends MongoRepository<Habitacion,String>
 
     @Query("{'numero': ?0}")
     Habitacion findByNumero(int numero);
+
+
+    
 }

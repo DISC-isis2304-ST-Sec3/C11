@@ -3,6 +3,7 @@ package com.example.mdbspringboot.Controlador;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class ReservaHabitacionController {
     @RequestParam("id") String id) throws ParseException{
         Habitacion habitacion_ = habitacionRepository.findById(habitacion).get();
         boolean sePuede = true;
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date inicio = formato.parse(fechaInicio);
         Date fin = formato.parse(fechaFin);
         for(ReservaHabitacion res: habitacion_.getReservasHabitaciones()){
@@ -371,6 +372,42 @@ public class ReservaHabitacionController {
         habitacionRepository.save(habitacion);
 
         return "redirect:/RF7";
+    }
+
+    @GetMapping("/RFC2")
+    String ocupacion(Model model) throws ParseException{
+        List<Object[]> ocupacion = new ArrayList<>();
+        List<Habitacion> habitaciones = habitacionRepository.findAll();
+
+        Calendar calendario = Calendar.getInstance();
+        calendario.set(Calendar.DAY_OF_YEAR, 1); // Primer día del año
+        Date primerDiaDelAño = calendario.getTime();
+
+        calendario.set(Calendar.MONTH, Calendar.DECEMBER);
+        calendario.set(Calendar.DAY_OF_MONTH, 31); 
+        Date ultimoDiaDelAño = calendario.getTime();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (Habitacion habitacion : habitaciones) {
+            float cant = 0;
+            for (ReservaHabitacion reservaHabitacion : habitacion.getReservasHabitaciones()) {
+                Date inicio = sdf.parse(reservaHabitacion.getFechaInicio());
+                Date fin = sdf.parse(reservaHabitacion.getFechaFin());
+
+                if (inicio.after(primerDiaDelAño) && fin.before(ultimoDiaDelAño)) {
+                    cant += ((fin.getTime() - inicio.getTime()) / (24.0 * 60 * 60 * 1000));
+                }
+                
+            }
+            cant *= 100 / 365.0;
+            ocupacion.add(new Object[]{habitacion.getNumero(), cant});
+        }
+
+
+        model.addAttribute("datos", ocupacion);
+
+        return "RFC2.html";
     }
 
 }
