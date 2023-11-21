@@ -14,21 +14,15 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Usuario</th>
-                    <th>Fecha de Consumo</th>
-                    <th>ID consumo</th>
-                    <th>Servicio</th>
-                    <th>Gasto</th>
+                    <th>Habitacion</th>
+                    <th>Dinero Recolectado</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Itera a través de la lista de tipos de habitaciones -->
                 <tr th:each="dato : ${datos}">
                     <td th:text="${dato.id}"></td>
-                    <td th:text="${dato.fechaConsumo}"></td>
-                    <td th:text="${dato.idConsumo}"></td>
-                    <td th:text="${dato.servicio}"></td>
-                    <td th:text="${dato.sumaTotal}"></td>
+                    <td th:text="${dato.total}"></td>
                 </tr>
             </tbody>
         </table>

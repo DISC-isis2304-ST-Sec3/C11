@@ -16,57 +16,53 @@ public class Habitacion {
 
     String tipoHabitacion;
     List<ReservaHabitacion> reservasHabitaciones;
-
-    public Habitacion(String id, int numero, String tipoHabitacion, int costoAlojamiento,
-            List<ReservaHabitacion> reservasHabitaciones) {
+    List<Consumo> consumos;
+    public Habitacion(String id, int numero, int costoAlojamiento, String tipoHabitacion,
+            List<ReservaHabitacion> reservasHabitaciones, List<Consumo> consumos) {
         this.id = id;
         this.numero = numero;
-        this.tipoHabitacion = tipoHabitacion;
         this.costoAlojamiento = costoAlojamiento;
+        this.tipoHabitacion = tipoHabitacion;
         this.reservasHabitaciones = reservasHabitaciones;
+        this.consumos = consumos;
     }
-
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public int getNumero() {
         return numero;
     }
-
     public void setNumero(int numero) {
         this.numero = numero;
     }
-
-    public String getTipoHabitacion() {
-        return tipoHabitacion;
-    }
-
-    public void setTipoHabitacion(String tipoHabitacion) {
-        this.tipoHabitacion = tipoHabitacion;
-    }
-
     public int getCostoAlojamiento() {
         return costoAlojamiento;
     }
-
     public void setCostoAlojamiento(int costoAlojamiento) {
         this.costoAlojamiento = costoAlojamiento;
     }
-
+    public String getTipoHabitacion() {
+        return tipoHabitacion;
+    }
+    public void setTipoHabitacion(String tipoHabitacion) {
+        this.tipoHabitacion = tipoHabitacion;
+    }
     public List<ReservaHabitacion> getReservasHabitaciones() {
         return reservasHabitaciones;
     }
-
     public void setReservasHabitaciones(List<ReservaHabitacion> reservasHabitaciones) {
         this.reservasHabitaciones = reservasHabitaciones;
     }
+    public List<Consumo> getConsumos() {
+        return consumos;
+    }
+    public void setConsumos(List<Consumo> consumos) {
+        this.consumos = consumos;
+    }
 
     
-
     
 }

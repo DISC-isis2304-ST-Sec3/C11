@@ -9,16 +9,16 @@ public class Consumo {
     @Id
     private String id;
 
-    String sumaTotal;
+    int sumaTotal;
     String fechaConsumo;
-    String numConsumos;
+    int numConsumos;
     String descripcion;
 
     String servicio;
     String reservaHabitacion;
     String usuario;
-    public Consumo(String id, String sumaTotal, String fechaConsumo, String numConsumos, String descripcion,
-        String servicio, String reservaHabitacion, String usuario) {
+    public Consumo(String id, int sumaTotal, String fechaConsumo, int numConsumos, String descripcion, String servicio,
+            String reservaHabitacion, String usuario) {
         this.id = id;
         this.sumaTotal = sumaTotal;
         this.fechaConsumo = fechaConsumo;
@@ -34,10 +34,10 @@ public class Consumo {
     public void setId(String id) {
         this.id = id;
     }
-    public String getSumaTotal() {
+    public int getSumaTotal() {
         return sumaTotal;
     }
-    public void setSumaTotal(String sumaTotal) {
+    public void setSumaTotal(int sumaTotal) {
         this.sumaTotal = sumaTotal;
     }
     public String getFechaConsumo() {
@@ -46,10 +46,10 @@ public class Consumo {
     public void setFechaConsumo(String fechaConsumo) {
         this.fechaConsumo = fechaConsumo;
     }
-    public String getNumConsumos() {
+    public int getNumConsumos() {
         return numConsumos;
     }
-    public void setNumConsumos(String numConsumos) {
+    public void setNumConsumos(int numConsumos) {
         this.numConsumos = numConsumos;
     }
     public String getDescripcion() {
@@ -76,7 +76,7 @@ public class Consumo {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-
+    
     
     
     

@@ -1,6 +1,9 @@
 package com.example.mdbspringboot.Controlador;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.example.mdbspringboot.Modelo.Habitacion;
 import com.example.mdbspringboot.Repositorio.HabitacionRepository;
@@ -49,7 +53,7 @@ public class HabitacionesController {
                 @RequestParam("costoAlojamiento") int costoAlojamiento,
                 @RequestParam("tipoHabitacion") String tipoHabitacion){
         
-        Habitacion habitacion = new Habitacion(null, numero, tipoHabitacion, costoAlojamiento, new ArrayList<>());
+        Habitacion habitacion = new Habitacion(null, numero, costoAlojamiento, tipoHabitacion, new ArrayList<>(),new ArrayList<>());
         
         habitacionRepository.insert(habitacion);
     
@@ -86,6 +90,25 @@ public class HabitacionesController {
         habitacionRepository.save(habitacion);
 
         return "redirect:/RF2";
+    }
+
+    @GetMapping("/RFC1")
+    String RFC1(Model model) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        model.addAttribute("datos", habitacionRepository.RFC1(sdf.parse("2023-01-01"), sdf.parse("2023-12-31")));
+
+        return "/RFC1.html";
+    }
+
+    @GetMapping("/RFC2")
+    String ocupacion(Model model) throws ParseException{
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+
+        model.addAttribute("datos", habitacionRepository.RFC2(sdf.parse("2023-01-01"),sdf.parse("2023-12-31")));
+
+        return "RFC2.html";
     }
     
 }

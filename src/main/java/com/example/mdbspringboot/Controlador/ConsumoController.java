@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mdbspringboot.Modelo.Consumo;
+import com.example.mdbspringboot.Modelo.Habitacion;
 import com.example.mdbspringboot.Modelo.ReservaHabitacion;
 import com.example.mdbspringboot.Modelo.Usuario;
 import com.example.mdbspringboot.Repositorio.ConsumoRepository;
+import com.example.mdbspringboot.Repositorio.HabitacionRepository;
 import com.example.mdbspringboot.Repositorio.ReservaHabitacionRepository;
 import com.example.mdbspringboot.Repositorio.ServicioRepository;
 import com.example.mdbspringboot.Repositorio.UsuarioRepository;
@@ -33,6 +35,9 @@ public class ConsumoController {
 
     @Autowired
     ReservaHabitacionRepository reservaHabitacionRepository;
+
+    @Autowired
+    HabitacionRepository habitacionRepository;
 
 
     @GetMapping("/RF6")
@@ -77,14 +82,17 @@ public class ConsumoController {
     }
 
     @PostMapping("/RF6/new/save")
-    String save(@RequestParam("sumaTotal")  String sumaTotal,
-    @RequestParam("fechaConsumo")  String fechaConsumo,@RequestParam("numConsumos")  String numConsumos,
+    String save(@RequestParam("sumaTotal")  int sumaTotal,
+    @RequestParam("fechaConsumo")  String fechaConsumo,@RequestParam("numConsumos")  int numConsumos,
     @RequestParam("servicio")  String servicio, @RequestParam("idUsuario") String idUsuario, @RequestParam("reservaHabitacion") String reservaHabitacion,@RequestParam("descripcion") String descripcion){
 
         Consumo consumo = consumoRepository.insert(new Consumo(null, sumaTotal, fechaConsumo, numConsumos, descripcion,servicio, reservaHabitacion, idUsuario));
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(consumo.getReservaHabitacion());
         usuario.getConsumos().add(consumo);
+        habitacion.getConsumos().add(consumo);
 
+        habitacionRepository.save(habitacion);
         usuarioRepository.save(usuario);
         
 
@@ -92,14 +100,22 @@ public class ConsumoController {
     }
     @GetMapping("/RF6/{id}/delete")
     String eliminar(@PathVariable("id") String id){
+        Consumo consumo = consumoRepository.findById(id).get();
         Usuario usuario = usuarioRepository.findConsumosId(id);
+        Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(consumo.getReservaHabitacion());
         for(int i = 0; i < usuario.getConsumos().size();i++){
             if(usuario.getConsumos().get(i).getId().equals(id)){
                 usuario.getConsumos().remove(i);
                 break;
             }
         }
-
+        for(int i = 0; i < habitacion.getConsumos().size();i++){
+            if(habitacion.getConsumos().get(i).getId().equals(id)){
+                habitacion.getConsumos().remove(i);
+                break;
+            }
+        }
+        habitacionRepository.save(habitacion);
         consumoRepository.deleteById(id);
         usuarioRepository.save(usuario);
 
@@ -141,11 +157,11 @@ public class ConsumoController {
     }
 
     @PostMapping("/RF6/{id}/edit/save")
-    String post(@PathVariable("id") String id,@RequestParam("sumaTotal")  String sumaTotal,
-    @RequestParam("fechaConsumo")  String fechaConsumo,@RequestParam("numConsumos")  String numConsumos,
+    String post(@PathVariable("id") String id,@RequestParam("sumaTotal")  int sumaTotal,
+    @RequestParam("fechaConsumo")  String fechaConsumo,@RequestParam("numConsumos")  int numConsumos,
     @RequestParam("servicio")  String servicio, @RequestParam("idUsuario") String idUsuario,@RequestParam("descripcion") String descripcion, @RequestParam("reservaHabitacion") String reservaHabitacion ){
-
         Consumo consumo = consumoRepository.findById(id).get();
+        String reservaHab = consumo.getReservaHabitacion();
         consumo.setReservaHabitacion(reservaHabitacion);
         consumo.setDescripcion(descripcion);
         consumo.setFechaConsumo(fechaConsumo);
@@ -155,6 +171,7 @@ public class ConsumoController {
         consumo.setUsuario(idUsuario);
 
         Usuario usuario_ = usuarioRepository.findConsumosId(id);
+        Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(consumo.getReservaHabitacion());
 
         if(usuario_.getId().equals(idUsuario)){
             for(int i = 0; i < usuario_.getConsumos().size();i++){
@@ -177,8 +194,26 @@ public class ConsumoController {
             usuarioRepository.save(usuario);
 
         }
+        if(reservaHab.equals(consumo.getReservaHabitacion())){
+            for(int i = 0; i < habitacion.getConsumos().size();i++){
+                if(habitacion.getConsumos().get(i).getId().equals(id)){
+                    habitacion.getConsumos().set(i,consumo);
+                }
+            }
+        }
+        else{
+            Habitacion nuevaHab = habitacionRepository.findByReservasHabitacionesId(consumo.getReservaHabitacion());
+            for(int i = 0; i < habitacion.getConsumos().size();i++){
+                if(habitacion.getConsumos().get(i).getId().equals(id)){
+                    habitacion.getConsumos().remove(i);
+                }
+            }
+            nuevaHab.getConsumos().add(consumo);
+            habitacionRepository.save(nuevaHab);
+        }
         usuarioRepository.save(usuario_);
         consumoRepository.save(consumo);
+        habitacionRepository.save(habitacion);
 
         return "redirect:/RF6";
     }

@@ -2,8 +2,6 @@ package com.example.mdbspringboot.Controlador;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.mdbspringboot.Modelo.Consumo;
 import com.example.mdbspringboot.Modelo.Usuario;
 import com.example.mdbspringboot.Repositorio.ServicioRepository;
 import com.example.mdbspringboot.Repositorio.UsuarioRepository;
+import com.example.mdbspringboot.Repositorio.UsuarioRepository.respuestaRFC3;
 @Controller
 public class UsuarioController {
     
@@ -51,25 +49,13 @@ public class UsuarioController {
     @GetMapping("RFC3/mostrar")
     String RFC3Mostrar(Model model, @RequestParam("idUsuario") String idUsuario, @RequestParam("fechaInicio") String fechaInicio,
         @RequestParam("fechaFin") String fechaFin) throws ParseException{
-            List<Consumo> consumos = new ArrayList<>();
-
-            Usuario usuario = usuarioRepository.findById(idUsuario).get();
-
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date inicio = sdf.parse(fechaInicio);
-            Date fin = sdf.parse(fechaFin);
-
-            for(Consumo con: usuario.getConsumos()){
-                Date fechaCon = sdf.parse(con.getFechaConsumo());
-                if(fechaCon.after(inicio) && fechaCon.before(fin)){
-                    con.setUsuario(usuario.getNombre());
-                    con.setServicio(servicioRepository.findById(con.getServicio()).get().getNombre());
-                    consumos.add(con);
-                }
+            List<respuestaRFC3> datos = usuarioRepository.RFC3(sdf.parse(fechaInicio), sdf.parse(fechaFin), idUsuario);
+            for(respuestaRFC3 res: datos){
+                res.setServicio(servicioRepository.findById(res.getServicio()).get().getNombre());
+                res.setId(usuarioRepository.findById(res.getId()).get().getNombre());
             }
-
-            
-            model.addAttribute("datos", consumos);
+            model.addAttribute("datos", datos);
 
             return "/RFC3.html";
         }
