@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>RF</title>
+    <title>RFC</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,37 +47,20 @@
     </style>
 </head>
 <body>
-    <form th:action="@{'/RF6/'+${id}+'/edit/reserva'}">
+    <form th:action="@{/RFC3/mostrar}">
         <div>
-            <label for="nombre">Suma Total:</label>
-            <input type="number"  th:value="${item.sumaTotal}" name="sumaTotal" class="form-control" required>
-        </div>
-        <div>
-            <label for="nombre">Fecha Consumo (YYYY-MM-DD):</label>
-            <input type="text"  th:value="${item.fechaConsumo}" name="fechaConsumo" class="form-control" required>
+            <label for="nombre">Fecha Inicial (YYYY-MM-DD):</label>
+            <input type="text"  name="fechaInicio" class="form-control" required>
         </div>
         <div>
-            <label for="nombre">Numero de consumos:</label>
-            <input type="text"  th:value="${item.numConsumos}" id="nombre" name="numConsumos" class="form-control" required>
+            <label for="nombre">Fecha Final (YYYY-MM-DD):</label>
+            <input type="text"  name="fechaFin" class="form-control" required>
         </div>
-        <div>
-            <label for="nombre">Descripcion:</label>
-            <input type="text" th:value="${item.descripcion}" id="nombre" name="descripcion" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label >Servicio:</label>
-            <select class="form-control" name="servicio" required>
-                <th:block th:each="tipo : ${servicios}" >
-                    <option th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${item.servicio == tipo.id}"></option>
-                </th:block>
-            </select><br>
-        </div>
-        
         <div class="form-group">
             <label >Usuario:</label>
             <select class="form-control" name="idUsuario" required>
                 <th:block th:each="tipo : ${usuarios}" >
-                    <option th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${item.usuario == tipo.id}"></option>
+                    <option th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
                 </th:block>
             </select><br>
         </div>

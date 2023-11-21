@@ -77,7 +77,7 @@
             <label >Usuario:</label>
             <select class="form-control" name="idUsuario" required>
                 <th:block th:each="tipo : ${usuarios}" >
-                    <option th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${item.usuario.id == tipo.id}"></option>
+                    <option th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${item.usuario == tipo.id}"></option>
                 </th:block>
             </select><br>
         </div>

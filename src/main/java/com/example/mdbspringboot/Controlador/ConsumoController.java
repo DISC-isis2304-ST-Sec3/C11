@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mdbspringboot.Modelo.Consumo;
 import com.example.mdbspringboot.Modelo.ReservaHabitacion;
+import com.example.mdbspringboot.Modelo.Usuario;
 import com.example.mdbspringboot.Repositorio.ConsumoRepository;
 import com.example.mdbspringboot.Repositorio.ReservaHabitacionRepository;
 import com.example.mdbspringboot.Repositorio.ServicioRepository;
@@ -39,6 +40,7 @@ public class ConsumoController {
         List<Consumo> consumos = consumoRepository.findAll();
         for(Consumo consumo: consumos){
             consumo.setServicio(servicioRepository.findById(consumo.getServicio()).get().getNombre());
+            consumo.setUsuario(usuarioRepository.findById(consumo.getUsuario()).get().getNombre());
         }
         model.addAttribute("datos", consumos);
 
@@ -79,14 +81,28 @@ public class ConsumoController {
     @RequestParam("fechaConsumo")  String fechaConsumo,@RequestParam("numConsumos")  String numConsumos,
     @RequestParam("servicio")  String servicio, @RequestParam("idUsuario") String idUsuario, @RequestParam("reservaHabitacion") String reservaHabitacion,@RequestParam("descripcion") String descripcion){
 
-        Consumo consumo = new Consumo(null, sumaTotal, fechaConsumo, numConsumos, descripcion,servicio, usuarioRepository.findById(idUsuario).get(), reservaHabitacion);
-        consumoRepository.insert(consumo);
+        Consumo consumo = consumoRepository.insert(new Consumo(null, sumaTotal, fechaConsumo, numConsumos, descripcion,servicio, reservaHabitacion, idUsuario));
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        usuario.getConsumos().add(consumo);
+
+        usuarioRepository.save(usuario);
+        
 
         return "redirect:/RF6";
     }
     @GetMapping("/RF6/{id}/delete")
     String eliminar(@PathVariable("id") String id){
+        Usuario usuario = usuarioRepository.findConsumosId(id);
+        for(int i = 0; i < usuario.getConsumos().size();i++){
+            if(usuario.getConsumos().get(i).getId().equals(id)){
+                usuario.getConsumos().remove(i);
+                break;
+            }
+        }
+
         consumoRepository.deleteById(id);
+        usuarioRepository.save(usuario);
+
 
         return "redirect:/RF6";
     }
@@ -136,8 +152,32 @@ public class ConsumoController {
         consumo.setNumConsumos(numConsumos);
         consumo.setServicio(servicio);
         consumo.setSumaTotal(sumaTotal);
-        consumo.setUsuario(usuarioRepository.findById(idUsuario).get());
+        consumo.setUsuario(idUsuario);
 
+        Usuario usuario_ = usuarioRepository.findConsumosId(id);
+
+        if(usuario_.getId().equals(idUsuario)){
+            for(int i = 0; i < usuario_.getConsumos().size();i++){
+                if(usuario_.getConsumos().get(i).getId().equals(id)){
+                    usuario_.getConsumos().set(i, consumo);
+                    break;
+                }
+            }
+        }
+        else{
+            
+            for(int i = 0; i < usuario_.getConsumos().size();i++){
+                if(usuario_.getConsumos().get(i).getId().equals(id)){
+                    usuario_.getConsumos().remove(i);
+                    break;
+                }
+            }
+            Usuario usuario = usuarioRepository.findById(idUsuario).get();
+            usuario.getConsumos().add(consumo);
+            usuarioRepository.save(usuario);
+
+        }
+        usuarioRepository.save(usuario_);
         consumoRepository.save(consumo);
 
         return "redirect:/RF6";

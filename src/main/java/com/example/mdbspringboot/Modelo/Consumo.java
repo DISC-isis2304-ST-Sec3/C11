@@ -15,18 +15,18 @@ public class Consumo {
     String descripcion;
 
     String servicio;
-    Usuario usuario;
     String reservaHabitacion;
+    String usuario;
     public Consumo(String id, String sumaTotal, String fechaConsumo, String numConsumos, String descripcion,
-            String servicio, Usuario usuario, String reservaHabitacion) {
+        String servicio, String reservaHabitacion, String usuario) {
         this.id = id;
         this.sumaTotal = sumaTotal;
         this.fechaConsumo = fechaConsumo;
         this.numConsumos = numConsumos;
         this.descripcion = descripcion;
         this.servicio = servicio;
-        this.usuario = usuario;
         this.reservaHabitacion = reservaHabitacion;
+        this.usuario = usuario;
     }
     public String getId() {
         return id;
@@ -64,19 +64,20 @@ public class Consumo {
     public void setServicio(String servicio) {
         this.servicio = servicio;
     }
-    public Usuario getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
     public String getReservaHabitacion() {
         return reservaHabitacion;
     }
     public void setReservaHabitacion(String reservaHabitacion) {
         this.reservaHabitacion = reservaHabitacion;
     }
+    public String getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 
+    
     
     
 

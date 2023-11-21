@@ -1,5 +1,7 @@
 package com.example.mdbspringboot.Modelo;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,8 +25,10 @@ public class Usuario {
 
     private String contrasena;
 
+    private List<Consumo> consumos;
+
     public Usuario(String id, String nombre, TipoUsuario tipoUsuario, String tipoDocumento, String numeroDocumento,
-            String correoElectronico, String nombreUsuario, String contrasena) {
+            String correoElectronico, String nombreUsuario, String contrasena, List<Consumo> consumos) {
         this.id = id;
         this.nombre = nombre;
         this.tipoUsuario = tipoUsuario;
@@ -33,6 +37,7 @@ public class Usuario {
         this.correoElectronico = correoElectronico;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
+        this.consumos = consumos;
     }
 
     public String getId() {
@@ -97,6 +102,14 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public List<Consumo> getConsumos() {
+        return consumos;
+    }
+
+    public void setConsumos(List<Consumo> consumos) {
+        this.consumos = consumos;
     }
 
     
