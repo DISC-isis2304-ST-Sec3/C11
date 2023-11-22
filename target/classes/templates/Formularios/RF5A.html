@@ -49,8 +49,8 @@
 <body>
     <form th:action="@{'/RF5/' + ${id} + '/fecha'}" >
         <div>
-            <label for="nombre">Fecha de Check In (YYYY-MM-DD):</label>
-            <input type="text"  name="fechaCheckIn" class="form-control" required>
+            <label for="nombre">Fecha de Check In:</label>
+            <input type="date"  name="fechaCheckIn" class="form-control" required>
         </div>
         <div>
             <input type="submit" value="Guardar">

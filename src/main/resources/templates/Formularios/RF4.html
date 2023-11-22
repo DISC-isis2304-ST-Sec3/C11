@@ -49,16 +49,16 @@
 <body>
     <form th:action="@{/RF4/new/save(id=${id})}" method="post">
         <div>
-            <label for="nombre">Fecha Inicial (YYYY-MM-DD):</label>
-            <input type="text" id="nombre" name="fechaInicio" class="form-control" required>
+            <label for="nombre">Fecha Inicial:</label>
+            <input type="date"  name="fechaInicio" class="form-control" required>
         </div>
         <div>
-            <label for="nombre">Fecha Final (YYYY-MM-DD):</label>
-            <input type="text" id="nombre" name="fechaFin" class="form-control" required>
+            <label for="nombre">Fecha Final:</label>
+            <input type="date"  name="fechaFin" class="form-control" required>
         </div>
         <div>
             <label for="nombre">Numero de personas:</label>
-            <input type="text" id="nombre" name="numPersonas" class="form-control" required>
+            <input type="number" id="nombre" name="numPersonas" class="form-control" required>
         </div>
         <div class="form-group">
             <label >Plan de Consumo:</label>

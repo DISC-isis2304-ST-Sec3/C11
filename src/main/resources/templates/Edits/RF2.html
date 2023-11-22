@@ -50,7 +50,7 @@
     <form th:action="@{'/RF2/' + ${id} + '/edit/save'}" method="post">
         <div>
             <label for="nombre">Numero:</label>
-            <input type="text" name="numero" class="form-control" th:value = ${numeroorg} required>
+            <input type="number" name="numero" class="form-control" th:value = ${numeroorg} required>
         </div>
         <div>
             <label for="capacidad">Costo de Alojamiento:</label>

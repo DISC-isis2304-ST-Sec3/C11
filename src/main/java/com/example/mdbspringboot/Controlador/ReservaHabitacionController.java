@@ -73,36 +73,42 @@ public class ReservaHabitacionController {
     @RequestParam("numPersonas") int numPersonas ,@RequestParam("planConsumo") String  planConsumo,@RequestParam("habitacion") String habitacion,
     @RequestParam("id") String id) throws ParseException{
         Habitacion habitacion_ = habitacionRepository.findById(habitacion).get();
-        boolean sePuede = true;
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        
+        
         Date inicio = formato.parse(fechaInicio);
         Date fin = formato.parse(fechaFin);
+
         for(ReservaHabitacion res: habitacion_.getReservasHabitaciones()){
             Date inicio1 = formato.parse(res.getFechaInicio());
             Date fin1 = formato.parse(res.getFechaFin());
 
             if(!inicio.after(fin1) && !fin.before(inicio1)){
-                sePuede = false;
-                break;
+                model.addAttribute("causa", "HABITACION RESERVADA EN ESE LAPSO");
+                return "error.html";
             }
         }
         if(numPersonas > tipoHabitacionRepository.findById(habitacionRepository.findById(habitacion).get().getTipoHabitacion()).get().getCapacidad()){
-            sePuede = false;
+            model.addAttribute("causa", "CAPACIDAD DE LA HABITACION EXCEDIDA");
+            return "error.html";
         }
 
-        if(sePuede){
-            if(planConsumo.equals("--")){
-            planConsumo = null;
-            }
-            List<Usuario> usuarios = new ArrayList<>();
-            usuarios.add(usuarioRepository.findById(id).get());
-            ReservaHabitacion reservaHabitacion = new ReservaHabitacion(null, planConsumo, usuarios, null, null, numPersonas, fechaInicio, fechaFin);
-            
-            habitacion_.getReservasHabitaciones().add(reservaHabitacion);
-            model.addAttribute("id", id);
-            reservaHabitacionRepository.insert(reservaHabitacion);
-            habitacionRepository.save(habitacion_);
+        if(inicio.after(fin) || fin.before(inicio)){
+            model.addAttribute("causa", "FECHAS NO VALIDAS");
+            return "error.html";
         }
+
+        if(planConsumo.equals("--")){
+            planConsumo = null;
+        }
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(usuarioRepository.findById(id).get());
+        ReservaHabitacion reservaHabitacion = new ReservaHabitacion(null, planConsumo, usuarios, null, null, numPersonas, fechaInicio, fechaFin);
+            
+        habitacion_.getReservasHabitaciones().add(reservaHabitacion);
+        model.addAttribute("id", id);
+        reservaHabitacionRepository.insert(reservaHabitacion);
+        habitacionRepository.save(habitacion_);
         return "redirect:/RF4?id=" + id;
     }
 
@@ -226,7 +232,7 @@ public class ReservaHabitacionController {
 
     @PostMapping("/RF5/{id}/usuarios/{n}")
     String putUsuario(Model model, @PathVariable("id") String id, @PathVariable("n") int n, @RequestParam("max") int max,
-    @RequestParam("nombre") String nombre,@RequestParam("tipoDocumento") String tipoDocumento, @RequestParam("numeroDocumento") long numeroDocumento,
+    @RequestParam("nombre") String nombre,@RequestParam("tipoDocumento") String tipoDocumento, @RequestParam("numeroDocumento") int numeroDocumento,
     @RequestParam("correoElectronico") String correoElectronico, @RequestParam("nombreUsuario") String nombreUsuario, @RequestParam("contrasena") String contrasena,
     @RequestParam("usuario") String usuario){
 

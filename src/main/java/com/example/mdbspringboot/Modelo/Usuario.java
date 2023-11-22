@@ -17,7 +17,7 @@ public class Usuario {
 
     private String tipoDocumento;
 
-    private long numeroDocumento;
+    private int numeroDocumento;
 
     private String correoElectronico;
 
@@ -29,7 +29,7 @@ public class Usuario {
 
     private String fechaConsumo;
 
-    public Usuario(String id, String nombre, TipoUsuario tipoUsuario, String tipoDocumento, long numeroDocumento,
+    public Usuario(String id, String nombre, TipoUsuario tipoUsuario, String tipoDocumento, int numeroDocumento,
             String correoElectronico, String nombreUsuario, String contrasena, List<Consumo> consumos,
             String fechaConsumo) {
         this.id = id;
@@ -76,11 +76,11 @@ public class Usuario {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public long getNumeroDocumento() {
+    public int getNumeroDocumento() {
         return numeroDocumento;
     }
 
-    public void setNumeroDocumento(long numeroDocumento) {
+    public void setNumeroDocumento(int numeroDocumento) {
         this.numeroDocumento = numeroDocumento;
     }
 

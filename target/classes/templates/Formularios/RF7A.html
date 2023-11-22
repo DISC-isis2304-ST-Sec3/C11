@@ -49,8 +49,8 @@
 <body>
     <form th:action="@{'/RF7/' + ${id} + '/checkOut'}"  method="post">
         <div>
-            <label for="nombre">Fecha de Check Out (YYYY-MM-DD):</label>
-            <input type="text"  name="fechaCheckOut" class="form-control" required>
+            <label for="nombre">Fecha de Check Out:</label>
+            <input type="date"  name="fechaCheckOut" class="form-control" required>
         </div>
         <div>
             <input type="submit" value="Guardar">

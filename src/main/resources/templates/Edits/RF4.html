@@ -49,16 +49,16 @@
 <body>
     <form th:action="@{'/RF4/' + ${id} + '/' + ${idHab} + '/edit/save?idUsuario=' + ${idUsuario}}" method="post">
         <div>
-            <label for="nombre">Fecha Inicial (YYYY-MM-DD):</label>
-            <input type="text" th:value="${reserva.fechaInicio}" name="fechaInicio" class="form-control" required>
+            <label for="nombre">Fecha Inicial:</label>
+            <input type="date" th:value="${reserva.fechaInicio}" name="fechaInicio" class="form-control" required>
         </div>
         <div>
-            <label for="nombre">Fecha Final (YYYY-MM-DD):</label>
-            <input type="text" th:value="${reserva.fechaFin}" name="fechaFin" class="form-control" required>
+            <label for="nombre">Fecha Final:</label>
+            <input type="date" th:value="${reserva.fechaFin}" name="fechaFin" class="form-control" required>
         </div>
         <div>
             <label for="nombre">Numero de personas:</label>
-            <input type="text" th:value="${reserva.numPersonas}" name="numPersonas" class="form-control" required>
+            <input type="number" th:value="${reserva.numPersonas}" name="numPersonas" class="form-control" required>
         </div>
         <div class="form-group">
             <label >Plan de Consumo:</label>

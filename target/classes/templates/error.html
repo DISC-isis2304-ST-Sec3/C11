@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 40px;
+            margin: 30px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #4a4a4a;
+            margin-bottom: 20px;
+        }
+        .attribute {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .btn-container {
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Oops! Algo salió mal</h1>
+        <img th:src="@{/images/error.jpg}" alt="Error Illustration" width="400">
+        <p>Ocurrió un error.</p>
+        <span th:if="@{${causa}!= null}" th:text="'Detalles del error: ' + ${causa} "></span>
+        <span th:if="@{${causa}== null}" th:text="ERROR"></span>
+
+        <div class="btn-container">
+            <a th:href="@{/}" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</body>
+</html>
