@@ -21,8 +21,10 @@ public class Servicio {
 
     List<Producto> productos;
 
+    List<Usuario> usuarios;
+
     public Servicio(String id, String nombre, String descripcion, int costoPorUnidad, int unidad, String horario,
-            String tipoServicio, int capacidad, List<Producto> productos) {
+            String tipoServicio, int capacidad, List<Producto> productos, List<Usuario> usuarios) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -32,6 +34,7 @@ public class Servicio {
         this.tipoServicio = tipoServicio;
         this.capacidad = capacidad;
         this.productos = productos;
+        this.usuarios = usuarios;
     }
 
     public String getId() {
@@ -106,7 +109,13 @@ public class Servicio {
         this.productos = productos;
     }
 
-    
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 
     
 }

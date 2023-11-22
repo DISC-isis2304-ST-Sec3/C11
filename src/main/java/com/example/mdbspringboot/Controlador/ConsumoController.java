@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.mdbspringboot.Modelo.Consumo;
 import com.example.mdbspringboot.Modelo.Habitacion;
 import com.example.mdbspringboot.Modelo.ReservaHabitacion;
+import com.example.mdbspringboot.Modelo.Servicio;
 import com.example.mdbspringboot.Modelo.Usuario;
 import com.example.mdbspringboot.Repositorio.ConsumoRepository;
 import com.example.mdbspringboot.Repositorio.HabitacionRepository;
@@ -89,11 +90,17 @@ public class ConsumoController {
         Consumo consumo = consumoRepository.insert(new Consumo(null, sumaTotal, fechaConsumo, numConsumos, descripcion,servicio, reservaHabitacion, idUsuario));
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
         Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(consumo.getReservaHabitacion());
+        Servicio servicio_ = servicioRepository.findById(consumo.getServicio()).get();
         usuario.getConsumos().add(consumo);
         habitacion.getConsumos().add(consumo);
 
         habitacionRepository.save(habitacion);
         usuarioRepository.save(usuario);
+
+        usuario.setFechaConsumo(fechaConsumo);
+        servicio_.getUsuarios().add(usuario);
+
+        servicioRepository.save(servicio_);
         
 
         return "redirect:/RF6";
@@ -103,6 +110,7 @@ public class ConsumoController {
         Consumo consumo = consumoRepository.findById(id).get();
         Usuario usuario = usuarioRepository.findConsumosId(id);
         Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(consumo.getReservaHabitacion());
+        Servicio servicio = servicioRepository.findById(consumo.getServicio()).get();
         for(int i = 0; i < usuario.getConsumos().size();i++){
             if(usuario.getConsumos().get(i).getId().equals(id)){
                 usuario.getConsumos().remove(i);
@@ -115,9 +123,16 @@ public class ConsumoController {
                 break;
             }
         }
+        for(int i = 0; i < servicio.getUsuarios().size();i++){
+            if(servicio.getUsuarios().get(i).getId().equals(usuario.getId())){
+                servicio.getUsuarios().remove(i);
+                break;
+            }
+        }
         habitacionRepository.save(habitacion);
         consumoRepository.deleteById(id);
         usuarioRepository.save(usuario);
+        servicioRepository.save(servicio);
 
 
         return "redirect:/RF6";
@@ -162,6 +177,7 @@ public class ConsumoController {
     @RequestParam("servicio")  String servicio, @RequestParam("idUsuario") String idUsuario,@RequestParam("descripcion") String descripcion, @RequestParam("reservaHabitacion") String reservaHabitacion ){
         Consumo consumo = consumoRepository.findById(id).get();
         String reservaHab = consumo.getReservaHabitacion();
+        String servicioOrg = consumo.getServicio();
         consumo.setReservaHabitacion(reservaHabitacion);
         consumo.setDescripcion(descripcion);
         consumo.setFechaConsumo(fechaConsumo);
@@ -172,6 +188,8 @@ public class ConsumoController {
 
         Usuario usuario_ = usuarioRepository.findConsumosId(id);
         Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(consumo.getReservaHabitacion());
+
+        Usuario usuarioService = usuario_;
 
         if(usuario_.getId().equals(idUsuario)){
             for(int i = 0; i < usuario_.getConsumos().size();i++){
@@ -193,7 +211,11 @@ public class ConsumoController {
             usuario.getConsumos().add(consumo);
             usuarioRepository.save(usuario);
 
+            usuarioService = usuario;
+
         }
+        usuarioRepository.save(usuario_);
+        usuarioService.setFechaConsumo(fechaConsumo);
         if(reservaHab.equals(consumo.getReservaHabitacion())){
             for(int i = 0; i < habitacion.getConsumos().size();i++){
                 if(habitacion.getConsumos().get(i).getId().equals(id)){
@@ -211,7 +233,26 @@ public class ConsumoController {
             nuevaHab.getConsumos().add(consumo);
             habitacionRepository.save(nuevaHab);
         }
-        usuarioRepository.save(usuario_);
+        Servicio servicio_ = servicioRepository.findById(servicioOrg).get();
+        if(!servicioOrg.equals(servicio)){
+            for(int i = 0; i < servicio_.getUsuarios().size();i++){
+                if(servicio_.getUsuarios().get(i).getId().equals(usuario_.getId())){
+                    servicio_.getUsuarios().remove(i);
+                    break;
+                }
+            }
+            Servicio newServicio = servicioRepository.findById(servicio).get();
+            newServicio.getUsuarios().add(usuarioService);
+            servicioRepository.save(newServicio);
+        }
+        else{
+            for(int i = 0; i < servicio_.getUsuarios().size();i++){
+                if(servicio_.getUsuarios().get(i).getId().equals(usuario_.getId())){
+                    servicio_.getUsuarios().set(i, usuarioService);
+                }
+            }
+        }
+        servicioRepository.save(servicio_);
         consumoRepository.save(consumo);
         habitacionRepository.save(habitacion);
 

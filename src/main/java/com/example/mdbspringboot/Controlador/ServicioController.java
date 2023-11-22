@@ -1,5 +1,7 @@
 package com.example.mdbspringboot.Controlador;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +48,7 @@ public class ServicioController {
             lista.add(new Producto(split[0], Integer.parseInt(split[1])));
         }
 
-        Servicio servicio = new Servicio(null, nombre, descripcion, costoPorUnidad, unidad, horario, tipoServicio, capacidad, lista);
+        Servicio servicio = new Servicio(null, nombre, descripcion, costoPorUnidad, unidad, horario, tipoServicio, capacidad, lista, new ArrayList<>());
         servicioRepository.insert(servicio);
 
         return "redirect:/RF3";
@@ -101,5 +103,30 @@ public class ServicioController {
     String delete(@PathVariable("id") String id){
         servicioRepository.deleteById(id);
         return "redirect:/RF3";
+    }
+
+    @GetMapping("/RFC4")
+    String RFC4(Model model){
+
+        model.addAttribute("servicios", servicioRepository.findAll());
+
+        return "Formularios/RFC4";
+    }
+
+    @GetMapping("/RFC4/mostrar")
+    String RFC4Mostrar(Model model, @RequestParam("fecha1") String fecha1,
+        @RequestParam("fecha2") String fecha2, @RequestParam("servicio") String servicio,
+        @RequestParam("agrupamiento") String agrupamiento, @RequestParam("ordenamiento") String ordenamiento,
+        @RequestParam("orden") int orden) throws ParseException{
+
+            if(ordenamiento.equals("agrupamiento")){
+                ordenamiento = agrupamiento;
+            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            model.addAttribute("datos", servicioRepository.RFC4(servicio, sdf.parse(fecha1), sdf.parse(fecha2), agrupamiento, ordenamiento, orden));
+
+        return "/RFC4.html";
     }
 }

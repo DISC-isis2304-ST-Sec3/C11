@@ -27,8 +27,11 @@ public class Usuario {
 
     private List<Consumo> consumos;
 
+    private String fechaConsumo;
+
     public Usuario(String id, String nombre, TipoUsuario tipoUsuario, String tipoDocumento, String numeroDocumento,
-            String correoElectronico, String nombreUsuario, String contrasena, List<Consumo> consumos) {
+            String correoElectronico, String nombreUsuario, String contrasena, List<Consumo> consumos,
+            String fechaConsumo) {
         this.id = id;
         this.nombre = nombre;
         this.tipoUsuario = tipoUsuario;
@@ -38,6 +41,7 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.consumos = consumos;
+        this.fechaConsumo = fechaConsumo;
     }
 
     public String getId() {
@@ -111,6 +115,16 @@ public class Usuario {
     public void setConsumos(List<Consumo> consumos) {
         this.consumos = consumos;
     }
+
+    public String getFechaConsumo() {
+        return fechaConsumo;
+    }
+
+    public void setFechaConsumo(String fechaConsumo) {
+        this.fechaConsumo = fechaConsumo;
+    }
+
+    
 
     
     

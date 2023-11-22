@@ -238,7 +238,7 @@ public class ReservaHabitacionController {
             reservaHabitacionRepository.save(reservaHabitacion);
         }
         else{
-            Usuario usuario_ = new Usuario(null, nombre, new TipoUsuario("Cliente", "D"), tipoDocumento, numeroDocumento, correoElectronico, nombreUsuario, contrasena, new ArrayList<>());
+            Usuario usuario_ = new Usuario(null, nombre, new TipoUsuario("Cliente", "D"), tipoDocumento, numeroDocumento, correoElectronico, nombreUsuario, contrasena, new ArrayList<>(),null);
             usuarioRepository.insert(usuario_);
             reservaHabitacion.getUsuarios().add(usuario_);
             reservaHabitacionRepository.save(reservaHabitacion);
