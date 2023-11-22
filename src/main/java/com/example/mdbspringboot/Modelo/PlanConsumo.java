@@ -10,9 +10,9 @@ public class PlanConsumo {
     private String id;
 
     String descripcion;
-    float descuento;
+    double descuento;
     String nombre;
-    public PlanConsumo(String id, String descripcion, float descuento, String nombre) {
+    public PlanConsumo(String id, String descripcion, double descuento, String nombre) {
         this.id = id;
         this.descripcion = descripcion;
         this.descuento = descuento;
@@ -30,10 +30,10 @@ public class PlanConsumo {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public float getDescuento() {
+    public double getDescuento() {
         return descuento;
     }
-    public void setDescuento(float descuento) {
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
     public String getNombre() {
@@ -42,6 +42,5 @@ public class PlanConsumo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     
 }

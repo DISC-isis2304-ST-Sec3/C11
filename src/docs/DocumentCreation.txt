@@ -1,0 +1,111 @@
+db.createCollection('tiposHabitaciones',{
+    validator: {
+        $jsonSchema:{
+            bsonType:'object',
+            required: ['nombre','capacidad','elementosHabitaciones'],
+            properties:{
+                'nombre':{bsonType:'string'},
+                'capacidad':{bsonType:'int'},
+                'elementosHabitaciones':{bsonType:'array',
+                                        items:{bsonType:'object',required:['nombre']
+}}}}}})
+
+db.createCollection('usuarios',{
+    validator: {
+        $jsonSchema:{
+            bsonType:'object',
+            required: ['nombre','tipoDocumento','numeroDocumento','correoElectronico','nombreUsuario','contrasena','tipoUsuario','consumos'],
+            properties:{
+                'nombre': {bsonType:'string'},
+                'tipoDocumento':{bsonType:'string'},
+                'numeroDocumento':{bsonType:'int'},
+                'correoElectronico':{bsonType:'string'},
+                'nombreUsuario':{bsonType:'string'},
+                'contrasena':{bsonType:'string'},
+                'tipoUsuario':{bsonType:'object'},
+                'consumos':{bsonType:'array',items:{bsonType:'object'}}
+            }}}})
+
+db.createCollection('consumos',{
+    validator: {
+        $jsonSchema:{
+            bsonType:'object',
+            required: ['sumaTotal','fechaConsumo','numConsumos','descripcion','servicio','reservaHabitacion','usuario'],
+            properties:{
+                'sumaTotal':{bsonType:'int'},
+                'fechaConsumo':{bsonType:'string'},
+                'numConsumos':{bsonType:'int'},
+                'descripcion':{bsonType:'string'},
+                'servicio':{bsonType:'string'},
+                'reservaHabitacion':{bsonType:'string'},
+                'usuario':{bsonType:'string'}
+            }
+        }
+    }
+})
+db.createCollection('habitaciones',{
+    validator:{
+        $jsonSchema : {
+            bsonType : 'object',
+            required : ['numero','costoAlojamiento','tipoHabitacion','reservasHabitaciones','consumos'],
+            properties : {
+                'numero' : {bsonType : 'int'},
+                'costoAlojamiento' : {bsonType : 'int'},
+                'tipoHabitacion' : {bsonType : 'string'},
+                'reservasHabitaciones' : {bsonType:'array',items:{bsonType:'object'}},
+                'consumos' : {bsonType:'array',items:{bsonType:'object'}}
+            }
+        }
+    }
+})
+
+db.createCollection('reservasHabitaciones',{
+    validator: {
+        $jsonSchema : {
+            bsonType : 'object',
+            required : ['usuarios','numPersonas','fechaInicio','fechaFin'],
+            properties : {
+                'fechaCheckIn' : {bsonType : 'string'},
+                'fechaCheckOut' : {bsonType : 'string'},
+                'numPersonas' : {bsonType : 'int'},
+                'fechaInicio' : {bsonType : 'string'},
+                'fechaFin' : {bsonType : 'string'},
+                'usuarios' :  {bsonType:'array',items:{bsonType:'object'}}
+            }
+        }
+    }
+})
+
+db.createCollection('servicios',{
+    validator : {
+        $jsonSchema : {
+            bsonType : 'object',
+            required : ['nombre','descripcion','costoPorUnidad','unidad','horario','tipoServicio','capacidad','productos', 'usuarios'],
+            properties : {
+                'nombre' : {bsonType : 'string'},
+                'descripcion' : {bsonType : 'string'},
+                'costoPorUnidad' : {bsonType : 'int'},
+                'unidad' : {bsonType : 'int'},
+                'horario' : {bsonType : 'string'},
+                'tipoServicio' : {bsonType : 'string'},
+                'capacidad' : {bsonType : 'int'},
+                'productos' : {bsonType:'array',items:{bsonType:'object'}},
+                'usuarios' : {bsonType:'array',items:{bsonType:'object'}}
+            }
+        }
+    }
+})
+
+db.createCollection('planesConsumo',{
+    validator: {
+        $jsonSchema : {
+            bsonType : 'object',
+            required : ['descripcion','descuento','nombre'],
+            properties : {
+                'descripcion' : {bsonType : 'string'},
+                'descuento' : {bsonType : 'double'},
+                'nombre' : {bsonType : 'string'}
+            }
+        }
+    }
+})

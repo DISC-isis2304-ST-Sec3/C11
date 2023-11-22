@@ -1,0 +1,36 @@
+[{"nombre": "Nicolas Ruiz Perez",
+  "tipoUsuario": {
+    "nombre": "Gerente",
+    "permisos": "ABCDEFGHIJK"
+  },
+  "tipoDocumento": "Cedula",
+  "numeroDocumento": 1092850219,
+  "correoElectronico": "n.ruizp2@uniandes.edu.co",
+  "nombreUsuario": "llanitos",
+  "contrasena": "llanitos",
+  "consumos": []
+},
+{ "nombre": "Manuel Felipe Carvajal",
+  "tipoUsuario": {
+    "nombre": "Recepcionista",
+    "permisos": "D"
+  },
+  "tipoDocumento": "Cedula",
+  "numeroDocumento": 29385743,
+  "correoElectronico": "carvafel@uniandes.edu.co",
+  "nombreUsuario": "carvafel",
+  "contrasena": "wilfrelov123",
+  "consumos": []
+},
+{"nombre": "Harold Coca Peña",
+  "tipoUsuario": {
+    "nombre": "Cliente",
+    "permisos": "D"
+  },
+  "tipoDocumento": "Cedula",
+  "numeroDocumento": 123456789,
+  "correoElectronico": "h.coca@uniandes.edu.co",
+  "nombreUsuario": "harcoc",
+  "contrasena": "harcoc",
+  "consumos": []
+}]

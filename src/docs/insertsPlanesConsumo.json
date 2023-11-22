@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6557ff6624d1c04b7bd05732"
+  },
+  "descripcion": "Todo Incluido",
+  "descuento": 0.8,
+  "nombre": "todo incluido"
+},
+{
+  "_id": {
+    "$oid": "6557ff7124d1c04b7bd05733"
+  },
+  "descripcion": "Casi Todo Incluido",
+  "descuento": 0.5,
+  "nombre": "Casi todo incluido"
+},
+{
+  "_id": {
+    "$oid": "6557ff8a24d1c04b7bd05734"
+  },
+  "descripcion": "Estadia Por más de dos noches",
+  "descuento": 0.5,
+  "nombre": "Estadia Extendida"
+}]

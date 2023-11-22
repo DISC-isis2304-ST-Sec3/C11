@@ -226,7 +226,7 @@ public class ReservaHabitacionController {
 
     @PostMapping("/RF5/{id}/usuarios/{n}")
     String putUsuario(Model model, @PathVariable("id") String id, @PathVariable("n") int n, @RequestParam("max") int max,
-    @RequestParam("nombre") String nombre,@RequestParam("tipoDocumento") String tipoDocumento, @RequestParam("numeroDocumento") String numeroDocumento,
+    @RequestParam("nombre") String nombre,@RequestParam("tipoDocumento") String tipoDocumento, @RequestParam("numeroDocumento") long numeroDocumento,
     @RequestParam("correoElectronico") String correoElectronico, @RequestParam("nombreUsuario") String nombreUsuario, @RequestParam("contrasena") String contrasena,
     @RequestParam("usuario") String usuario){
 
@@ -320,6 +320,10 @@ public class ReservaHabitacionController {
 
         for(Consumo consumo: consumos){
             dinero += consumo.getSumaTotal();
+        }
+
+        if(reservaHabitacion.getPlanConsumo() != null){
+            dinero *= (1-planConsumoRepository.findById(reservaHabitacion.getPlanConsumo()).get().getDescuento());
         }
 
         model.addAttribute("dinero", dinero);
