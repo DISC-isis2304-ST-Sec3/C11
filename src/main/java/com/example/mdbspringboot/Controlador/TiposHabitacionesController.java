@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mdbspringboot.Modelo.ElementoHabitacion;
 import com.example.mdbspringboot.Modelo.TipoHabitacion;
+import com.example.mdbspringboot.Repositorio.HabitacionRepository;
 import com.example.mdbspringboot.Repositorio.TipoHabitacionRepository;
 
 @Controller
@@ -21,6 +22,9 @@ public class TiposHabitacionesController {
 
     @Autowired
     TipoHabitacionRepository tipoHabitacionRepository;
+
+    @Autowired
+    HabitacionRepository habitacionRepository;
 
 
     @GetMapping("/RF1")
@@ -51,6 +55,11 @@ public class TiposHabitacionesController {
 
     @GetMapping("/RF1/{id}/delete")
     String borrar(Model model, @PathVariable("id") String id){
+
+        if(!habitacionRepository.findByTipoHabitacion(id).isEmpty()){
+            model.addAttribute("causa", "HAY HABITACIONES CON ESTE TIPO DE HABITACION ASOCIADO");
+            return "error.html";
+        }
 
         tipoHabitacionRepository.deleteById(id);
         return "redirect:/RF1";

@@ -12,4 +12,10 @@ public interface ConsumoRepository extends MongoRepository<Consumo,String>{
 
     @Query("{'usuario._id': {$in: ?0}}")
     List<Consumo> findByUsuarios(List<String> usuarios);
+
+    @Query("{'reservaHabitacion':?0}")
+    List<Consumo> findByIdreserva(String id);
+
+    @Query("{'servicio':?0}")
+    List<Consumo> findByIdServicio(String id);
 }

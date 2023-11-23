@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mdbspringboot.Modelo.Producto;
 import com.example.mdbspringboot.Modelo.Servicio;
+import com.example.mdbspringboot.Repositorio.ConsumoRepository;
 import com.example.mdbspringboot.Repositorio.ServicioRepository;
 
 @Controller
@@ -22,6 +23,9 @@ public class ServicioController {
     
     @Autowired
     ServicioRepository servicioRepository;
+
+    @Autowired
+    ConsumoRepository consumoRepository;
 
     @GetMapping("/RF3")
     String mostrar(Model model){
@@ -100,7 +104,12 @@ public class ServicioController {
     }
 
     @GetMapping("/RF3/{id}/delete")
-    String delete(@PathVariable("id") String id){
+    String delete(Model model, @PathVariable("id") String id){
+
+        if(!consumoRepository.findByIdServicio(id).isEmpty()){
+            model.addAttribute("causa", "EXISTEN CONSUMOS ASOCIADOS A ESTE SERVICIO");
+            return "error.html";
+        }
         servicioRepository.deleteById(id);
         return "redirect:/RF3";
     }

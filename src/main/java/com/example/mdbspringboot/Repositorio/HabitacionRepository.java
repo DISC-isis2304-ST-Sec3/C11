@@ -74,5 +74,7 @@ public interface HabitacionRepository extends MongoRepository<Habitacion,String>
     List<respuestaRFC2> RFC2(Date fecha1, Date fecha2);
 
 
+    @Query("{'tipoHabitacion': ?0}")
+    List<Habitacion> findByTipoHabitacion(String id);
     
 }

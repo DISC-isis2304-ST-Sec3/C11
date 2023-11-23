@@ -63,6 +63,11 @@ public class HabitacionesController {
     @GetMapping("/RF2/{id}/delete")
     String borrar(Model model, @PathVariable("id") String id){
 
+        if(!habitacionRepository.findById(id).get().getReservasHabitaciones().isEmpty()){
+            model.addAttribute("causa", "EXISTEN RESERVAS ASOCIADAS A ESTA HABITACION");
+            return "error.html";
+        }
+
         habitacionRepository.deleteById(id);
 
         return "redirect:/RF2";

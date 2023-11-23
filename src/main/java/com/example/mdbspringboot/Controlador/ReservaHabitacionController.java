@@ -169,7 +169,13 @@ public class ReservaHabitacionController {
     }
 
     @GetMapping("RF4/{id}/{idHab}/delete")
-    String delete(@PathVariable("id") String id, @PathVariable("idHab") int idHab, @RequestParam("idUsuario") String idUsuario){
+    String delete(Model model, @PathVariable("id") String id, @PathVariable("idHab") int idHab, @RequestParam("idUsuario") String idUsuario){
+
+        if(!consumoRepository.findByIdreserva(id).isEmpty()){
+            model.addAttribute("causa", "EXISTEN CONSUMOS ASOCIADOS A ESTA RESERVA");
+            return "error.html";
+        }
+
         Habitacion habitacion = habitacionRepository.findByNumero(idHab);
         List<ReservaHabitacion> reservaHabitaciones = habitacion.getReservasHabitaciones();
         for(int i = 0; i< reservaHabitaciones.size(); i++){
@@ -276,6 +282,8 @@ public class ReservaHabitacionController {
 
     @GetMapping("RF5/{id}/delete")
     String borrar(@PathVariable("id") String id){
+
+        
         ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(id).get();
         Habitacion habitacion = habitacionRepository.findByReservasHabitacionesId(id);
         reservaHabitacion.setFechaCheckIn(null);
