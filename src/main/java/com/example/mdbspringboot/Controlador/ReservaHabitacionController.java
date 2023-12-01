@@ -88,8 +88,8 @@ public class ReservaHabitacionController {
                 return "error.html";
             }
         }
-        if(numPersonas > tipoHabitacionRepository.findById(habitacionRepository.findById(habitacion).get().getTipoHabitacion()).get().getCapacidad()){
-            model.addAttribute("causa", "CAPACIDAD DE LA HABITACION EXCEDIDA");
+        if(numPersonas > tipoHabitacionRepository.findById(habitacionRepository.findById(habitacion).get().getTipoHabitacion()).get().getCapacidad() || numPersonas <= 0){
+            model.addAttribute("causa", "CAPACIDAD DE LA HABITACION EXCEDIDA Y/O INVALIDA");
             return "error.html";
         }
 
